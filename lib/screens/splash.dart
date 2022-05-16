@@ -5,6 +5,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context).size;
+
     String hola = 'g';
     return Scaffold(
       body: Center(
@@ -31,24 +33,12 @@ class SplashScreen extends StatelessWidget {
                 },
               );
             }
-            return DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Column(
-                children: const [
-                  SizedBox(
-                    height: 200,
-                  ),
-                  Center(
-                    child: Image(
-                        image: AssetImage("assets/images/Logo.png"),
-                        height: 410),
-                  ),
-                  Image(
-                      image: AssetImage("assets/images/logounipaz.jpg"),
-                      height: 100),
-                ],
+            return Positioned(
+              child: Image.asset(
+                "assets/images/Splash.png",
+                fit: BoxFit.cover,
+                width: media.width,
+                height: media.height,
               ),
             );
           },

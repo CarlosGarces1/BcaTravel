@@ -58,7 +58,12 @@ class LoginScreen extends StatelessWidget {
                           width: media.width,
                           height: 45,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(context, 'politicas');
+
+                              // Navigator.pushReplacementNamed(
+                              //     context, 'principal');
+                            },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(
                               textStyle: const TextStyle(
