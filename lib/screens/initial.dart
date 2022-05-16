@@ -69,7 +69,7 @@ class InitialScreen extends StatelessWidget {
                           width: media.width * 0.6,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacementNamed(context, 'login');
+                              Navigator.pushNamed(context, 'login');
                             },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(
