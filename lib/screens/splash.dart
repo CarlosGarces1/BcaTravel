@@ -19,8 +19,7 @@ class SplashScreen extends StatelessWidget {
                   await Future.delayed(
                     const Duration(seconds: 2),
                   );
-                  // Navigator.pushNamed(context, 'wt');
-                  Navigator.pushReplacementNamed(context, 'principal');
+                  Navigator.pushReplacementNamed(context, 'home');
                 },
               );
             } else {
@@ -29,7 +28,7 @@ class SplashScreen extends StatelessWidget {
                   await Future.delayed(
                     const Duration(seconds: 2),
                   );
-                  Navigator.pushReplacementNamed(context, 'initial');
+                  Navigator.pushReplacementNamed(context, 'login');
                 },
               );
             }

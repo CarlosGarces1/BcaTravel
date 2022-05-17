@@ -59,10 +59,7 @@ class LoginScreen extends StatelessWidget {
                           height: 45,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacementNamed(context, 'politicas');
-
-                              // Navigator.pushReplacementNamed(
-                              //     context, 'principal');
+                              Navigator.pushReplacementNamed(context, 'home');
                             },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(
@@ -114,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                                 child: SizedBox(
                                   width: 120,
                                   child: Text(
-                                    '¿Quieres saber más sobre BCA Travel?',
+                                    '¿Quieres registrarte en BCA Travel?',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'BreeSerif',
@@ -129,10 +126,10 @@ class LoginScreen extends StatelessWidget {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        // Navigator.pushNamed(context, 'infoRol');
+                                        Navigator.pushNamed(context, 'register');
                                       },
                                       child: const Text(
-                                        'Conoce más',
+                                        'Registrate',
                                         style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.black,

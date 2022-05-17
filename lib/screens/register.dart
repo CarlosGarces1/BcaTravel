@@ -57,7 +57,10 @@ class RegisterScreen extends StatelessWidget {
                           width: media.width,
                           height: 45,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, 'home');
+                            },
                             child: const Text('Registrarme'),
                             style: ElevatedButton.styleFrom(
                               textStyle: const TextStyle(
@@ -85,7 +88,7 @@ class RegisterScreen extends StatelessWidget {
                               text: texts[1],
                               style: const TextStyle(
                                 decoration: TextDecoration.underline,
-                                color: Colors.yellow,
+                                color: Colors.blue,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -99,7 +102,7 @@ class RegisterScreen extends StatelessWidget {
                               text: texts[3],
                               style: const TextStyle(
                                 decoration: TextDecoration.underline,
-                                color: Colors.yellow,
+                                color: Colors.blue,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -210,29 +213,6 @@ class RegisterScreen extends StatelessWidget {
             ),
             const SizedBox(
               height: 15,
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Foto de Perfil',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'BreeSerif',
-                    fontSize: 16,
-                    decoration: TextDecoration.none),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            InputV1B(
-              icon: const Icon(Icons.photo, color: Colors.black),
-              colorIcon: Colors.black,
-              type: TextInputType.text,
-              placeholder: 'Foto de Perfil',
-              onChanged: (value) {},
-              validator: (value) {},
             ),
           ],
         ));
