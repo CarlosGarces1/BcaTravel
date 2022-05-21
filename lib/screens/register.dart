@@ -180,7 +180,7 @@ class RegisterScreen extends StatelessWidget {
             InputV1B(
               icon: const Icon(Icons.email, color: Colors.black),
               placeholder: 'Correo Electronico',
-              type: TextInputType.number,
+              type: TextInputType.emailAddress,
               onChanged: (value) {},
               validator: (value) {},
             ),

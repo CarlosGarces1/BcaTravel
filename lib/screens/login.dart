@@ -17,12 +17,6 @@ class LoginScreen extends StatelessWidget {
               height: media.height,
             ),
           ),
-          // Positioned(
-          //     child: Container(
-          //   width: media.width,
-          //   height: media.height,
-          //   color: Colors.black,
-          // )),
           Scaffold(
             backgroundColor: Colors.transparent,
             body: SizedBox(
@@ -34,19 +28,24 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(
-                        height: 40,
+                        height: 10,
                       ),
                       Column(
-                        children: const [
-                          Text(
-                            'BCA Travel',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black),
-                          )
+                        children: [
+                          SizedBox(
+                            width: media.width * 0.2,
+                            height: media.height * 0.2,
+                            child: Image.asset('assets/images/Logo.png'),
+                          ),
+                          // const Text(
+                          //   'BCA Travel',
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(color: Colors.black),
+                          // ),
                         ],
                       ),
                       const SizedBox(
-                        height: 140,
+                        height: 20,
                       ),
                       formLogin(),
                       const SizedBox(
@@ -99,10 +98,10 @@ class LoginScreen extends StatelessWidget {
                                       border: Border(
                                     right: BorderSide(color: Colors.white),
                                   )),
-                                  // child: Image.asset(
-                                  //   'assets/images/cancha.png',
-                                  //   fit: BoxFit.cover,
-                                  // ),
+                                  child: Image.asset(
+                                    'assets/images/Logo.png',
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               const Positioned(
@@ -126,7 +125,8 @@ class LoginScreen extends StatelessWidget {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.pushNamed(context, 'register');
+                                        Navigator.pushNamed(
+                                            context, 'register');
                                       },
                                       child: const Text(
                                         'Registrate',
