@@ -4,7 +4,6 @@ import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
 import 'package:bcatravel/screens/register.dart';
 import 'package:bcatravel/screens/splash.dart';
-import 'package:bcatravel/user/home.dart';
 import 'package:bcatravel/user/bottombar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,6 @@ class MyApp extends StatelessWidget {
         'condiciones': (BuildContext context) => const CondicionesUso(),
         'politicas': (BuildContext context) => const PoliticasScreen(),
         'bottom': (BuildContext context) => const BottomBar(),
-        'home': (BuildContext context) => const HomeScreen(),
       },
       theme: ThemeData(
         brightness: Brightness.light,
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
     );
   }
 }

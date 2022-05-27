@@ -4,6 +4,10 @@
         android:label="bcatravel"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDk1ls1xBdI5t8dAZ_MjaYFLaXRSuR4Lps"/>
+               
         <activity
             android:name=".MainActivity"
             android:exported="true"

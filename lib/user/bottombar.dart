@@ -1,8 +1,8 @@
-import 'package:bcatravel/user/buscar.dart';
-import 'package:bcatravel/user/home.dart';
-import 'package:bcatravel/user/mapa.dart';
+import 'package:bcatravel/user/buscarScreen.dart';
+import 'package:bcatravel/user/homeScreen.dart';
+import 'package:bcatravel/user/maps/googlemap.dart';
+import 'package:bcatravel/user/maps/main_animated_markers_map.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -13,9 +13,9 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBar extends State<BottomBar> {
   final PageController _pageController = PageController(
-    initialPage: 0,
+    initialPage: 1,
   );
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   @override
   void dispose() {
     _pageController.dispose();
@@ -24,18 +24,18 @@ class _BottomBar extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         body: PageView(
-          children: [
-            const Center(
+          physics: const NeverScrollableScrollPhysics(),
+          children: const [
+            Center(
+              child: GoogleMapsScreen(),
+            ),
+            Center(
               child: HomeScreen(),
             ),
-            const Center(
-              child: MapaScreen(),
-            ),
-            const Center(
+            Center(
               child: BuscarScreen(),
             ),
           ],
@@ -48,9 +48,9 @@ class _BottomBar extends State<BottomBar> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
-          backgroundColor: const Color(0xff1A1E21),
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey[400],
+          backgroundColor:  Colors.yellow[600],
           currentIndex: _selectedIndex,
           onTap: (index) {
             setState(() {
