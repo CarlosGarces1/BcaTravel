@@ -37,7 +37,7 @@ class _BottomBar extends State<BottomBar> {
       home: Scaffold(
         body: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.yellow[600],
             title: const Text('BCA Travel'),
             leading: IconButton(
               onPressed: () {},
