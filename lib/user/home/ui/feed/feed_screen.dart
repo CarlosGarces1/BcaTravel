@@ -62,8 +62,8 @@ class FeedScreen extends StatelessWidget {
         onPressed: () {},
         child: const Icon(Icons.location_on),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
+      bottomNavigationBar: const BottomAppBar(
+        shape:  CircularNotchedRectangle(),
         notchMargin: 6,
       ),
     );
