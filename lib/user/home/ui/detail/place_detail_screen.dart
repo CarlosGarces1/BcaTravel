@@ -5,7 +5,6 @@ import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/material.dart';
 
-
 class PlaceDetailScreen extends StatefulWidget {
   const PlaceDetailScreen({
     Key? key,
@@ -94,6 +93,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
               physics: const NeverScrollableScrollPhysics(),
               controller: _controller,
               slivers: [
+                //arriba fotos
                 SliverPersistentHeader(
                   pinned: true,
                   delegate: BuilderPersistentDelegate(
@@ -109,6 +109,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     },
                   ),
                 ),
+
+                //texto de descripcion, usuario y otras mamadas
                 SliverToBoxAdapter(
                   child: TranslateAnimation(
                     child: Padding(
@@ -144,7 +146,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                           Text(widget.place.description),
                           const SizedBox(height: 20),
                           const Text(
-                            'PLACES IN THIS COLLECTION',
+                            'Ubicación',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -152,31 +154,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 180,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemExtent: 150,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: TravelPlace.collectionPlaces.length,
-                      itemBuilder: (context, index) {
-                        final collectionPlace =
-                            TravelPlace.collectionPlaces[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              collectionPlace.imagesUrl.first,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
+
                 const SliverToBoxAdapter(child: SizedBox(height: 150))
               ],
             ),
@@ -190,7 +168,10 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                 child: child!,
               );
             },
-            child: const PlaceCommentsWidget(),
+            child: GestureDetector(
+              onTap: () {},
+              child: const PlaceCommentsWidget(),
+            ),
           )
         ],
       ),

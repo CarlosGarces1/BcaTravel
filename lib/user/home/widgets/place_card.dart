@@ -37,39 +37,6 @@ class PlaceCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(place.user.urlPhoto),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      place.user.name,
-                      style: context.bodyText1.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      'Ayer a las 9:10 p.m.',
-                      style: context.bodyText1.copyWith(
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_horiz,
-                    color: Colors.transparent,
-                  ),
-                )
-              ],
-            ),
             const Spacer(),
             Text(
               place.name,
