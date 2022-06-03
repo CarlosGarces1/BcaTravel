@@ -155,23 +155,12 @@ class _UserInfoContainer extends StatelessWidget {
                 style: context.bodyText1,
               ),
               Text(
-                'Ayer a las 9:10 p.m.',
+                'Creado en 2019',
                 style: context.bodyText2.copyWith(color: Colors.grey),
               ),
             ],
           ),
           const Spacer(),
-          // TextButton(
-          //   onPressed: () {},
-          //   style: TextButton.styleFrom(
-          //     primary: Colors.blue.shade600,
-          //     textStyle: context.subtitle1,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(15),
-          //     ),
-          //   ),
-          //   // child: const Text('+Follow'),
-          // ),
         ],
       ),
     );
@@ -224,25 +213,9 @@ class _LikesAndSharesContainer extends StatelessWidget {
               CupertinoIcons.reply,
               size: 26,
             ),
-            label: Text(place.shared.toString()),
+            label: Text(' '),
           ),
           const Spacer(),
-          // TextButton.icon(
-          //   onPressed: () {},
-          //   style: TextButton.styleFrom(
-          //     backgroundColor: Colors.blue.shade100,
-          //     primary: Colors.blue.shade600,
-          //     textStyle: context.subtitle1,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(15),
-          //     ),
-          //   ),
-          //   icon: const Icon(
-          //     Icons.check_circle_outlined,
-          //     size: 26,
-          //   ),
-          //   label: const Text('Checkin'),
-          // ),
         ],
       ),
     );

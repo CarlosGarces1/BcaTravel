@@ -1,9 +1,11 @@
 import 'package:bcatravel/user/buscar/buscarScreen.dart';
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/home/ui/detail/place_detail_screen.dart';
+import 'package:bcatravel/user/home/ui/place_detail_screen.dart';
 import 'package:bcatravel/user/home/widgets/place_card.dart';
 import 'package:bcatravel/user/maps/googlemap.dart';
+import 'package:bcatravel/user/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -96,6 +98,9 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
             const Center(
               child: BuscarScreen(),
             ),
+            const Center(
+              child: ProfileScreen(),
+            ),
           ],
           controller: _pageController,
           onPageChanged: (index) {
@@ -105,7 +110,8 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
           },
         ),
         bottomNavigationBar: BottomAppBar(
-          // color: Colors.red,
+          // elevation: 8,
+          color: Color.fromARGB(255, 220, 233, 10),
           child: Row(
             children: [
               GestureDetector(
@@ -119,7 +125,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                     }),
               ),
               const Spacer(),
-              IconButton(icon: const Icon(Icons.search), onPressed: () {}),
               GestureDetector(
                 onVerticalDragStart: (details) {
                   showMenu1();
@@ -133,11 +138,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.yellow,
-            child: const Icon(Icons.add),
-            onPressed: () {}),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
   }
@@ -211,10 +211,8 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       "Principal",
                                       style: TextStyle(color: Colors.black),
                                     ),
-                                    leading: const Icon(
-                                      Icons.home,
-                                      color: Colors.black,
-                                    ),
+                                    leading: Icon(FontAwesomeIcons.houseUser,
+                                        color: Colors.black),
                                     onTap: () {
                                       setState(() {
                                         _selectedIndex = 1;
@@ -232,8 +230,8 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       "Mapa",
                                       style: TextStyle(color: Colors.black),
                                     ),
-                                    leading: const Icon(
-                                      Icons.map,
+                                    leading:  Icon(
+                                      FontAwesomeIcons.mapLocation,
                                       color: Colors.black,
                                     ),
                                     onTap: () {
@@ -254,7 +252,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       style: TextStyle(color: Colors.black),
                                     ),
                                     leading: const Icon(
-                                      Icons.search,
+                                      FontAwesomeIcons.magnifyingGlass,
                                       color: Colors.black,
                                     ),
                                     onTap: () {
@@ -275,12 +273,12 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       style: TextStyle(color: Colors.black),
                                     ),
                                     leading: const Icon(
-                                      Icons.person,
+                                      FontAwesomeIcons.user,
                                       color: Colors.black,
                                     ),
                                     onTap: () {
                                       setState(() {
-                                        _selectedIndex = 0;
+                                        _selectedIndex = 3;
                                         _pageController.animateToPage(
                                           _selectedIndex,
                                           duration:
@@ -346,11 +344,11 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                 children: <Widget>[
                                   ListTile(
                                     title: const Text(
-                                      "Reportar bug",
+                                      "Reportar un problema",
                                       style: TextStyle(color: Colors.black),
                                     ),
                                     leading: const Icon(
-                                      Icons.bug_report,
+                                      FontAwesomeIcons.bug,
                                       color: Colors.black,
                                     ),
                                     onTap: () {},
@@ -361,7 +359,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       style: TextStyle(color: Colors.black),
                                     ),
                                     leading: const Icon(
-                                      Icons.person_outline,
+                                      FontAwesomeIcons.code,
                                       color: Colors.black,
                                     ),
                                     onTap: () {},

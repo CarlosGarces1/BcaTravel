@@ -4,7 +4,8 @@ import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
 import 'package:bcatravel/screens/register.dart';
 import 'package:bcatravel/screens/splash.dart';
-import 'package:bcatravel/user/home/ui/feed/bottombar.dart';
+import 'package:bcatravel/user/home/ui/bottombar.dart';
+
 import 'package:bcatravel/user/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,12 +45,12 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         primarySwatch: Colors.yellow,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.yellow,
         ),
         brightness: Brightness.dark,
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/home/ui/detail/place_detail_screen.dart';
+import 'package:bcatravel/user/home/ui/place_detail_screen.dart';
 import 'package:bcatravel/user/home/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 

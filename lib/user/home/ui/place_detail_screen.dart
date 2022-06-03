@@ -93,7 +93,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
               physics: const NeverScrollableScrollPhysics(),
               controller: _controller,
               slivers: [
-                //arriba fotos
                 SliverPersistentHeader(
                   pinned: true,
                   delegate: BuilderPersistentDelegate(
@@ -109,8 +108,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     },
                   ),
                 ),
-
-                //texto de descripcion, usuario y otras mamadas
                 SliverToBoxAdapter(
                   child: TranslateAnimation(
                     child: Padding(
@@ -121,40 +118,47 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                color: Colors.black26,
-                              ),
-                              Flexible(
-                                child: Text(
-                                  widget.place.locationDesc,
-                                  style: context.bodyText1
-                                      .copyWith(color: Colors.blue),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              )
-                            ],
-                          ),
                           const SizedBox(height: 10),
                           Text(widget.place.description),
                           const SizedBox(height: 10),
                           Text(widget.place.description),
                           const SizedBox(height: 10),
                           Text(widget.place.description),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 30),
                           const Text(
-                            'Ubicación',
+                            'Fotos tomadas por usuarios',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
                   ),
                 ),
-
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 180,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemExtent: 150,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      itemCount: widget.place.imagesUrl2.length,
+                      itemBuilder: (context, index) {
+                        final collectionPlace = widget.place.imagesUrl2[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.network(
+                              widget.place.imagesUrl2.first,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
                 const SliverToBoxAdapter(child: SizedBox(height: 150))
               ],
             ),
@@ -168,10 +172,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                 child: child!,
               );
             },
-            child: GestureDetector(
-              onTap: () {},
-              child: const PlaceCommentsWidget(),
-            ),
+            child: const PlaceCommentsWidget(),
           )
         ],
       ),

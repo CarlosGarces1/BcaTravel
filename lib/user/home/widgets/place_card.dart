@@ -1,9 +1,7 @@
-import 'package:bcatravel/user/home/extensions/text_theme_x.dart';
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/gradient_status_tag.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({
@@ -29,7 +27,7 @@ class PlaceCard extends StatelessWidget {
             image: NetworkImage(place.imagesUrl.first),
             fit: BoxFit.cover,
             colorFilter: const ColorFilter.mode(
-              Colors.black26,
+              Colors.black38,
               BlendMode.darken,
             ),
           ),
@@ -40,7 +38,11 @@ class PlaceCard extends StatelessWidget {
             const Spacer(),
             Text(
               place.name,
-              style: context.headline2,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 55,
+                // fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
             GradientStatusTag(statusTag: statusTag),
@@ -63,7 +65,7 @@ class PlaceCard extends StatelessWidget {
                     shape: const StadiumBorder(),
                   ),
                   icon: const Icon(CupertinoIcons.reply),
-                  label: Text(place.shared.toString()),
+                  label: const Text(''),
                 )
               ],
             )

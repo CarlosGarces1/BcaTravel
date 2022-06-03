@@ -1,3 +1,6 @@
+import 'package:bcatravel/user/home/models/place.dart';
+import 'package:bcatravel/user/home/ui/place_detail_screen.dart';
+import 'package:bcatravel/user/buscar/widgets/place_cardmini.dart';
 import 'package:flutter/material.dart';
 
 class TwoPanels extends StatefulWidget {
@@ -114,14 +117,48 @@ class _TwoPanelsState extends State<TwoPanels> {
                     ),
                   ),
                 ),
-                const Expanded(
-                  child: Center(
-                    child: Text(
-                      "Lugares aqui",
-                      style: TextStyle(fontSize: 24.0, color: Colors.black),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: ListView.builder(
+
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: TravelPlace.places.length,
+                      itemExtent: 100,
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.fromLTRB(
+                          20, 0, 20, kToolbarHeight + 20),
+                      itemBuilder: (context, index) {
+                        final place = TravelPlace.places[index];
+                        return Hero(
+                          tag: place.id,
+                          child: Material(
+                            child: PlaceCardMini(
+                              place: place,
+                              onPressed: () async {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, animation, __) =>
+                                        FadeTransition(
+                                      opacity: animation,
+                                      child: PlaceDetailScreen(
+                                        place: place,
+                                        screenHeight:
+                                            MediaQuery.of(context).size.height,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

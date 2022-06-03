@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:bcatravel/user/home/theme/theme.dart';
-import 'package:bcatravel/user/home/ui/feed/feed_screen.dart';
+import 'package:bcatravel/user/home/ui/feed_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
