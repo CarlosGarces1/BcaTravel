@@ -4,6 +4,7 @@ import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
 import 'package:bcatravel/screens/register.dart';
 import 'package:bcatravel/screens/splash.dart';
+import 'package:bcatravel/screens/swiper.dart';
 import 'package:bcatravel/user/home/ui/bottombar.dart';
 
 import 'package:bcatravel/user/homeScreen.dart';
@@ -27,10 +28,10 @@ class MyApp extends StatelessWidget {
       // theme: _buildShrineTheme(),
       debugShowCheckedModeBanner: false,
       title: 'BCA Travel',
-      initialRoute: 'bottom',
+      initialRoute: 'splash',
       routes: {
         'splash': (BuildContext context) => const SplashScreen(),
-        'initial': (BuildContext context) => const InitialScreen(),
+        'swiper': (BuildContext context) => const SwiperScreen(),
         'login': (BuildContext context) => const LoginScreen(),
         'register': (BuildContext context) => const RegisterScreen(),
         'condiciones': (BuildContext context) => const CondicionesUso(),

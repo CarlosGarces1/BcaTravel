@@ -137,7 +137,9 @@ class ProfileScreen extends StatelessWidget {
                   trailing: const Icon(Icons.arrow_forward_ios),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, 'login');
+                  },
                   title: const Text('Cerrar sesión',
                       style: TextStyle(fontSize: 18, color: Colors.black)),
                   leading: const CircleAvatar(

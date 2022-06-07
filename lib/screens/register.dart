@@ -59,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacementNamed(
-                                  context, 'home');
+                                  context, 'bottom');
                             },
                             child: const Text('Registrarme'),
                             style: ElevatedButton.styleFrom(
