@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:bcatravel/user/buscar/twopanels.dart';
 import 'package:flutter/material.dart';
 

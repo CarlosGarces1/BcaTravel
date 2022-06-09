@@ -30,56 +30,53 @@ class _TwoPanelsState extends State<TwoPanels> {
   }
 
   Widget bothPanels(BuildContext context, BoxConstraints constraints) {
-    final ThemeData theme = Theme.of(context);
+    // final ThemeData theme = Theme.of(context);
 
     return Stack(
       children: <Widget>[
-        Container(
-          // color: theme.primaryColor,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: const <Widget>[
-                  ListTile(
-                    title: Text(
-                      "Restaurante",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    leading: Icon(
-                      Icons.restaurant,
-                      color: Colors.black,
-                    ),
+        Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const <Widget>[
+                ListTile(
+                  title: Text(
+                    "Restaurante",
+                    style: TextStyle(color: Colors.black),
                   ),
-                  ListTile(
-                    title: Text(
-                      "Hotel",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    leading: Icon(
-                      Icons.hotel,
-                      color: Colors.black,
-                    ),
+                  leading: Icon(
+                    Icons.restaurant,
+                    color: Colors.black,
                   ),
-                  ListTile(
-                    title: Text(
-                      "Transporte",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    leading: Icon(
-                      Icons.emoji_transportation,
-                      color: Colors.black,
-                    ),
+                ),
+                ListTile(
+                  title: Text(
+                    "Hotel",
+                    style: TextStyle(color: Colors.black),
                   ),
-                ],
-              ),
-            ],
-          ),
+                  leading: Icon(
+                    Icons.hotel,
+                    color: Colors.black,
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    "Transporte",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  leading: Icon(
+                    Icons.emoji_transportation,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         PositionedTransition(
           rect: getPanelAnimation(constraints),
@@ -121,7 +118,6 @@ class _TwoPanelsState extends State<TwoPanels> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: ListView.builder(
-
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: TravelPlace.places.length,

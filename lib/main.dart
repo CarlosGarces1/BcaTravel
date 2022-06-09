@@ -1,5 +1,4 @@
 import 'package:bcatravel/screens/condiciones.dart';
-import 'package:bcatravel/screens/initial.dart';
 import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
 import 'package:bcatravel/screens/register.dart';
@@ -13,10 +12,10 @@ import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color.fromARGB(200, 221, 233, 10),
-    // statusBarBrightness: Brightness.light,
+    statusBarColor: Color(0xffF3E91E),
+    statusBarBrightness: Brightness.light,
   ));
-  runApp(const MyApp());
+  runApp( const MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -1,7 +1,4 @@
-import 'package:bcatravel/user/home/extensions/text_theme_x.dart';
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/home/widgets/gradient_status_tag.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlaceCardMini extends StatelessWidget {
@@ -16,7 +13,7 @@ class PlaceCardMini extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusTag = place.statusTag;
+    // final statusTag = place.statusTag;
     return InkWell(
       onTap: onPressed,
       child: Container(

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -16,7 +18,7 @@ class PanelWidget extends StatelessWidget {
     return ListView(
       controller: controller,
       padding: EdgeInsets.zero,
-      children: <Widget>[],
+      children: const <Widget>[],
     );
   }
 }

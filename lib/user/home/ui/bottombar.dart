@@ -111,7 +111,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
         ),
         bottomNavigationBar: BottomAppBar(
           // elevation: 8,
-          color: Color.fromARGB(255, 220, 233, 10),
+          color: const Color(0xffF3E91E),
           child: Row(
             children: [
               GestureDetector(
@@ -176,7 +176,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                             topLeft: Radius.circular(16.0),
                             topRight: Radius.circular(16.0),
                           ),
-                          color: Color.fromARGB(255, 220, 233, 10),
+                          color: Color(0xffF3E91E),
                         ),
                         child: Stack(
                           clipBehavior: Clip.none,
@@ -189,7 +189,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(50)),
                                     border: Border.all(
-                                        color: Colors.orange, width: 10)),
+                                        color: Colors.yellow, width: 5)),
                                 child: Center(
                                   child: ClipOval(
                                     child: Image.network(
@@ -211,7 +211,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       "Principal",
                                       style: TextStyle(color: Colors.black),
                                     ),
-                                    leading: Icon(FontAwesomeIcons.houseUser,
+                                    leading: const Icon(FontAwesomeIcons.house,
                                         color: Colors.black),
                                     onTap: () {
                                       setState(() {
@@ -230,8 +230,8 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       "Mapa",
                                       style: TextStyle(color: Colors.black),
                                     ),
-                                    leading:  Icon(
-                                      FontAwesomeIcons.mapLocation,
+                                    leading: const Icon(
+                                      FontAwesomeIcons.locationDot,
                                       color: Colors.black,
                                     ),
                                     onTap: () {
@@ -273,7 +273,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       style: TextStyle(color: Colors.black),
                                     ),
                                     leading: const Icon(
-                                      FontAwesomeIcons.user,
+                                      FontAwesomeIcons.userNinja,
                                       color: Colors.black,
                                     ),
                                     onTap: () {
@@ -332,7 +332,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                             topLeft: Radius.circular(16.0),
                             topRight: Radius.circular(16.0),
                           ),
-                          color: Color.fromARGB(255, 220, 233, 10),
+                          color: Color(0xffF3E91E),
                         ),
                         child: Stack(
                           clipBehavior: Clip.none,

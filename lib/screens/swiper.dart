@@ -14,7 +14,6 @@ class _SwiperScreenState extends State<SwiperScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _pageController = PageController(
       initialPage: 0,
     );
@@ -23,7 +22,6 @@ class _SwiperScreenState extends State<SwiperScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _pageController.dispose();
     super.dispose();
   }
@@ -56,7 +54,7 @@ class _SwiperScreenState extends State<SwiperScreen> {
                   ...List.generate(
                     listOnBoard.length,
                     (index) => Padding(
-                      padding: EdgeInsets.only(right: 4),
+                      padding: const EdgeInsets.only(right: 4),
                       child: DotIndicator(
                         isActive: index == _currentPage,
                       ),
@@ -67,9 +65,10 @@ class _SwiperScreenState extends State<SwiperScreen> {
                     height: 60,
                     width: 60,
                     child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(shape: CircleBorder()),
+                        style: ElevatedButton.styleFrom(
+                            shape: const CircleBorder()),
                         onPressed: () {
-                          if (_currentPage == 4) {
+                          if (_currentPage == 3) {
                             Navigator.pushReplacementNamed(context, 'login');
                           } else {
                             _pageController.nextPage(
@@ -77,7 +76,7 @@ class _SwiperScreenState extends State<SwiperScreen> {
                                 curve: Curves.ease);
                           }
                         },
-                        child: Icon(Icons.arrow_forward)),
+                        child: const Icon(Icons.arrow_forward)),
                   ),
                 ],
               ),
@@ -105,7 +104,7 @@ class DotIndicator extends StatelessWidget {
         color: isActive ? Colors.yellow[600] : Colors.yellow.withOpacity(0.4),
         borderRadius: BorderRadius.circular(12),
       ),
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
   }
 }
@@ -119,41 +118,26 @@ class OnBoard {
 
 final List<OnBoard> listOnBoard = [
   OnBoard(
-    image: 'https://assets9.lottiefiles.com/packages/lf20_wpf1kujc.json',
-    title: 'Aqui podrás encontrar los lugares más iconicos de Barrancabermeja',
+    image: 'https://assets1.lottiefiles.com/packages/lf20_1t8na1gy.json',
+    title: 'Bienvenido',
     description:
-        'asdasd asd sad as d asd as dsa d asd as das d sad as das d sadsadasduiasd ',
+        'Bienvenido, esta es tu aplicacion para encontrar los mejores sitios del distrito.',
   ),
   OnBoard(
-    image: 'https://assets4.lottiefiles.com/private_files/lf30_2n7zxqm7.json',
-    title: 'Aqui podrás buscar lugares a tu alrededor',
+    image: 'https://assets2.lottiefiles.com/packages/lf20_5ohCYt.json',
+    title: 'Encontraras los mejores lugares para descansar',
     description:
-        'asdasd asd sad as d asd as dsa d asd as das d sad as das d sadsadasduiasd ',
+        'Descansar es importante para ti, por eso te recomendamos los mejores hoteles.',
   ),
   OnBoard(
-    image: 'https://assets1.lottiefiles.com/packages/lf20_kpx9c6si.json',
-    title: 'Aqui podrás explorar lugares nunca antes vistos',
-    description:
-        'asdasd asd sad as d asd as dsa d asd as das d sad as das d sadsadasduiasd ',
-  ),
-  OnBoard(
-    image: 'https://assets9.lottiefiles.com/packages/lf20_wyzskmpa.json',
-    title:
-        'Aqui podrás encontrar todos los lugares marcados de forma facil en tu mapa',
-    description:
-        'asdasd asd sad as d asd as dsa d asd as das d sad as das d sadsadasduiasd ',
-  ),
-  OnBoard(
-    image: 'https://assets8.lottiefiles.com/packages/lf20_svy4ivvy.json',
-    title: 'Aqui podrás navegar de forma sencilla y comoda por la ciudad',
-    description:
-        'asdasd asd sad as d asd as dsa d asd as das d sad as das d sadsadasduiasd ',
+    image: 'https://assets7.lottiefiles.com/packages/lf20_YnsM0o.json',
+    title: 'Los mejores platos para ti',
+    description: 'Tenemos un amplio menu para ofrecerte... ¡y mucho más!',
   ),
   OnBoard(
     image: 'https://assets6.lottiefiles.com/packages/lf20_vuai8mk4.json',
-    title: 'Aqui podrás encontrar todo al alcance de tu palma ',
-    description:
-        'asdasd asd sad as d asd as dsa d asd as das d sad as das d sadsadasduiasd ',
+    title: 'Tambien encontraras las rutas a los mejores sitios',
+    description: 'Da en siguiente para continuar.',
   ),
 ];
 
@@ -177,7 +161,7 @@ class OnBoardContent extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
         ),
         const SizedBox(
           height: 16,

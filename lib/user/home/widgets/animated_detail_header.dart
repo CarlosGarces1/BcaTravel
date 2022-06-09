@@ -213,7 +213,7 @@ class _LikesAndSharesContainer extends StatelessWidget {
               CupertinoIcons.reply,
               size: 26,
             ),
-            label: Text(' '),
+            label: const Text(' '),
           ),
           const Spacer(),
         ],

@@ -30,7 +30,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
 
     return SlidingUpPanel(
       // minHeight: size.height * 0.1,
@@ -117,7 +117,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
             url =
                 'https://www.digame.com.co/wp-content/uploads/2020/05/811cdeb5-7bc3-4e8c-91fa-5f1dae8a7bf6.jpg';
             address = TravelPlace.places[0].locationDesc;
-            ;
           });
         },
       ),
@@ -205,11 +204,12 @@ buildabouttext(title, about, url, address) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 20),
-          Center(child: Text(title, style: TextStyle(color: Colors.black))),
+          Center(
+              child: Text(title, style: const TextStyle(color: Colors.black))),
           const SizedBox(height: 20),
-          Text(about, style: TextStyle(color: Colors.black)),
+          Text(about, style: const TextStyle(color: Colors.black)),
           const SizedBox(height: 20),
-          Text(address, style: TextStyle(color: Colors.black)),
+          Text(address, style: const TextStyle(color: Colors.black)),
           const SizedBox(height: 20),
           Image.network(url),
           const SizedBox(height: 20),

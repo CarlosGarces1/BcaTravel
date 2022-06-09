@@ -1,4 +1,3 @@
-import 'package:bcatravel/user/home/extensions/text_theme_x.dart';
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/animated_detail_header.dart';
 import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
@@ -144,7 +143,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       itemCount: widget.place.imagesUrl2.length,
                       itemBuilder: (context, index) {
-                        final collectionPlace = widget.place.imagesUrl2[index];
+                        // final collectionPlace = widget.place.imagesUrl2[index];
                         return Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: ClipRRect(

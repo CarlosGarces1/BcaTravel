@@ -92,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 18, color: Colors.black)),
                   leading: const CircleAvatar(
                     backgroundColor: Colors.blue,
-                    child: Icon(FontAwesomeIcons.edit),
+                    child: Icon(FontAwesomeIcons.userPen),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                 ),
