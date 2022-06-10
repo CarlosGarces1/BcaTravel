@@ -32,13 +32,13 @@ class SplashScreen extends StatelessWidget {
                 },
               );
             }
-            return Positioned(
-              child: Image.asset(
-                "assets/images/Splash.png",
-                fit: BoxFit.cover,
-                width: media.width,
-                height: media.height,
-              ),
+            return Stack(
+              children: [
+                Image.asset("assets/images/Splash.png",
+                    fit: BoxFit.cover,
+                    width: media.width,
+                    height: media.height),
+              ],
             );
           },
         ),
