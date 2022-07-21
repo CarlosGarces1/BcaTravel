@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "469574159598",
+    "project_id": "bcatravel-7cd19",
+    "storage_bucket": "bcatravel-7cd19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469574159598:android:018a99905eb9c72cbaf7ff",
+        "android_client_info": {
+          "package_name": "com.UNIPAZ.bcatravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469574159598-m65tmu8hag66f378vftpcl7e6gvois11.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.UNIPAZ.bcatravel",
+            "certificate_hash": "2ab7160cb675c15cca24867e46f14cb46cc5bfff"
+          }
+        },
+        {
+          "client_id": "469574159598-ekihcqsu14el3f1jhggtpe4rit7hdhdt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9tRbooysyleZymjsznyeJwR8LsdropMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469574159598-ekihcqsu14el3f1jhggtpe4rit7hdhdt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

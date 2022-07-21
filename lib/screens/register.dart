@@ -1,4 +1,5 @@
-import 'package:bcatravel/widgets/inputb.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,60 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
+    final _passwordConfirmedController = TextEditingController();
+    final _firstNameController = TextEditingController();
+    final _lastNameController = TextEditingController();
+
     var texts = [
       'Al registrarse aceptas nuestras ',
       'Condiciones de uso ',
       ' y ',
       'Política de privacidad'
     ];
+
+    bool passwordconfirmed() {
+      // autenticar si las contraseñas coinciden
+      if (_passwordController.text.trim() ==
+          _passwordConfirmedController.text.trim()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+// añadir nombre y apellido al usuario
+
+    Future addUserDetails(
+        String firstName, String lastName, String email) async {
+      await FirebaseFirestore.instance.collection('users').add({
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+      });
+    }
+
+    Future signUp() async {
+      if (passwordconfirmed()) {
+        // registrar usuario en firebase, pero solo el correo y contraseña
+
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        // registrar usuario en firestore
+
+        addUserDetails(
+          _firstNameController.text.trim(),
+          _lastNameController.text.trim(),
+          _emailController.text.trim(),
+        );
+
+        Navigator.of(context).pushReplacementNamed('bottom');
+      }
+    }
 
     return SafeArea(
       child: Stack(
@@ -45,11 +94,123 @@ class RegisterScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                       const SizedBox(
-                        height: 110,
+                        height: 70,
                       ),
-                      formRegister(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          // keyboardType: TextInputType.name,ca
+                          controller: _firstNameController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'First Name',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          keyboardType: TextInputType.name,
+                          controller: _lastNameController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'Last Name',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'Email',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          // keyboardType: TextInputType.,
+                          controller: _passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'Password',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          controller: _passwordConfirmedController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'Confirm Password',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
                       const SizedBox(
-                        height: 41,
+                        height: 50,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,8 +219,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 45,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                  context, 'bottom');
+                              signUp();
                             },
                             child: const Text('Registrarme'),
                             style: ElevatedButton.styleFrom(
@@ -126,97 +286,22 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+            left: 10,
+            top: 10,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: const Icon(Icons.arrow_back_ios),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Form formRegister() {
-    return Form(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          children: [
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Nombre completo',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'BreeSerif',
-                    fontSize: 16,
-                    decoration: TextDecoration.none),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            InputV1B(
-              icon: const Icon(Icons.person, color: Colors.black),
-              colorIcon: Colors.black,
-              type: TextInputType.text,
-              placeholder: 'Nombre completo',
-              onChanged: (value) {},
-              validator: (value) {},
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Correo Electronico',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'BreeSerif',
-                    fontSize: 16,
-                    decoration: TextDecoration.none),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            InputV1B(
-              icon: const Icon(Icons.email, color: Colors.black),
-              placeholder: 'Correo Electronico',
-              type: TextInputType.emailAddress,
-              onChanged: (value) {},
-              validator: (value) {},
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Contraseña',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'BreeSerif',
-                    fontSize: 16,
-                    decoration: TextDecoration.none),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            // input password
-            InputV1B(
-              icon: const Icon(Icons.lock_rounded, color: Colors.black),
-              password: true,
-              placeholder: '********',
-              type: TextInputType.visiblePassword,
-              onChanged: (value) {},
-              validator: (value) {},
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-          ],
-        ));
-  }
+  // Form formRegister() {
 
   // String generateBackground() {
   //   final List<dynamic> backgroundList = [

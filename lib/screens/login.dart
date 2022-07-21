@@ -1,8 +1,43 @@
-import 'package:bcatravel/widgets/inputb.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+
+    Navigator.of(context).pop();
+
+    Navigator.of(context).pushReplacementNamed('bottom');
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
@@ -27,8 +62,8 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: media.height * 0.002,
                       ),
                       Column(
                         children: [
@@ -44,12 +79,86 @@ class LoginScreen extends StatelessWidget {
                           // ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: media.height * 0.009,
                       ),
-                      formLogin(),
+                      Text('Bienvenido',
+                          style: TextStyle(
+                              fontSize: media.width * 0.05,
+                              fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        height: media.height * 0.09,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'Email',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: TextField(
+                          // keyboardType: TextInputType.,
+                          controller: _passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            hintText: 'Password',
+                            fillColor: Colors.grey[200],
+                            filled: true,
+                          ),
+                        ),
+                      ),
                       const SizedBox(
-                        height: 120,
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 200,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, 'forgot');
+                            },
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.black87,
+                                fontFamily: 'BreeSerif',
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 70,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,7 +167,7 @@ class LoginScreen extends StatelessWidget {
                           height: 45,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacementNamed(context, 'bottom');
+                              signIn();
                             },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(
@@ -157,71 +266,6 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Form formLogin() {
-    return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      child: Column(
-        children: [
-          // label phone
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Email',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'BreeSerif',
-                  fontSize: 16,
-                  decoration: TextDecoration.none),
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          // input phone
-          InputV1B(
-            icon: const Icon(Icons.email, color: Colors.black),
-            colorIcon: Colors.black,
-            type: TextInputType.emailAddress,
-            placeholder: 'Email',
-            onChanged: (value) {},
-            validator: (value) {},
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          // label password
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Contraseña',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'BreeSerif',
-                  fontSize: 16,
-                  decoration: TextDecoration.none),
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          // input password
-          InputV1B(
-            icon: const Icon(
-              Icons.lock_rounded,
-              color: Colors.black,
-            ),
-            password: true,
-            placeholder: '********',
-            type: TextInputType.visiblePassword,
-            onChanged: (value) {},
-            validator: (value) {},
           ),
         ],
       ),

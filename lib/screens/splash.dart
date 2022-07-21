@@ -1,47 +1,28 @@
+import 'package:bcatravel/screens/swiper.dart';
+import 'package:bcatravel/user/home/ui/bottombar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final media = MediaQuery.of(context).size;
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
-    String hola = 'g';
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FutureBuilder(
-          // future: authService.readToken(),
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (hola == '') {
-              Future.microtask(
-                () async {
-                  await Future.delayed(
-                    const Duration(seconds: 2),
-                  );
-                  Navigator.pushReplacementNamed(context, 'home');
-                },
-              );
-            } else {
-              Future.microtask(
-                () async {
-                  await Future.delayed(
-                    const Duration(seconds: 2),
-                  );
-                  Navigator.pushReplacementNamed(context, 'swiper');
-                },
-              );
-            }
-            return Stack(
-              children: [
-                Image.asset("assets/images/Splash.png",
-                    fit: BoxFit.cover,
-                    width: media.width,
-                    height: media.height),
-              ],
-            );
-          },
-        ),
+      body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const BottomBar();
+          } else {
+            return const SwiperScreen();
+          }
+        },
       ),
     );
   }

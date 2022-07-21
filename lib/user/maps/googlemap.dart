@@ -1,5 +1,5 @@
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/maps/panelWidget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -32,37 +32,37 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
 
-    return SlidingUpPanel(
-      // minHeight: size.height * 0.1,
-      // maxHeight: size.height * 0.5,
-      borderRadius: radius,
-      backdropEnabled: true,
-      parallaxEnabled: true,
-      // parallaxOffset: 0.5,
-      renderPanelSheet: false,
-      panel: _floatingPanel(tittle, about, url, address),
-      collapsed: _floatingCollapsed(),
-      panelBuilder: (controller) => PanelWidget(
-        controller: controller,
-        panelController: panelController,
-      ),
-      body: GoogleMap(
-        initialCameraPosition:
-            CameraPosition(target: widget.frompoint, zoom: 15),
-        markers: _markers(),
-        // compassEnabled : false,
-        // myLocationEnabled: true,
-        // myLocationButtonEnabled: true,
-        // onTap: (LatLng latLng) {
-        //   // print('You tapped at: $latLng');
-        // },
-      ),
+    // return SlidingUpPanel(
+    //   // minHeight: size.height * 0.1,
+    //   // maxHeight: size.height * 0.5,
+    //   borderRadius: radius,
+    //   backdropEnabled: true,
+    //   parallaxEnabled: true,
+    //   // parallaxOffset: 0.5,
+    //   renderPanelSheet: false,
+    //   panel: _floatingPanel(tittle, about, url, address),
+    //   collapsed: _floatingCollapsed(),
+    //   panelBuilder: (controller) => PanelWidget(
+    //     controller: controller,
+    //     panelController: panelController,
+    //   ),
+    //   body:
+    return GoogleMap(
+      initialCameraPosition: CameraPosition(target: widget.frompoint, zoom: 15),
+      markers: _markers(),
+      // compassEnabled : false,
+      // myLocationEnabled: true,
+      // myLocationButtonEnabled: true,
+      // onTap: (LatLng latLng) {
+      //   // print('You tapped at: $latLng');
+      // },
+      // ),
     );
   }
 
-  // widget.place.description
+// widget.place.description
 
-  Set<Marker> _markers() {
+Set<Marker> _markers() {
     var tmp = <Marker>{};
     tmp.add(
       Marker(
@@ -73,6 +73,20 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           snippet: 'Calle 30B #32-84',
         ),
         onTap: () {
+          showCupertinoModalPopup(
+            context: context,
+            builder: (BuildContext builder) {
+              return CupertinoPopupSurface(
+                child: Container(
+                  color: CupertinoColors.white,
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 500,
+                ),
+              );
+            },
+          );
+
           setState(() {
             tittle = 'Tu ubicación';
             about = 'hola';
@@ -85,6 +99,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     );
     tmp.add(
       Marker(
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
         markerId: const MarkerId('2'),
         position: const LatLng(7.057192, -73.852825),
         infoWindow: const InfoWindow(
@@ -92,6 +107,43 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           snippet: 'Cl. 48 #22 -115',
         ),
         onTap: () {
+          showCupertinoModalPopup(
+            barrierColor: Colors.black.withOpacity(0.9),
+            context: context,
+            builder: (BuildContext builder) {
+              return CupertinoPopupSurface(
+                child: Container(
+                  color: CupertinoColors.white,
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 600,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(height: 20),
+                        Center(
+                            child: Text(tittle,
+                                style: const TextStyle(color: Colors.black))),
+                        const SizedBox(height: 20),
+                        Text(about,
+                            style: const TextStyle(color: Colors.black)),
+                        const SizedBox(height: 20),
+                        Text(address,
+                            style: const TextStyle(color: Colors.black)),
+                        const SizedBox(height: 20),
+                        Image.network(url),
+                        const SizedBox(height: 20),
+                        Image.network(url),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
           setState(() {
             tittle = TravelPlace.places[2].name;
             about = TravelPlace.places[2].description;
@@ -163,38 +215,38 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   }
 }
 
-Widget _floatingCollapsed() {
-  return Container(
-    decoration: const BoxDecoration(
-      color: Colors.blueGrey,
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
-    ),
-    margin: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
-    child: const Center(
-      child: Text(
-        "Desliza arriba para ver el lugar",
-        style: TextStyle(color: Colors.white),
-      ),
-    ),
-  );
-}
+// Widget _floatingCollapsed() {
+//   return Container(
+//     decoration: const BoxDecoration(
+//       color: Colors.blueGrey,
+//       borderRadius: BorderRadius.only(
+//           topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
+//     ),
+//     margin: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+//     child: const Center(
+//       child: Text(
+//         "Desliza arriba para ver el lugar",
+//         style: TextStyle(color: Colors.white),
+//       ),
+//     ),
+//   );
+// }
 
-Widget _floatingPanel(tittle, about, url, address) {
-  return Container(
-    decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(24.0)),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20.0,
-            color: Colors.grey,
-          ),
-        ]),
-    margin: const EdgeInsets.all(24.0),
-    child: buildabouttext(tittle, about, url, address),
-  );
-}
+// Widget _floatingPanel(tittle, about, url, address) {
+//   return Container(
+//     decoration: const BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.all(Radius.circular(24.0)),
+//         boxShadow: [
+//           BoxShadow(
+//             blurRadius: 20.0,
+//             color: Colors.grey,
+//           ),
+//         ]),
+//     margin: const EdgeInsets.all(24.0),
+//     child: buildabouttext(tittle, about, url, address),
+//   );
+// }
 
 buildabouttext(title, about, url, address) {
   return SingleChildScrollView(

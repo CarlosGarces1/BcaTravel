@@ -1,4 +1,6 @@
+import 'package:bcatravel/providers/push_notifications_provider.dart';
 import 'package:bcatravel/screens/condiciones.dart';
+import 'package:bcatravel/screens/forgot_password.dart';
 import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
 import 'package:bcatravel/screens/register.dart';
@@ -10,24 +12,52 @@ import 'package:bcatravel/user/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+import 'message_screen.dart';
+
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Color(0xffF3E91E),
     statusBarBrightness: Brightness.light,
   ));
-  runApp( const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await PushNotificationServices.initializeApp();
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final GlobalKey<NavigatorState> navigatorkey = GlobalKey<NavigatorState>();
+  final GlobalKey<ScaffoldMessengerState> messengerkey =
+      GlobalKey<ScaffoldMessengerState>();
+
+  @override
+  void initState() {
+    super.initState();
+    PushNotificationServices.messagesStream.listen((message) {
+      // print('Myapp: $message.notification?.title');
+      navigatorkey.currentState?.pushNamed('message', arguments: message);
+      final snackBar = SnackBar(content: Text(message));
+      messengerkey.currentState?.showSnackBar(snackBar);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorkey,
+      scaffoldMessengerKey: messengerkey,
       // color: Colors.red,
       // theme: _buildShrineTheme(),
       debugShowCheckedModeBanner: false,
+      home: const SplashScreen(),
       title: 'BCA Travel',
-      initialRoute: 'splash',
+      // initialRoute: 'splash',
       routes: {
         'splash': (BuildContext context) => const SplashScreen(),
         'swiper': (BuildContext context) => const SwiperScreen(),
@@ -37,6 +67,8 @@ class MyApp extends StatelessWidget {
         'politicas': (BuildContext context) => const PoliticasScreen(),
         'bottom': (BuildContext context) => const BottomBar(),
         'home': (BuildContext context) => const HomeScreen(),
+        'forgot': (BuildContext context) => const ForgotPassword(),
+        'message': (_) => const MessageScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.yellow,
