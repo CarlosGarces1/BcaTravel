@@ -7,6 +7,8 @@ import 'package:bcatravel/user/home/widgets/place_images_page_view.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
+import 'package:vocsy_esys_flutter_share/vocsy_esys_flutter_share.dart';
 
 class AnimatedDetailHeader extends StatelessWidget {
   const AnimatedDetailHeader({
@@ -189,33 +191,61 @@ class _LikesAndSharesContainer extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextButton.icon(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              primary: Colors.black,
-              textStyle: context.subtitle1,
-              shape: const StadiumBorder(),
+          Container(
+            width: 100,
+            height: 50,
+            child: LikeButton(
+              size: 40,
+              likeCount: place.likes,
+              likeCountPadding: const EdgeInsets.only(left: 0.0, right: 5),
+              circleColor: const CircleColor(
+                start: Colors.yellow,
+                end: Colors.yellowAccent,
+              ),
+              bubblesColor: const BubblesColor(
+                dotPrimaryColor: Colors.yellowAccent,
+                dotSecondaryColor: Colors.red,
+              ),
+              countBuilder: (count, isLiked, text) {
+                final color = isLiked ? Colors.yellowAccent : Colors.black;
+                return Text(
+                  text,
+                  style: TextStyle(
+                    color: color,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+              likeBuilder: (bool isLiked) {
+                return Icon(
+                  isLiked ? Icons.favorite : Icons.favorite_border,
+                  color: isLiked ? Colors.yellowAccent : Colors.black,
+                );
+              },
             ),
-            icon: const Icon(
-              CupertinoIcons.heart,
-              size: 26,
-            ),
-            label: Text(place.likes.toString()),
           ),
-          TextButton.icon(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              primary: Colors.black,
-              textStyle: context.subtitle1,
-              shape: const StadiumBorder(),
+          Container(
+            width: 100,
+            height: 50,
+            child: TextButton.icon(
+              onPressed: () async {
+                print('share');
+                Share.text(
+                    'chupelo uwu',
+                    'Entra a este link para ver algo maravilloso.' +
+                        ' ${place.name}',
+                    'text/plain');
+              },
+              style: TextButton.styleFrom(
+                primary: Colors.black,
+                shape: const StadiumBorder(),
+              ),
+              icon: const Icon(CupertinoIcons.reply),
+              label: Text('share', style: TextStyle(fontSize: 17)),
             ),
-            icon: const Icon(
-              CupertinoIcons.reply,
-              size: 26,
-            ),
-            label: const Text(' '),
           ),
-          const Spacer(),
+          // const Spacer(),
         ],
       ),
     );

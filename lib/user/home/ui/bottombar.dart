@@ -143,7 +143,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
   }
 
   showMenu() {
-    // int index = 1;
     showModalBottomSheet(
         transitionAnimationController: AnimationController(
             vsync: this, duration: const Duration(milliseconds: 400)),
@@ -151,14 +150,12 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
         context: context,
         builder: (BuildContext context) {
           final size = MediaQuery.of(context).size;
-
           return Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16.0),
                 topRight: Radius.circular(30.0),
               ),
-              // color: Colors.black,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -364,7 +361,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                     ),
                                     onTap: () {},
                                   ),
-                                  // ListTile(s
                                 ],
                               ),
                             )

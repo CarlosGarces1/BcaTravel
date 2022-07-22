@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:confetti/confetti.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class RegisterScreen extends StatelessWidget {
     final _passwordConfirmedController = TextEditingController();
     final _firstNameController = TextEditingController();
     final _lastNameController = TextEditingController();
+    final _confettiController = ConfettiController();
 
     var texts = [
       'Al registrarse aceptas nuestras ',
