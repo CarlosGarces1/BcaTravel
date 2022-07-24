@@ -191,7 +191,7 @@ class _LikesAndSharesContainer extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: 100,
             height: 50,
             child: LikeButton(
@@ -225,15 +225,15 @@ class _LikesAndSharesContainer extends StatelessWidget {
               },
             ),
           ),
-          Container(
+          SizedBox(
             width: 100,
             height: 50,
             child: TextButton.icon(
               onPressed: () async {
-                print('share');
+                // print('share');
                 Share.text(
                     'chupelo uwu',
-                    'Entra a este link para ver algo maravilloso.' +
+                    'Entra a este link para ver algo maravilloso.'
                         ' ${place.name}',
                     'text/plain');
               },
@@ -242,7 +242,7 @@ class _LikesAndSharesContainer extends StatelessWidget {
                 shape: const StadiumBorder(),
               ),
               icon: const Icon(CupertinoIcons.reply),
-              label: Text('share', style: TextStyle(fontSize: 17)),
+              label: const Text('share', style: TextStyle(fontSize: 17)),
             ),
           ),
           // const Spacer(),

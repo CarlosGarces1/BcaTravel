@@ -89,7 +89,7 @@ class PlaceCard extends StatelessWidget {
                 ),
                 TextButton.icon(
                   onPressed: () async {
-                    print('share');
+                    // print('share');
                     var request = await HttpClient().getUrl(Uri.parse(
                         'https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1'));
                     var response = await request.close();
@@ -107,7 +107,7 @@ class PlaceCard extends StatelessWidget {
                     shape: const StadiumBorder(),
                   ),
                   icon: const Icon(CupertinoIcons.reply),
-                  label: Text('share'),
+                  label: const Text('share'),
                 ),
               ],
             )
