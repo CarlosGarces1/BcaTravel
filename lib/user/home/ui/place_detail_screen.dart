@@ -3,6 +3,7 @@ import 'package:bcatravel/user/home/widgets/animated_detail_header.dart';
 import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class PlaceDetailScreen extends StatefulWidget {
   const PlaceDetailScreen({
@@ -118,6 +119,35 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 10),
+                          const Text("Estrellas del lugar",
+                              style: TextStyle(
+                                  fontSize: 19, fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              RatingBar.builder(
+                                initialRating: widget.place.rating,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                itemBuilder: (context, _) => const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  // print(rating);
+                                },
+                              ),
+                              const SizedBox(width: 20),
+                              Text(widget.place.rating.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
                           Text(widget.place.description),
                           const SizedBox(height: 10),
                           Text(widget.place.description),

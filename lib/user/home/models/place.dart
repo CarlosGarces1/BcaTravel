@@ -10,6 +10,7 @@ class TravelPlace {
     this.statusTag = StatusTag.popular,
     this.shared = 0,
     this.likes = 0,
+    this.rating=0,
   });
 
   final String id;
@@ -18,6 +19,7 @@ class TravelPlace {
   final StatusTag statusTag;
   final int shared;
   final int likes;
+  final double rating;
   final String locationDesc;
   final String description;
   final List<String> imagesUrl;
@@ -44,6 +46,7 @@ class TravelPlace {
         'https://www.digame.com.co/wp-content/uploads/2020/05/811cdeb5-7bc3-4e8c-91fa-5f1dae8a7bf6.jpg',
         'https://www.digame.com.co/wp-content/uploads/2020/05/811cdeb5-7bc3-4e8c-91fa-5f1dae8a7bf6.jpg'
       ],
+      rating: 3.7,
     ),
     TravelPlace(
       id: '1',
@@ -64,6 +67,7 @@ class TravelPlace {
         'https://images.unsplash.com/photo-1522094522800-6e0189c77a16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60',
         'https://images.unsplash.com/photo-1533193773788-92826ee86674?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60'
       ],
+      rating: 4,
     ),
     TravelPlace(
       id: '2',
@@ -88,6 +92,7 @@ class TravelPlace {
         'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg',
         'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg',
       ],
+      rating: 4.5,
     ),
     TravelPlace(
       id: '4',
@@ -111,6 +116,7 @@ class TravelPlace {
         'https://media-cdn.tripadvisor.com/media/photo-w/12/39/bd/86/el-mejor.jpg',
         'https://media-cdn.tripadvisor.com/media/photo-w/12/39/bd/86/el-mejor.jpg',
       ],
+      rating: 4.9,
     ),
   ];
 }

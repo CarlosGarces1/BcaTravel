@@ -55,7 +55,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       googleapikey,
       const PointLatLng(7.042000, -73.849833),
-      const PointLatLng(7.058656, -73.854495),
+      const PointLatLng(7.059638718745728, -73.86237498872967),
     );
 
     if (result.points.isNotEmpty) {
@@ -69,8 +69,8 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   void initState() {
-    getCurrentLocation();
     getPolyPoints();
+    getCurrentLocation();
 
     super.initState();
   }
@@ -89,7 +89,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     // final size = MediaQuery.of(context).size;
 
     // return SlidingUpPanel(
@@ -112,7 +111,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
         Scaffold(
           body: currentLocation == null
               ? const Center(
-                  child: Text("Loading"),
+                  child: CircularProgressIndicator(),
                 )
               : GoogleMap(
                   initialCameraPosition: CameraPosition(
@@ -183,19 +182,65 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           snippet: 'Calle 30B #32-84',
         ),
         // onTap: () {
-        //   showCupertinoModalPopup(
-        //     context: context,
-        //     builder: (BuildContext builder) {
-        //       return CupertinoPopupSurface(
-        //         child: Container(
-        //           color: CupertinoColors.white,
-        //           alignment: Alignment.center,
-        //           width: double.infinity,
-        //           height: 500,
-        //         ),
-        //       );
-        //     },
-        //   );
+        // showCupertinoModalPopup(
+        //   context: context,
+        //   builder: (BuildContext builder) {
+        //     return CupertinoPopupSurface(
+        //       child: Container(
+        //         color: CupertinoColors.white,
+        //         alignment: Alignment.center,
+        //         width: double.infinity,
+        //         height: 500,
+        //       ),
+        //     );
+        //   },
+        // );
+
+        //   setState(() {
+        //     tittle = 'Tu ubicación';
+        //     about = 'hola';
+        //     url =
+        //         'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
+        //     address = 'Calle 30B #32-84';
+        //   });
+        // },
+      ),
+    );
+    tmp.add(
+      Marker(
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+        markerId: const MarkerId('Current Location'),
+        position:
+            LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        infoWindow: const InfoWindow(
+          title: 'Tu ubicación',
+          snippet: 'Usuario',
+        ),
+        onTap: () {},
+      ),
+    );
+    tmp.add(
+      const Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(7.059638718745728, -73.86237498872967),
+        infoWindow: InfoWindow(
+          title: 'Copacentro',
+          snippet: '',
+        ),
+        // onTap: () {
+        // showCupertinoModalPopup(
+        //   context: context,
+        //   builder: (BuildContext builder) {
+        //     return CupertinoPopupSurface(
+        //       child: Container(
+        //         color: CupertinoColors.white,
+        //         alignment: Alignment.center,
+        //         width: double.infinity,
+        //         height: 500,
+        //       ),
+        //     );
+        //   },
+        // );
 
         //   setState(() {
         //     tittle = 'Tu ubicación';

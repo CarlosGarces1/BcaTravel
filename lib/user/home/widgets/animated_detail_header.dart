@@ -95,7 +95,39 @@ class AnimatedDetailHeader extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  // Positioned(
+                  //   left: 20,
+                  //   top: 250,
+                  //   child: Container(
+                  //     height: 40,
+                  //     width: 210,
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.grey.shade400,
+                  //       borderRadius: BorderRadius.circular(20),
+
+                  //     ),
+                  //     //
+                  //     // width: 300,
+                  //     child: Center(
+                  //       child: RatingBar.builder(
+                  //         initialRating: place.rating,
+                  //         minRating: 1,
+                  //         direction: Axis.horizontal,
+                  //         allowHalfRating: true,
+                  //         itemCount: 5,
+                  //         // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                  //         itemBuilder: (context, _) => const Icon(
+                  //           Icons.star,
+                  //           color: Colors.amber,
+                  //         ),
+                  //         onRatingUpdate: (rating) {
+                  //           // print(rating);
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -183,7 +215,7 @@ class _LikesAndSharesContainer extends StatelessWidget {
       height: 140,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.blue.shade50,
+        color: Colors.grey.shade400,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
@@ -245,6 +277,7 @@ class _LikesAndSharesContainer extends StatelessWidget {
               label: const Text('share', style: TextStyle(fontSize: 17)),
             ),
           ),
+
           // const Spacer(),
         ],
       ),
