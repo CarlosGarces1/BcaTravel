@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/maps/constanst.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -55,7 +56,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       googleapikey,
       const PointLatLng(7.042000, -73.849833),
-      const PointLatLng(7.059638718745728, -73.86237498872967),
+      const PointLatLng(7.058656, -73.854495),
     );
 
     if (result.points.isNotEmpty) {
@@ -69,7 +70,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   void initState() {
-    getPolyPoints();
+    // getPolyPoints();
     getCurrentLocation();
 
     super.initState();
@@ -86,26 +87,11 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   late String url =
       'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
   late String address = 'Calle 100 # 12-34';
+  late LatLng positionlocal = LatLng(7.057619, -73.850724);
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-
-    // return SlidingUpPanel(
-    //   // minHeight: size.height * 0.1,
-    //   // maxHeight: size.height * 0.5,
-    //   borderRadius: radius,
-    //   backdropEnabled: true,
-    //   parallaxEnabled: true,
-    //   // parallaxOffset: 0.5,
-    //   renderPanelSheet: false,
-    //   panel: _floatingPanel(tittle, about, url, address),
-    //   collapsed: _floatingCollapsed(),
-    //   panelBuilder: (controller) => PanelWidget(
-    //     controller: controller,
-    //     panelController: panelController,
-    //   ),
-    //   body:
+    final media = MediaQuery.of(context).size;
     return Stack(
       children: [
         Scaffold(
@@ -118,14 +104,14 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                       target: LatLng(currentLocation!.latitude!,
                           currentLocation!.longitude!),
                       zoom: 13.5),
-                  markers: _markers(),
+                  markers: _markers(tittle, about, url, address),
                   polylines: {
                     Polyline(
                       polylineId: const PolylineId("route"),
                       points: polylineCoordinates,
                       color: primaryColor,
                       width: 6,
-                    )
+                    ),
                   },
                   onMapCreated: (mapController) {
                     _controller.complete(mapController);
@@ -140,9 +126,9 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 ),
         ),
         Positioned(
-          top: 590,
-          left: 0,
-          right: 300,
+          top: media.height * 0.8,
+          left: media.width * 0.1,
+          // right: media.width * 0.3,
           child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.09,
               child: FloatingActionButton(
@@ -158,7 +144,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
 // widget.place.description
 
-  Set<Marker> _markers() {
+  Set<Marker> _markers(tittle, about, url, address) {
     var tmp = <Marker>{};
     tmp.add(
       Marker(
@@ -173,145 +159,68 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
         onTap: () {},
       ),
     );
-    tmp.add(
-      const Marker(
-        markerId: MarkerId('1'),
-        position: LatLng(7.042000, -73.849833),
-        infoWindow: InfoWindow(
-          title: 'Tu ubicación',
-          snippet: 'Calle 30B #32-84',
-        ),
-        // onTap: () {
-        // showCupertinoModalPopup(
-        //   context: context,
-        //   builder: (BuildContext builder) {
-        //     return CupertinoPopupSurface(
-        //       child: Container(
-        //         color: CupertinoColors.white,
-        //         alignment: Alignment.center,
-        //         width: double.infinity,
-        //         height: 500,
-        //       ),
-        //     );
-        //   },
-        // );
-
-        //   setState(() {
-        //     tittle = 'Tu ubicación';
-        //     about = 'hola';
-        //     url =
-        //         'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
-        //     address = 'Calle 30B #32-84';
-        //   });
-        // },
-      ),
-    );
+    // tmp.add(
+    //   Marker(
+    //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+    //     markerId: const MarkerId('Current Location'),
+    //     position:
+    //         LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+    //     infoWindow: const InfoWindow(
+    //       title: 'Tu ubicación',
+    //       snippet: 'Usuario',
+    //     ),
+    //     onTap: () {},
+    //   ),
+    // );
     tmp.add(
       Marker(
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-        markerId: const MarkerId('Current Location'),
-        position:
-            LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        markerId: const MarkerId('1'),
+        position: const LatLng(7.057192, -73.852825),
         infoWindow: const InfoWindow(
-          title: 'Tu ubicación',
-          snippet: 'Usuario',
-        ),
-        onTap: () {},
-      ),
-    );
-    tmp.add(
-      const Marker(
-        markerId: MarkerId('1'),
-        position: LatLng(7.059638718745728, -73.86237498872967),
-        infoWindow: InfoWindow(
-          title: 'Copacentro',
-          snippet: '',
-        ),
-        // onTap: () {
-        // showCupertinoModalPopup(
-        //   context: context,
-        //   builder: (BuildContext builder) {
-        //     return CupertinoPopupSurface(
-        //       child: Container(
-        //         color: CupertinoColors.white,
-        //         alignment: Alignment.center,
-        //         width: double.infinity,
-        //         height: 500,
-        //       ),
-        //     );
-        //   },
-        // );
-
-        //   setState(() {
-        //     tittle = 'Tu ubicación';
-        //     about = 'hola';
-        //     url =
-        //         'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
-        //     address = 'Calle 30B #32-84';
-        //   });
-        // },
-      ),
-    );
-    tmp.add(
-      const Marker(
-        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-        markerId: MarkerId('2'),
-        position: LatLng(7.057192, -73.852825),
-        infoWindow: InfoWindow(
           title: '48 Steak House',
           snippet: 'Cl. 48 #22 -115',
         ),
-        // onTap: () {
-        //   showCupertinoModalPopup(
-        //     barrierColor: Colors.black.withOpacity(0.9),
-        //     context: context,
-        //     builder: (BuildContext builder) {
-        //       return CupertinoPopupSurface(
-        //         child: Container(
-        //           color: CupertinoColors.white,
-        //           alignment: Alignment.center,
-        //           width: double.infinity,
-        //           height: 600,
-        //           padding: const EdgeInsets.symmetric(horizontal: 24),
-        //           child: SingleChildScrollView(
-        //             child: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: <Widget>[
-        //                 const SizedBox(height: 20),
-        //                 Center(
-        //                     child: Text(tittle,
-        //                         style: const TextStyle(color: Colors.black))),
-        //                 const SizedBox(height: 20),
-        //                 Text(about,
-        //                     style: const TextStyle(color: Colors.black)),
-        //                 const SizedBox(height: 20),
-        //                 Text(address,
-        //                     style: const TextStyle(color: Colors.black)),
-        //                 const SizedBox(height: 20),
-        //                 Image.network(url),
-        //                 const SizedBox(height: 20),
-        //                 Image.network(url),
-        //                 const SizedBox(height: 20),
-        //               ],
-        //             ),
-        //           ),
-        //         ),
-        //       );
-        //     },
-        //   );
-        //   setState(() {
-        //     tittle = TravelPlace.places[2].name;
-        //     about = TravelPlace.places[2].description;
-        //     url =
-        //         'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
-        //     address = TravelPlace.places[2].locationDesc;
-        //   });
-        // },
+        onTap: () {
+          setState(() {
+            tittle = TravelPlace.places[2].name;
+            about = TravelPlace.places[2].description;
+            url =
+                'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
+            address = TravelPlace.places[2].locationDesc;
+            positionlocal:
+            LatLng(7.057192, -73.852825);
+          });
+
+          buildabouttext1(tittle, about, address, url);
+        },
       ),
     );
     tmp.add(
       Marker(
-        markerId: const MarkerId('3'),
+        markerId: const MarkerId('6'),
+        position: const LatLng(7.042000, -73.849833,),
+        infoWindow: const InfoWindow(
+          title: 'Inicio',
+          snippet: 'Cl. 30B #32-84',
+        ),
+        onTap: () {
+          setState(() {
+            tittle = TravelPlace.places[2].name;
+            about = TravelPlace.places[2].description;
+            url =
+                'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
+            address = TravelPlace.places[2].locationDesc;
+            positionlocal:
+            LatLng(7.057192, -73.852825);
+          });
+
+          buildabouttext1(tittle, about, address, url);
+        },
+      ),
+    );
+    tmp.add(
+      Marker(
+        markerId: const MarkerId('2'),
         position: const LatLng(7.068301, -73.857165),
         infoWindow: const InfoWindow(
           title: 'Max Burger 60',
@@ -324,32 +233,34 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
             url =
                 'https://www.digame.com.co/wp-content/uploads/2020/05/811cdeb5-7bc3-4e8c-91fa-5f1dae8a7bf6.jpg';
             address = TravelPlace.places[0].locationDesc;
+            positionlocal:
+            LatLng(7.068301, -73.857165);
           });
+
+          buildabouttext1(tittle, about, address, url);
         },
       ),
     );
     tmp.add(
       Marker(
-        markerId: const MarkerId('4'),
+        markerId: const MarkerId('3'),
         position: const LatLng(7.058656, -73.854495),
         infoWindow: const InfoWindow(
           title: 'Pal caminito',
           snippet: 'Cl. 46 #25-05',
         ),
         onTap: () {
-          setState(() {
-            tittle = TravelPlace.places[3].name;
-            about = TravelPlace.places[3].description;
-            url =
-                'https://media-cdn.tripadvisor.com/media/photo-w/12/39/bd/86/el-mejor.jpg';
-            address = TravelPlace.places[3].locationDesc;
-          });
+          buildabouttext1(
+              TravelPlace.places[3].name,
+              TravelPlace.places[3].description,
+              TravelPlace.places[3].locationDesc,
+              'https://media-cdn.tripadvisor.com/media/photo-w/12/39/bd/86/el-mejor.jpg');
         },
       ),
     );
     tmp.add(
       Marker(
-        markerId: const MarkerId('5'),
+        markerId: const MarkerId('4'),
         position: const LatLng(7.057619, -73.850724),
         infoWindow: const InfoWindow(
           title: 'Que pizza!',
@@ -362,32 +273,78 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
             url =
                 'https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80';
             address = TravelPlace.places[1].locationDesc;
+            positionlocal:
+            LatLng(7.057619, -73.850724);
           });
+
+          buildabouttext1(tittle, about, address, url);
         },
       ),
     );
     return tmp;
   }
+
+  buildabouttext1(title, about, address, url) {
+    return showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builder) {
+        return CupertinoPopupSurface(
+          child: Container(
+            color: CupertinoColors.white,
+            alignment: Alignment.center,
+            width: double.infinity,
+            height: 500,
+            child: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 40,
+                            decoration: TextDecoration.none),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      about,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
+                          decoration: TextDecoration.none),
+                      textAlign: TextAlign.justify,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      address,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          decoration: TextDecoration.none),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    Image.network(url),
+                    const SizedBox(height: 20),
+                    Image.network(url),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
-// Widget _floatingCollapsed() {
-//   return Container(
-//     decoration: const BoxDecoration(
-//       color: Colors.blueGrey,
-//       borderRadius: BorderRadius.only(
-//           topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
-//     ),
-//     margin: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
-//     child: const Center(
-//       child: Text(
-//         "Desliza arriba para ver el lugar",
-//         style: TextStyle(color: Colors.white),
-//       ),
-//     ),
-//   );
-// }
-
-// Widget _floatingPanel(tittle, about, url, address) {
 //   return Container(
 //     decoration: const BoxDecoration(
 //         color: Colors.white,
@@ -402,28 +359,3 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 //     child: buildabouttext(tittle, about, url, address),
 //   );
 // }
-
-buildabouttext(title, about, url, address) {
-  return SingleChildScrollView(
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(height: 20),
-          Center(
-              child: Text(title, style: const TextStyle(color: Colors.black))),
-          const SizedBox(height: 20),
-          Text(about, style: const TextStyle(color: Colors.black)),
-          const SizedBox(height: 20),
-          Text(address, style: const TextStyle(color: Colors.black)),
-          const SizedBox(height: 20),
-          Image.network(url),
-          const SizedBox(height: 20),
-          Image.network(url),
-          const SizedBox(height: 20),
-        ],
-      ),
-    ),
-  );
-}
