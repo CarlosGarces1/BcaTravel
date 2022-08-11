@@ -154,7 +154,7 @@ class PlaceCommentsWidget extends StatelessWidget {
                             height: media.height * 0.07,
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 1,
                                 ),
                                 const Text(
@@ -202,7 +202,7 @@ class PlaceCommentsWidget extends StatelessWidget {
                             height: media.height * 0.07,
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 1,
                                 ),
                                 const Text(

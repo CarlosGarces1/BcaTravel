@@ -1,3 +1,5 @@
+// ignore_for_file: unused_label
+
 import 'dart:async';
 
 import 'package:bcatravel/user/home/models/place.dart';
@@ -87,7 +89,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   late String url =
       'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
   late String address = 'Calle 100 # 12-34';
-  late LatLng positionlocal = LatLng(7.057619, -73.850724);
+  late LatLng positionlocal = const LatLng(7.057619, -73.850724);
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +190,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
             address = TravelPlace.places[2].locationDesc;
             positionlocal:
-            LatLng(7.057192, -73.852825);
+            const LatLng(7.057192, -73.852825);
           });
 
           buildabouttext1(tittle, about, address, url);
@@ -211,7 +213,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
             address = TravelPlace.places[2].locationDesc;
             positionlocal:
-            LatLng(7.057192, -73.852825);
+            const LatLng(7.057192, -73.852825);
           });
 
           buildabouttext1(tittle, about, address, url);
@@ -234,7 +236,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 'https://www.digame.com.co/wp-content/uploads/2020/05/811cdeb5-7bc3-4e8c-91fa-5f1dae8a7bf6.jpg';
             address = TravelPlace.places[0].locationDesc;
             positionlocal:
-            LatLng(7.068301, -73.857165);
+            const LatLng(7.068301, -73.857165);
           });
 
           buildabouttext1(tittle, about, address, url);
@@ -274,7 +276,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 'https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80';
             address = TravelPlace.places[1].locationDesc;
             positionlocal:
-            LatLng(7.057619, -73.850724);
+            const LatLng(7.057619, -73.850724);
           });
 
           buildabouttext1(tittle, about, address, url);
