@@ -42,8 +42,9 @@ class ProfileScreen extends StatelessWidget {
                         CircleAvatar(
                           // backgroundColor: Colors.red,
                           radius: size.height * 0.08,
+
                           backgroundImage: const NetworkImage(
-                            "https://i.stack.imgur.com/S11YG.jpg?s=64&g=1",
+                            "https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no",
                           ),
                         ),
                         SizedBox(
@@ -76,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                                   height: size.height * 0.01,
                                 ),
                                 const Text(
-                                  'felipe@gmail.com',
+                                  'felipegarces1608@gmail.com',
                                   style: TextStyle(fontSize: 15),
                                 ),
                               ],
@@ -91,26 +92,55 @@ class ProfileScreen extends StatelessWidget {
                   height: size.height * 0.03,
                 ),
                 Column(children: [
-                  ListTile(
-                    onTap: () {},
-                    title: const Text('Editar perfil',
-                        style: TextStyle(fontSize: 18, color: Colors.black)),
-                    leading: const CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Icon(FontAwesomeIcons.userPen),
+                  Container(
+                    color: Colors.grey.shade400,
+                    child: ListTile(
+                      // autofocus: true,
+                      // focusColor: Colors.red,
+                      onTap: () {},
+                      title: const Text('Editar perfil',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color.fromARGB(70, 126, 126, 126))),
+                      leading: const CircleAvatar(
+                        backgroundColor: Color.fromARGB(70, 126, 126, 126),
+                        child: Icon(
+                          FontAwesomeIcons.userPen,
+                          color: Color.fromARGB(70, 126, 126, 126),
+                        ),
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color.fromARGB(70, 126, 126, 126),
+                      ),
                     ),
-                    trailing: const Icon(Icons.arrow_forward_ios),
                   ),
-                  ListTile(
-                    onTap: () {},
-                    title: const Text('Acerca de:',
-                        style: TextStyle(fontSize: 18, color: Colors.black)),
-                    leading: const CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Icon(FontAwesomeIcons.info),
+                  const SizedBox(height: 10),
+                  Container(
+                    color: Colors.grey.shade400,
+                    child: ListTile(
+                      onTap: () {},
+                      title: const Text('Acerca de:',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color.fromARGB(50, 126, 126, 126))),
+                      leading: const CircleAvatar(
+                        backgroundColor: Color.fromARGB(50, 126, 126, 126),
+                        child: Icon(
+                          FontAwesomeIcons.info,
+                          color: Color.fromARGB(50, 126, 126, 126),
+                        ),
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color.fromARGB(50, 126, 126, 126),
+                      ),
                     ),
-                    trailing: const Icon(Icons.arrow_forward_ios),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -124,6 +154,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -137,6 +171,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -150,6 +188,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   ListTile(
                     onTap: () {
                       FirebaseAuth.instance.signOut();

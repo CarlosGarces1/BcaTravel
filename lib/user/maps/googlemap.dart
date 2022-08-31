@@ -23,7 +23,7 @@ class GoogleMapsScreen extends StatefulWidget {
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   final panelController = PanelController();
 
-  bool variablexd = false;
+  bool variablexd = true;
 
   final Completer<GoogleMapController> _controller = Completer();
 
@@ -38,16 +38,10 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
       currentLocation = location;
     });
 
-    GoogleMapController googlemapController = await _controller.future;
+    // GoogleMapController googlemapController = await _controller.future;
 
     location.onLocationChanged.listen((newloc) {
       currentLocation = newloc;
-      if (variablexd == true) {
-        googlemapController.animateCamera(CameraUpdate.newCameraPosition(
-            CameraPosition(
-                target: LatLng(newloc.latitude!, newloc.longitude!),
-                zoom: 15)));
-      }
       setState(() {});
     });
   }
@@ -93,53 +87,53 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context).size;
+    // final media = MediaQuery.of(context).size;
     return Stack(
       children: [
         Scaffold(
-          body: currentLocation == null
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                      target: LatLng(currentLocation!.latitude!,
-                          currentLocation!.longitude!),
-                      zoom: 13.5),
-                  markers: _markers(tittle, about, url, address),
-                  polylines: {
-                    Polyline(
-                      polylineId: const PolylineId("route"),
-                      points: polylineCoordinates,
-                      color: primaryColor,
-                      width: 6,
-                    ),
-                  },
-                  onMapCreated: (mapController) {
-                    _controller.complete(mapController);
-                  },
-                  // compassEnabled : false,
-                  // myLocationEnabled: true,
-                  // myLocationButtonEnabled: true,
-                  // onTap: (LatLng latLng) {
-                  //   // print('You tapped at: $latLng');
-                  // },
-                  // ),
-                ),
+          body:
+              // currentLocation == null
+              //     ? const Center(
+              //         child: CircularProgressIndicator(),
+              //       )
+              //     :
+              GoogleMap(
+            initialCameraPosition: const CameraPosition(
+                target: LatLng(7.042000, -73.849833), zoom: 13.5),
+            markers: _markers(tittle, about, url, address),
+            polylines: {
+              Polyline(
+                polylineId: const PolylineId("route"),
+                points: polylineCoordinates,
+                color: primaryColor,
+                width: 6,
+              ),
+            },
+            onMapCreated: (mapController) {
+              _controller.complete(mapController);
+            },
+            compassEnabled: false,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
+            // onTap: (LatLng latLng) {
+            //   // print('You tapped at: $latLng');
+            // },
+            // ),
+          ),
         ),
-        Positioned(
-          top: media.height * 0.8,
-          left: media.width * 0.1,
-          // right: media.width * 0.3,
-          child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.09,
-              child: FloatingActionButton(
-                  onPressed: () {
-                    variablexd = variablexd == true ? false : true;
-                    setState(() {});
-                  },
-                  child: const Icon(Icons.my_location))),
-        ),
+        // Positioned(
+        //   top: media.height * 0.8,
+        //   left: media.width * 0.1,
+        //   // right: media.width * 0.3,
+        //   child: SizedBox(
+        //       height: MediaQuery.of(context).size.height * 0.09,
+        //       child: FloatingActionButton(
+        //           onPressed: () {
+        //             variablexd = variablexd == true ? false : true;
+        //             setState(() {});
+        //           },
+        //           child: const Icon(Icons.my_location))),
+        // ),
       ],
     );
   }
@@ -148,19 +142,19 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   Set<Marker> _markers(tittle, about, url, address) {
     var tmp = <Marker>{};
-    tmp.add(
-      Marker(
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-        markerId: const MarkerId('Current Location'),
-        position:
-            LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        infoWindow: const InfoWindow(
-          title: 'Tu ubicación',
-          snippet: 'Usuario',
-        ),
-        onTap: () {},
-      ),
-    );
+    // tmp.add(
+    //   Marker(
+    //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+    //     markerId: const MarkerId('Current Location'),
+    //     position:
+    //         LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+    //     infoWindow: const InfoWindow(
+    //       title: 'Tu ubicación',
+    //       snippet: 'Usuario',
+    //     ),
+    //     onTap: () {},
+    //   ),
+    // );
     // tmp.add(
     //   Marker(
     //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
@@ -184,34 +178,11 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
         ),
         onTap: () {
           setState(() {
-            tittle = TravelPlace.places[2].name;
-            about = TravelPlace.places[2].description;
+            tittle = TravelPlace.places[1].name;
+            about = TravelPlace.places[1].description;
             url =
                 'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
-            address = TravelPlace.places[2].locationDesc;
-            positionlocal:
-            const LatLng(7.057192, -73.852825);
-          });
-
-          buildabouttext1(tittle, about, address, url);
-        },
-      ),
-    );
-    tmp.add(
-      Marker(
-        markerId: const MarkerId('6'),
-        position: const LatLng(7.042000, -73.849833,),
-        infoWindow: const InfoWindow(
-          title: 'Inicio',
-          snippet: 'Cl. 30B #32-84',
-        ),
-        onTap: () {
-          setState(() {
-            tittle = TravelPlace.places[2].name;
-            about = TravelPlace.places[2].description;
-            url =
-                'http://agenciaobicua.com/steak/wp-content/uploads/MG_9352-Editar.jpg';
-            address = TravelPlace.places[2].locationDesc;
+            address = TravelPlace.places[1].locationDesc;
             positionlocal:
             const LatLng(7.057192, -73.852825);
           });
@@ -252,37 +223,43 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           snippet: 'Cl. 46 #25-05',
         ),
         onTap: () {
-          buildabouttext1(
-              TravelPlace.places[3].name,
-              TravelPlace.places[3].description,
-              TravelPlace.places[3].locationDesc,
-              'https://media-cdn.tripadvisor.com/media/photo-w/12/39/bd/86/el-mejor.jpg');
-        },
-      ),
-    );
-    tmp.add(
-      Marker(
-        markerId: const MarkerId('4'),
-        position: const LatLng(7.057619, -73.850724),
-        infoWindow: const InfoWindow(
-          title: 'Que pizza!',
-          snippet: 'Cra. 28 #46-31',
-        ),
-        onTap: () {
           setState(() {
-            tittle = TravelPlace.places[1].name;
-            about = TravelPlace.places[1].description;
+            tittle = TravelPlace.places[2].name;
+            about = TravelPlace.places[2].description;
             url =
-                'https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80';
-            address = TravelPlace.places[1].locationDesc;
+                'https://media-cdn.tripadvisor.com/media/photo-w/12/39/bd/86/el-mejor.jpg';
+            address = TravelPlace.places[2].locationDesc;
             positionlocal:
-            const LatLng(7.057619, -73.850724);
+            const LatLng(7.057192, -73.852825);
           });
 
           buildabouttext1(tittle, about, address, url);
         },
       ),
     );
+    // tmp.add(
+    //   Marker(
+    //     markerId: const MarkerId('4'),
+    //     position: const LatLng(7.057619, -73.850724),
+    //     infoWindow: const InfoWindow(
+    //       title: 'Que pizza!',
+    //       snippet: 'Cra. 28 #46-31',
+    //     ),
+    //     onTap: () {
+    //       setState(() {
+    //         tittle = TravelPlace.places[1].name;
+    //         about = TravelPlace.places[1].description;
+    //         url =
+    //             'https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80';
+    //         address = TravelPlace.places[1].locationDesc;
+    //         positionlocal:
+    //         const LatLng(7.057619, -73.850724);
+    //       });
+
+    //       buildabouttext1(tittle, about, address, url);
+    //     },
+    //   ),
+    // );
     return tmp;
   }
 
@@ -331,8 +308,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                           decoration: TextDecoration.none),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 20),
-                    Image.network(url),
                     const SizedBox(height: 20),
                     Image.network(url),
                     const SizedBox(height: 20),

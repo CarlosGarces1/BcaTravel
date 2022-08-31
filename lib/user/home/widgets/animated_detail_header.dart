@@ -264,8 +264,8 @@ class _LikesAndSharesContainer extends StatelessWidget {
               onPressed: () async {
                 // print('share');
                 Share.text(
-                    'chupelo uwu',
-                    'Entra a este link para ver algo maravilloso.'
+                    'Comparte con tus amigos ',
+                    'Te comparto el nombre de un sitio que me gustó mucho.'
                         ' ${place.name}',
                     'text/plain');
               },

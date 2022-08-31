@@ -166,7 +166,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   color: Colors.transparent,
                 ),
                 SizedBox(
-                    height: (size.height * 0.31).toDouble(),
+                    height: (size.height * 0.26).toDouble(),
                     child: Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -190,7 +190,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                 child: Center(
                                   child: ClipOval(
                                     child: Image.network(
-                                      "https://i.stack.imgur.com/S11YG.jpg?s=64&g=1",
+                                      "https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no",
                                       fit: BoxFit.cover,
                                       height: 36,
                                       width: 36,
@@ -322,7 +322,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   color: Colors.transparent,
                 ),
                 SizedBox(
-                    height: (size.height * 0.15).toDouble(),
+                    height: (size.height * 0.13).toDouble(),
                     child: Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(

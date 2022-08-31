@@ -50,27 +50,6 @@ class TravelPlace {
     ),
     TravelPlace(
       id: '1',
-      name: 'Que Pizza!',
-      likes: 140,
-      shared: 49,
-      description: 'Que Pizzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa! ',
-      imagesUrl: [
-        'https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1522094522800-6e0189c77a16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60',
-        'https://images.unsplash.com/photo-1533193773788-92826ee86674?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60'
-      ],
-      statusTag: StatusTag.evento,
-      user: TravelUser.raul,
-      locationDesc: 'Cra. 28 #46-31',
-      imagesUrl2: [
-        'https://images.unsplash.com/photo-1504730655501-24c39ac53f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1522094522800-6e0189c77a16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60',
-        'https://images.unsplash.com/photo-1533193773788-92826ee86674?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60'
-      ],
-      rating: 4,
-    ),
-    TravelPlace(
-      id: '2',
       likes: 29,
       shared: 40,
       name: '48 Steak House',
@@ -95,7 +74,7 @@ class TravelPlace {
       rating: 4.5,
     ),
     TravelPlace(
-      id: '4',
+      id: '2',
       name: 'Pal Caminito',
       shared: 500,
       likes: 39,

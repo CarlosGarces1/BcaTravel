@@ -34,16 +34,45 @@ class _TwoPanelsState extends State<TwoPanels> {
 
     return Stack(
       children: <Widget>[
+        Positioned(
+          top: 95,
+          left: 1,
+          child: Container(
+            height: 50,
+            width: 400,
+            color: Colors.grey.shade400,
+            child: const Text(
+                '                                                                                                   '
+                '----------------PROXIMAMENTE---------------------',
+                textAlign: TextAlign.center),
+          ),
+        ),
+        Positioned(
+          top: 160,
+          left: 1,
+          child: Container(
+            height: 50,
+            width: 400,
+            color: Colors.grey.shade400,
+            child: const Text(
+                '                                                                                                      '
+                '    -------------------PROXIMAMENTE---------------------',
+                textAlign: TextAlign.center),
+          ),
+        ),
         Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListView(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: const <Widget>[
+                SizedBox(
+                  height: 12,
+                ),
                 ListTile(
                   title: Text(
                     "Restaurante",
@@ -54,24 +83,31 @@ class _TwoPanelsState extends State<TwoPanels> {
                     color: Colors.black,
                   ),
                 ),
-                ListTile(
-                  title: Text(
-                    "Hotel",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  leading: Icon(
-                    Icons.hotel,
-                    color: Colors.black,
-                  ),
+                SizedBox(
+                  height: 12,
                 ),
                 ListTile(
                   title: Text(
+                    "Hotel",
+                    style: TextStyle(color: Color.fromARGB(50, 126, 126, 126)),
+                  ),
+                  leading: Icon(
+                    Icons.hotel,
+                    color: Color.fromARGB(50, 126, 126, 126),
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                ListTile(
+                  // enabled: false,
+                  title: Text(
                     "Transporte",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Color.fromARGB(50, 126, 126, 126)),
                   ),
                   leading: Icon(
                     Icons.emoji_transportation,
-                    color: Colors.black,
+                    color: Color.fromARGB(50, 126, 126, 126),
                   ),
                 ),
               ],

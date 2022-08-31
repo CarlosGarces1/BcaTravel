@@ -69,7 +69,7 @@ class PlaceCommentsWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         const Text(
-                          '120',
+                          '2 ',
                           style: TextStyle(
                             color: Colors.white70,
                             fontWeight: FontWeight.bold,

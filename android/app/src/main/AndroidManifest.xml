@@ -17,11 +17,12 @@
 </queries>
 
    <uses-permission android:name="android.permission.INTERNET"/>
+   <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
    <application
         android:label="BCA Travel"
         android:usesCleartextTraffic="true"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyDk1ls1xBdI5t8dAZ_MjaYFLaXRSuR4Lps"/>
