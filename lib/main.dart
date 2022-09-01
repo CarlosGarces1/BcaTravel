@@ -31,6 +31,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+
 class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> navigatorkey = GlobalKey<NavigatorState>();
   final GlobalKey<ScaffoldMessengerState> messengerkey =
@@ -46,6 +47,8 @@ class _MyAppState extends State<MyApp> {
       messengerkey.currentState?.showSnackBar(snackBar);
     });
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +88,10 @@ class _MyAppState extends State<MyApp> {
       themeMode: ThemeMode.light,
     );
   }
+
+  
 }
+
 
 // ThemeData _buildShrineTheme() {
 //   final ThemeData base = ThemeData.dark();
@@ -144,3 +150,4 @@ class _MyAppState extends State<MyApp> {
 // const Color shrineBackgroundWhite = Colors.white;
 
 // const defaultLetterSpacing = 0.03;
+
