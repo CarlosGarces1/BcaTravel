@@ -15,13 +15,17 @@ class GradientStatusTag extends StatelessWidget {
     String text;
     List<Color> colors;
     switch (statusTag) {
-      case StatusTag.popular:
-        text = 'Lugar popular';
+      case StatusTag.hotel:
+        text = 'Hotel';
         colors = [Colors.amber, Colors.orange.shade600];
         break;
-      case StatusTag.evento:
-        text = 'Evento';
+      case StatusTag.transporte:
+        text = 'Transporte';
         colors = [Colors.cyan, Colors.blue.shade600];
+        break;
+      case StatusTag.restaurante:
+        text = 'Restaurante';
+        colors = [Colors.purple, Colors.indigo.shade600];
         break;
     }
     return Container(

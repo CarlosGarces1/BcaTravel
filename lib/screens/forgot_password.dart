@@ -24,7 +24,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 actions: [
                   TextButton(
                     style: TextButton.styleFrom(
-                      primary: Colors.black,
+                      foregroundColor: Colors.black,
                     ),
                     child: const Text('Ok'),
                     onPressed: () => Navigator.of(context).pop(),
@@ -40,7 +40,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           actions: [
             TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.black,
+                foregroundColor: Colors.black,
               ),
               child: const Text('Ok'),
               onPressed: () => Navigator.of(context).pop(),
@@ -157,14 +157,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             },
                             child: const Text('Enviar correo'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.black,
                               textStyle: const TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'BreeSerif',
                               ),
                               elevation: 5,
                               shadowColor: Colors.black,
-                              primary: Colors.black,
-                              onPrimary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),

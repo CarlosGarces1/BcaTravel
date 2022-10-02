@@ -13,13 +13,13 @@ class TwoPanels extends StatefulWidget {
 }
 
 class _TwoPanelsState extends State<TwoPanels> {
-  // ignore: constant_identifier_names
-  static const header_height = 32.0;
+  static const _headerHeight = 32.0;
+  String searchString = "";
 
   Animation<RelativeRect> getPanelAnimation(BoxConstraints constraints) {
     final height = constraints.biggest.height;
-    final backPanelHeight = height * 0.4 - header_height;
-    const frontPanelHeight = -header_height;
+    final backPanelHeight = height * 0.4 - _headerHeight;
+    const frontPanelHeight = -_headerHeight;
 
     return RelativeRectTween(
             begin: RelativeRect.fromLTRB(
@@ -34,32 +34,6 @@ class _TwoPanelsState extends State<TwoPanels> {
 
     return Stack(
       children: <Widget>[
-        Positioned(
-          top: 95,
-          left: 1,
-          child: Container(
-            height: 50,
-            width: 400,
-            color: Colors.grey.shade400,
-            child: const Text(
-                '                                                                                                   '
-                '----------------PROXIMAMENTE---------------------',
-                textAlign: TextAlign.center),
-          ),
-        ),
-        Positioned(
-          top: 160,
-          left: 1,
-          child: Container(
-            height: 50,
-            width: 400,
-            color: Colors.grey.shade400,
-            child: const Text(
-                '                                                                                                      '
-                '    -------------------PROXIMAMENTE---------------------',
-                textAlign: TextAlign.center),
-          ),
-        ),
         Column(
           children: [
             const SizedBox(
@@ -89,11 +63,11 @@ class _TwoPanelsState extends State<TwoPanels> {
                 ListTile(
                   title: Text(
                     "Hotel",
-                    style: TextStyle(color: Color.fromARGB(50, 126, 126, 126)),
+                    style: TextStyle(color: Colors.black),
                   ),
                   leading: Icon(
                     Icons.hotel,
-                    color: Color.fromARGB(50, 126, 126, 126),
+                    color: Colors.black,
                   ),
                 ),
                 SizedBox(
@@ -103,11 +77,11 @@ class _TwoPanelsState extends State<TwoPanels> {
                   // enabled: false,
                   title: Text(
                     "Transporte",
-                    style: TextStyle(color: Color.fromARGB(50, 126, 126, 126)),
+                    style: TextStyle(color: Colors.black),
                   ),
                   leading: Icon(
                     Icons.emoji_transportation,
-                    color: Color.fromARGB(50, 126, 126, 126),
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -124,7 +98,7 @@ class _TwoPanelsState extends State<TwoPanels> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: header_height,
+                  height: _headerHeight,
                   child: GestureDetector(
                     onVerticalDragDown: (details) {
                       widget.controller.fling(velocity: -1.0);

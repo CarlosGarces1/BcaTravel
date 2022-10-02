@@ -166,7 +166,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   color: Colors.transparent,
                 ),
                 SizedBox(
-                    height: (size.height * 0.26).toDouble(),
+                    height: (size.height * 0.3).toDouble(),
                     child: Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -322,7 +322,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   color: Colors.transparent,
                 ),
                 SizedBox(
-                    height: (size.height * 0.13).toDouble(),
+                    height: (size.height * 0.148).toDouble(),
                     child: Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(

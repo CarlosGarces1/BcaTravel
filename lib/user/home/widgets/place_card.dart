@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/gradient_status_tag.dart';
@@ -103,7 +102,7 @@ class PlaceCard extends StatelessWidget {
                     //     'text/plain');
                   },
                   style: TextButton.styleFrom(
-                    primary: Colors.white70,
+                    foregroundColor: Colors.white70,
                     shape: const StadiumBorder(),
                   ),
                   icon: const Icon(CupertinoIcons.reply),

@@ -3,7 +3,6 @@ import 'package:bcatravel/user/home/widgets/animated_detail_header.dart';
 import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class PlaceDetailScreen extends StatefulWidget {
   const PlaceDetailScreen({
@@ -118,76 +117,67 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 10),
-                          const Text("Estrellas del lugar",
-                              style: TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              RatingBar.builder(
-                                initialRating: widget.place.rating,
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                itemBuilder: (context, _) => const Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  // print(rating);
-                                },
-                              ),
-                              const SizedBox(width: 20),
-                              Text(widget.place.rating.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
+                          // const SizedBox(height: 10),
+                          // const Text("Estrellas del lugar",
+                          //     style: TextStyle(
+                          //         fontSize: 19, fontWeight: FontWeight.bold)),
+                          // const SizedBox(height: 10),
+                          // Row(
+                          //   children: [
+                          //     RatingBar.builder(
+                          //       initialRating: widget.place.rating,
+                          //       minRating: 1,
+                          //       direction: Axis.horizontal,
+                          //       allowHalfRating: true,
+                          //       itemCount: 5,
+                          //       // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          //       itemBuilder: (context, _) => const Icon(
+                          //         Icons.star,
+                          //         color: Colors.amber,
+                          //       ),
+                          //       onRatingUpdate: (rating) {
+                          //         // print(rating);
+                          //       },
+                          //     ),
+                          //     const SizedBox(width: 20),
+                          //     Text(widget.place.rating.toString(),
+                          //         style: const TextStyle(
+                          //             fontSize: 19,
+                          //             fontWeight: FontWeight.bold)),
+                          //   ],
+                          // ),
                           const SizedBox(height: 20),
                           Text(widget.place.description),
-                          const SizedBox(height: 10),
-                          Text(widget.place.description),
-                          const SizedBox(height: 10),
-                          Text(widget.place.description),
                           const SizedBox(height: 30),
-                          const Text(
-                            'Fotos tomadas por usuarios',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 180,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemExtent: 150,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: widget.place.imagesUrl2.length,
-                      itemBuilder: (context, index) {
-                        // final collectionPlace = widget.place.imagesUrl2[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              widget.place.imagesUrl2.first,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
+                // SliverToBoxAdapter(
+                //   child: SizedBox(
+                //     height: 180,
+                //     child: ListView.builder(
+                //       scrollDirection: Axis.horizontal,
+                //       itemExtent: 150,
+                //       padding: const EdgeInsets.symmetric(horizontal: 20),
+                //       itemCount: widget.place.imagesUrl2.length,
+                //       itemBuilder: (context, index) {
+                //         // final collectionPlace = widget.place.imagesUrl2[index];
+                //         return Padding(
+                //           padding: const EdgeInsets.only(right: 10),
+                //           child: ClipRRect(
+                //             borderRadius: BorderRadius.circular(12),
+                //             child: Image.network(
+                //               widget.place.imagesUrl2.first,
+                //               fit: BoxFit.cover,
+                //             ),
+                //           ),
+                //         );
+                //       },
+                //     ),
+                //   ),
+                // ),
                 const SliverToBoxAdapter(child: SizedBox(height: 150))
               ],
             ),

@@ -51,6 +51,16 @@ class _SwiperScreenState extends State<SwiperScreen> {
               ),
               Row(
                 children: [
+                  SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: const CircleBorder()),
+                        onPressed: () => _pageController.jumpToPage(3),
+                        child: const Icon(Icons.skip_next)),
+                  ),
+                  const Spacer(),
                   ...List.generate(
                     listOnBoard.length,
                     (index) => Padding(
@@ -101,7 +111,7 @@ class DotIndicator extends StatelessWidget {
       height: isActive ? 12 : 4,
       width: 4,
       decoration: BoxDecoration(
-        color: isActive ? Colors.yellow[600] : Colors.yellow.withOpacity(0.4),
+        color: isActive ? Colors.yellow : Colors.yellow[600],
         borderRadius: BorderRadius.circular(12),
       ),
       duration: const Duration(milliseconds: 300),

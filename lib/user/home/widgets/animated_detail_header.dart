@@ -270,7 +270,7 @@ class _LikesAndSharesContainer extends StatelessWidget {
                     'text/plain');
               },
               style: TextButton.styleFrom(
-                primary: Colors.black,
+                foregroundColor: Colors.black,
                 shape: const StadiumBorder(),
               ),
               icon: const Icon(CupertinoIcons.reply),

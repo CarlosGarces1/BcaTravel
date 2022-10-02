@@ -55,12 +55,15 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   flutter_rating_bar: ^4.0.1
   flutter_native_splash: ^2.2.8
+  flutter_secure_storage: ^5.0.2
+  provider: ^6.0.2
+  flutter_launcher_icons: "^0.10.0"
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: "^0.10.0"
   
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -74,6 +77,8 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon/icon.jpg"
+  adaptive_icon_foreground: "assets/icon/1024.png"
+  adaptive_icon_background: "#ffffff"
   min_sdk_android: 21 
 
 

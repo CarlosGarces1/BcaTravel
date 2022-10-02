@@ -91,35 +91,35 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     return Stack(
       children: [
         Scaffold(
-          body:
-              // currentLocation == null
-              //     ? const Center(
-              //         child: CircularProgressIndicator(),
-              //       )
-              //     :
-              GoogleMap(
-            initialCameraPosition: const CameraPosition(
-                target: LatLng(7.042000, -73.849833), zoom: 13.5),
-            markers: _markers(tittle, about, url, address),
-            polylines: {
-              Polyline(
-                polylineId: const PolylineId("route"),
-                points: polylineCoordinates,
-                color: primaryColor,
-                width: 6,
-              ),
-            },
-            onMapCreated: (mapController) {
-              _controller.complete(mapController);
-            },
-            compassEnabled: false,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: true,
-            // onTap: (LatLng latLng) {
-            //   // print('You tapped at: $latLng');
-            // },
-            // ),
-          ),
+          body: currentLocation == null
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                      target: LatLng(currentLocation!.latitude!,
+                          currentLocation!.longitude!),
+                      zoom: 13.5),
+                  markers: _markers(tittle, about, url, address),
+                  polylines: {
+                    Polyline(
+                      polylineId: const PolylineId("route"),
+                      points: polylineCoordinates,
+                      color: primaryColor,
+                      width: 6,
+                    ),
+                  },
+                  onMapCreated: (mapController) {
+                    _controller.complete(mapController);
+                  },
+                  compassEnabled: false,
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: true,
+                  // onTap: (LatLng latLng) {
+                  //   // print('You tapped at: $latLng');
+                  // },
+                  // ),
+                ),
         ),
         // Positioned(
         //   top: media.height * 0.8,

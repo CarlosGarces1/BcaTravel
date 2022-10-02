@@ -224,14 +224,14 @@ class RegisterScreen extends StatelessWidget {
                             },
                             child: const Text('Registrarme'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.black,
                               textStyle: const TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'BreeSerif',
                               ),
                               elevation: 5,
                               shadowColor: Colors.black,
-                              primary: Colors.black,
-                              onPrimary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),

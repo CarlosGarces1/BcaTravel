@@ -13,7 +13,7 @@ class PlaceCardMini extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final statusTag = place.statusTag;
+    
     return InkWell(
       onTap: onPressed,
       child: Container(

@@ -73,13 +73,13 @@ class InitialScreen extends StatelessWidget {
                             },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.black,
                               textStyle: const TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'BreeSerif',
                               ),
                               elevation: 10,
-                              primary: Colors.black,
-                              onPrimary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),
@@ -97,14 +97,14 @@ class InitialScreen extends StatelessWidget {
                             },
                             child: const Text('Registrase'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
                               textStyle: const TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'BreeSerif',
                               ),
                               elevation: 10,
                               shadowColor: Colors.black,
-                              primary: Colors.white,
-                              onPrimary: Colors.black,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),

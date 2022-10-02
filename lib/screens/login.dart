@@ -12,7 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-Future signIn() async {
+  Future signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
@@ -28,7 +28,7 @@ Future signIn() async {
           actions: [
             TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.black,
+                foregroundColor: Colors.black,
               ),
               child: const Text('Ok'),
               onPressed: () => Navigator.of(context).pop(),
@@ -179,14 +179,14 @@ Future signIn() async {
                             },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.black,
                               textStyle: const TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'BreeSerif',
                               ),
                               elevation: 5,
                               shadowColor: Colors.grey,
-                              primary: Colors.black,
-                              onPrimary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),

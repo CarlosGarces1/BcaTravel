@@ -11,6 +11,7 @@ import 'package:bcatravel/user/home/ui/bottombar.dart';
 import 'package:bcatravel/user/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'message_screen.dart';
 
@@ -20,8 +21,14 @@ void main() async {
     statusBarBrightness: Brightness.light,
   ));
   WidgetsFlutterBinding.ensureInitialized();
+  // ignore: deprecated_member_use
+  FlutterNativeSplash.removeAfter(initialization);
   await PushNotificationServices.initializeApp();
   runApp(const MyApp());
+}
+
+Future initialization(BuildContext? context) async {
+  await Future.delayed(const Duration(seconds: 1));
 }
 
 class MyApp extends StatefulWidget {
@@ -30,7 +37,6 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
-
 
 class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> navigatorkey = GlobalKey<NavigatorState>();
@@ -41,14 +47,11 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     PushNotificationServices.messagesStream.listen((message) {
-      // print('Myapp: $message.notification?.title');
       navigatorkey.currentState?.pushNamed('message', arguments: message);
       final snackBar = SnackBar(content: Text(message));
       messengerkey.currentState?.showSnackBar(snackBar);
     });
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +91,6 @@ class _MyAppState extends State<MyApp> {
       themeMode: ThemeMode.light,
     );
   }
-
-  
 }
 
 
@@ -150,4 +151,3 @@ class _MyAppState extends State<MyApp> {
 // const Color shrineBackgroundWhite = Colors.white;
 
 // const defaultLetterSpacing = 0.03;
-
