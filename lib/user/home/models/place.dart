@@ -179,7 +179,7 @@ class TravelPlace {
       description: 'PROXIMAMENTE.',
       imagesUrl: [
         'https://i.postimg.cc/2SrGms8X/A3.jpg',
-        'https://i.postimg.cc/m2xVpzx4/A1.jpg',
+        'https://firebasestorage.googleapis.com/v0/b/bcatravel-7cd19.appspot.com/o/Fotos%20locales%2FA1.jpg?alt=media&token=bd767cc3-c4bc-4a87-ac9a-846040817332',
         'https://i.postimg.cc/zXn7sz5g/A2.jpg',
         'https://i.postimg.cc/VNNF0Xtq/A4.jpg',
         'https://i.postimg.cc/GmKQpX43/A5.jpg',

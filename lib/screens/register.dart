@@ -1,10 +1,29 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
-class RegisterScreen extends StatelessWidget {
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+import '../widgets/button_app.dart';
+import '../widgets/profile.dart';
+
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String selectedFileName = '';
+  late XFile file;
+  String sioadjas = '';
+  final bool isEdit = false;
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +35,191 @@ class RegisterScreen extends StatelessWidget {
     final _lastNameController = TextEditingController();
     // final _confettiController = ConfettiController();
 
-    var texts = [
-      'Al registrarse aceptas nuestras ',
-      'Condiciones de uso ',
-      ' y ',
-      'Política de privacidad'
-    ];
+    // Widget _buttonRegister() {}
+
+    Widget _textFieldEmail() {
+      return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 30),
+        child: TextField(
+          controller: _emailController,
+          decoration: const InputDecoration(
+              focusColor: Colors.white,
+              hoverColor: Colors.white,
+              hintText: 'correo@gmail.com',
+              labelText: 'Correo electronico',
+              suffixIcon: Icon(
+                Icons.email_outlined,
+              )),
+        ),
+      );
+    }
+
+    Widget _textFieldUsername() {
+      return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: TextField(
+          controller: _firstNameController,
+          decoration: const InputDecoration(
+              hintText: 'Pepito',
+              labelText: 'Nombre',
+              suffixIcon: Icon(
+                Icons.person_outline,
+              )),
+        ),
+      );
+    }
+
+    Widget _textFieldUsername2() {
+      return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: TextField(
+          controller: _lastNameController,
+          decoration: const InputDecoration(
+              hintText: 'Perez',
+              labelText: 'Apellido',
+              suffixIcon: Icon(
+                Icons.person_outline,
+              )),
+        ),
+      );
+    }
+
+    Widget _textFieldPassword() {
+      return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        child: TextField(
+          obscureText: true,
+          controller: _passwordController,
+          decoration: const InputDecoration(
+              labelText: 'Contraseña',
+              suffixIcon: Icon(
+                Icons.lock_open_outlined,
+              )),
+        ),
+      );
+    }
+
+    Widget _textFieldConfirmPassword() {
+      return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        child: TextField(
+          obscureText: true,
+          controller: _passwordConfirmedController,
+          decoration: const InputDecoration(
+              labelText: 'Confirmar Contraseña',
+              suffixIcon: Icon(
+                Icons.lock_open_outlined,
+              )),
+        ),
+      );
+    }
+
+    _selectFile(bool imageFrom) async {
+      file = (await ImagePicker().pickImage(
+        source: imageFrom ? ImageSource.gallery : ImageSource.camera,
+      ))!;
+
+      setState(() {
+        selectedFileName = file.name;
+      });
+    }
+
+    _foto() {
+      showModalBottomSheet(
+        //backgroundColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            height: media.height * 0.15,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+              ),
+            ),
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 10,
+                ),
+                ListTile(
+                    leading: const Icon(
+                      Icons.photo_library,
+                    ),
+                    title: const Text(
+                      'Galeria',
+                      style: TextStyle(),
+                    ),
+                    onTap: () {
+                      _selectFile(true);
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                  leading: const Icon(
+                    Icons.photo_camera,
+                  ),
+                  title: const Text(
+                    'Cámara',
+                    style: TextStyle(),
+                  ),
+                  onTap: () {
+                    _selectFile(false);
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+
+    Widget buildImage() {
+      return selectedFileName.isEmpty
+          ? ClipOval(
+              child: Image.network(
+                'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                width: 160,
+                height: 160,
+                fit: BoxFit.contain,
+              ),
+            )
+          : ClipOval(
+              child: Image.file(
+                File(file.path),
+                width: 160,
+                height: 160,
+                fit: BoxFit.cover,
+              ),
+            );
+    }
+
+    Widget buildCircle({
+      required Widget child,
+      required double all,
+      required Color color,
+    }) =>
+        ClipOval(
+          child: Container(
+            padding: EdgeInsets.all(all),
+            color: color,
+            child: child,
+          ),
+        );
+
+    Widget buildEditIcon() => buildCircle(
+          color: Colors.white,
+          all: 3,
+          child: buildCircle(
+            color: Colors.black,
+            all: 8,
+            child: Icon(
+              selectedFileName.isEmpty ? Icons.add_a_photo : Icons.edit,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+        );
 
     bool passwordconfirmed() {
       // autenticar si las contraseñas coinciden
@@ -35,35 +233,101 @@ class RegisterScreen extends StatelessWidget {
 
 // añadir nombre y apellido al usuario
 
-    Future addUserDetails(
-        String firstName, String lastName, String email) async {
+    Future addUserDetails(String firstName, String lastName, String email,
+        String imageUrl) async {
       await FirebaseFirestore.instance.collection('users').add({
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
+        'profileimage': imageUrl
       });
     }
 
     Future signUp() async {
-      if (passwordconfirmed()) {
-        // registrar usuario en firebase, pero solo el correo y contraseña
+      if (_emailController.text.trim() != '' &&
+          _passwordController.text.trim() != '') {
+        if (passwordconfirmed()) {
+          // registrar usuario en firebase, pero solo el correo y contraseña
+          Fluttertoast.showToast(
+              msg: "Registrando usuario",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.white,
+              textColor: Colors.black,
+              fontSize: 16.0);
+          String imageUrl = '';
+          try {
+            firebase_storage.UploadTask uploadTask;
 
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim(),
-        );
+            firebase_storage.Reference ref = firebase_storage
+                .FirebaseStorage.instance
+                .ref()
+                .child('userimage')
+                .child('/' + file.name);
 
-        // registrar usuario en firestore
+            uploadTask = ref.putFile(File(file.path));
 
-        addUserDetails(
-          _firstNameController.text.trim(),
-          _lastNameController.text.trim(),
-          _emailController.text.trim(),
-        );
+            await uploadTask.whenComplete(() => null);
 
-        Navigator.of(context).pushReplacementNamed('bottom');
+            imageUrl = await ref.getDownloadURL();
+
+            setState(() {
+              sioadjas = imageUrl;
+            });
+          } catch (e) {
+            Fluttertoast.showToast(
+                msg: e.toString(),
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
+          );
+
+          // registrar usuario en firestore
+
+          addUserDetails(
+            _firstNameController.text.trim(),
+            _lastNameController.text.trim(),
+            _emailController.text.trim(),
+            imageUrl,
+          );
+
+          Navigator.of(context).pushReplacementNamed('bottom');
+        } else {
+          Fluttertoast.showToast(
+              msg: "Las contraseñas no son iguales",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.black,
+              fontSize: 16.0);
+        }
+      } else {
+        Fluttertoast.showToast(
+            msg: "Llene los campos solicitados",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.black,
+            fontSize: 16.0);
       }
     }
+
+    var texts = [
+      'Al registrarse aceptas nuestras ',
+      'Condiciones de uso ',
+      ' y ',
+      'Política de privacidad'
+    ];
 
     return SafeArea(
       child: Stack(
@@ -95,151 +359,72 @@ class RegisterScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                       const SizedBox(
-                        height: 70,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          // keyboardType: TextInputType.name,ca
-                          controller: _firstNameController,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'First Name',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: media.height * 0.03,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          keyboardType: TextInputType.name,
-                          controller: _lastNameController,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'Last Name',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: media.height * 0.03,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'Email',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: media.height * 0.03,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          // keyboardType: TextInputType.,
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'Password',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: media.height * 0.03,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          controller: _passwordConfirmedController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'Confirm Password',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
                         height: 50,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: SizedBox(
-                          width: media.width,
-                          height: 45,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              signUp();
-                            },
-                            child: const Text('Registrarme'),
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.black,
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'BreeSerif',
+                      // Column(
+                      //   children: [
+                      //     selectedFileName.isEmpty
+                      //         ? ClipOval(
+                      //             child: Image.network(
+                      //               'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                      //               width: 160,
+                      //               height: 160,
+                      //               fit: BoxFit.contain,
+                      //             ),
+                      //           )
+                      //         : ClipOval(
+                      //             child: Image.file(
+                      //               File(file.path),
+                      //               width: 160,
+                      //               height: 160,
+                      //               fit: BoxFit.cover,
+                      //             ),
+                      //           ),
+                      //   ],
+                      // ),
+                      GestureDetector(
+                        onTap: (() {
+                          _foto();
+                        }),
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              buildImage(),
+                              Positioned(
+                                bottom: 0,
+                                right: 4,
+                                child: buildEditIcon(),
                               ),
-                              elevation: 5,
-                              shadowColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
+                            ],
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 41,
+                      // ProfileWidget(
+                      //   imagePath:
+                      //       'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                      //   onClicked: () {
+                      //     // _showPicker(context);
+                      //   },
+                      // ),
+                      _textFieldUsername(),
+                      _textFieldUsername2(),
+                      _textFieldEmail(),
+                      _textFieldPassword(),
+                      _textFieldConfirmPassword(),
+                      GestureDetector(
+                        onTap: () {
+                          signUp();
+                        },
+                        child: Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 0, vertical: 25),
+                          child: ButtonApp(
+                            color: Colors.black,
+                            onPressed: () {},
+                            text: 'Registrar ahora',
+                            textColor: Colors.white,
+                          ),
+                        ),
                       ),
                       Text.rich(
                         TextSpan(
@@ -301,18 +486,4 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
-
-  // Form formRegister() {
-
-  // String generateBackground() {
-  //   final List<dynamic> backgroundList = [
-  //     "assets/images/fondoPromotorLogin.png",
-  //     "assets/images/fondoArbitroAuth.png",
-  //     "assets/images/fondoDtAuth.png",
-  //   ];
-  //   Random rdm = Random();
-  //   int backgroundIndex = rdm.nextInt(backgroundList.length);
-  //   String backgroundImage = backgroundList[backgroundIndex];
-  //   return backgroundImage;
-  // }
 }

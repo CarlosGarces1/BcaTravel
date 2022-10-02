@@ -98,7 +98,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     maxExtent: MediaQuery.of(context).size.height,
                     minExtent: 240,
                     builder: (percent) {
-                      final bottomPercent = (percent / .3).clamp(0.0, 1.0);
+                      final bottomPercent = (percent / .2).clamp(0.0, 1.0);
                       return AnimatedDetailHeader(
                         topPercent: ((1 - percent) / .7).clamp(0.0, 1.0),
                         bottomPercent: bottomPercent,

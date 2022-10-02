@@ -58,6 +58,9 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   provider: ^6.0.2
   flutter_launcher_icons: "^0.10.0"
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.3.10
+  fluttertoast: ^8.0.9
 
 
 dev_dependencies:
