@@ -59,7 +59,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                         itemExtent: 350,
                         physics: const BouncingScrollPhysics(),
                         padding: const EdgeInsets.fromLTRB(
-                            20, 0, 20, kToolbarHeight + 20),
+                            20, 0, 10, kToolbarHeight + 20),
                         itemBuilder: (context, index) {
                           final place = TravelPlace.places[index];
                           return Hero(
@@ -96,10 +96,10 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
               // extendBody: true,
             ),
             const Center(
-              child: BuscarScreen(),
+              child: ProfileScreen(),
             ),
             const Center(
-              child: ProfileScreen(),
+              child: BuscarScreen(),
             ),
           ],
           controller: _pageController,
@@ -166,7 +166,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   color: Colors.transparent,
                 ),
                 SizedBox(
-                    height: (size.height * 0.3).toDouble(),
+                    height: (size.height * 0.215).toDouble(),
                     child: Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -179,26 +179,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                           clipBehavior: Clip.none,
                           alignment: const Alignment(0, 0),
                           children: <Widget>[
-                            Positioned(
-                              top: -36,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(50)),
-                                    border: Border.all(
-                                        color: Colors.yellow, width: 5)),
-                                child: Center(
-                                  child: ClipOval(
-                                    child: Image.network(
-                                      "https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no",
-                                      fit: BoxFit.cover,
-                                      height: 36,
-                                      width: 36,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                             Positioned(
                               child: ListView(
                                 physics: const NeverScrollableScrollPhysics(),
@@ -243,27 +223,27 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       });
                                     },
                                   ),
-                                  ListTile(
-                                    title: const Text(
-                                      "Buscar",
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    leading: const Icon(
-                                      FontAwesomeIcons.magnifyingGlass,
-                                      color: Colors.black,
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        _selectedIndex = 2;
-                                        _pageController.animateToPage(
-                                          _selectedIndex,
-                                          duration:
-                                              const Duration(milliseconds: 200),
-                                          curve: Curves.linear,
-                                        );
-                                      });
-                                    },
-                                  ),
+                                  // ListTile(
+                                  //   title: const Text(
+                                  //     "Buscar",
+                                  //     style: TextStyle(color: Colors.black),
+                                  //   ),
+                                  //   leading: const Icon(
+                                  //     FontAwesomeIcons.magnifyingGlass,
+                                  //     color: Colors.black,
+                                  //   ),
+                                  //   onTap: () {
+                                  //     setState(() {
+                                  //       _selectedIndex = 2;
+                                  //       _pageController.animateToPage(
+                                  //         _selectedIndex,
+                                  //         duration:
+                                  //             const Duration(milliseconds: 200),
+                                  //         curve: Curves.linear,
+                                  //       );
+                                  //     });
+                                  //   },
+                                  // ),
                                   ListTile(
                                     title: const Text(
                                       "Perfil",
@@ -275,7 +255,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                     ),
                                     onTap: () {
                                       setState(() {
-                                        _selectedIndex = 3;
+                                        _selectedIndex = 2;
                                         _pageController.animateToPage(
                                           _selectedIndex,
                                           duration:

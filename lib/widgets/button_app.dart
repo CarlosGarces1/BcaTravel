@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bcatravel/widgets/colors.dart' as utils;
 
+// ignore: must_be_immutable
 class ButtonApp extends StatelessWidget {
   Color color;
   Color textColor;

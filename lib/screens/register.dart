@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 import '../widgets/button_app.dart';
-import '../widgets/profile.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -235,12 +234,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     Future addUserDetails(String firstName, String lastName, String email,
         String imageUrl) async {
-      await FirebaseFirestore.instance.collection('users').add({
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      final User? user = auth.currentUser;
+      final uid = user?.uid;
+
+      final docUser = FirebaseFirestore.instance.collection('users').doc(uid);
+
+      final json = {
+        'uid': uid,
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
         'profileimage': imageUrl
-      });
+      };
+
+      await docUser.set(json);
+
+      // await FirebaseFirestore.instance.collection('users').add({
+      //   'uid': uid,
+      //   'firstName': firstName,
+      //   'lastName': lastName,
+      //   'email': email,
+      //   'profileimage': imageUrl
+      // });
     }
 
     Future signUp() async {
@@ -416,8 +433,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           signUp();
                         },
                         child: Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 0, vertical: 25),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 0, vertical: 25),
                           child: ButtonApp(
                             color: Colors.black,
                             onPressed: () {},

@@ -1,10 +1,159 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'editprofile.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  Widget buildCircle({
+    required Widget child,
+    required double all,
+    required Color color,
+  }) =>
+      ClipOval(
+        child: Container(
+          padding: EdgeInsets.all(all),
+          color: color,
+          child: child,
+        ),
+      );
+
+  getuser(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(uid).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Text("Something went wrong");
+        }
+
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return const Text("Document does not exist");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          return SafeArea(
+            child: Center(
+              child: SizedBox(
+                height: size.height * 0.2,
+                width: size.width,
+                // color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 10.0, left: 10.0, bottom: 10, right: 20),
+                  child: Stack(
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushReplacementNamed('edit');
+                            },
+                            child: ClipOval(
+                              child: Image.network(
+                                "${data['profileimage']}",
+                                width: 140,
+                                height: 140,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: size.width * 0.56,
+                            height: size.height * 1,
+                            // color: Colors.red,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    'Nombre:',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Text(
+                                    "${data['firstName']} ${data['lastName']}",
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  const Text(
+                                    'Correo:',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Text(
+                                    '${data['email']}',
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        top: 95,
+                        left: 100,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditProfilePage(
+                                      '${data['email']}',
+                                      "${data['firstName']}",
+                                      " ${data['lastName']}",
+                                      "${data['profileimage']}")),
+                            );
+                          },
+                          child: buildCircle(
+                            color: Colors.white,
+                            all: 3,
+                            child: buildCircle(
+                              color: Colors.blue,
+                              all: 8,
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+
+        return const CircularProgressIndicator();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,92 +179,11 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: size.height * 0.2,
-                  width: size.width,
-                  // color: Colors.red,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10.0, left: 10.0, bottom: 10, right: 20),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          // backgroundColor: Colors.red,
-                          radius: size.height * 0.08,
-
-                          backgroundImage: const NetworkImage(
-                            "https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no",
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.56,
-                          height: size.height * 1,
-                          // color: Colors.red,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                const Text(
-                                  'Nombre:',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.01,
-                                ),
-                                const Text(
-                                  'Carlos Felipe Garces Yepes',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.01,
-                                ),
-                                const Text(
-                                  'Correo:',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.01,
-                                ),
-                                const Text(
-                                  'felipegarces1608@gmail.com',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                getuser(context),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
                 Column(children: [
-                  Container(
-                    color: Colors.grey.shade400,
-                    child: ListTile(
-                      // autofocus: true,
-                      // focusColor: Colors.red,
-                      onTap: () {},
-                      title: const Text('Editar perfil',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(70, 126, 126, 126))),
-                      leading: const CircleAvatar(
-                        backgroundColor: Color.fromARGB(70, 126, 126, 126),
-                        child: Icon(
-                          FontAwesomeIcons.userPen,
-                          color: Color.fromARGB(70, 126, 126, 126),
-                        ),
-                      ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color.fromARGB(70, 126, 126, 126),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
                   Container(
                     color: Colors.grey.shade400,
                     child: ListTile(

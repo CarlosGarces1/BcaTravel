@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       title: 'BCA Travel',
-      initialRoute: 'register',
+      initialRoute: 'splash',
       routes: {
         'splash': (BuildContext context) => const SplashScreen(),
         'swiper': (BuildContext context) => const SwiperScreen(),
@@ -75,10 +75,11 @@ class _MyAppState extends State<MyApp> {
         'home': (BuildContext context) => const HomeScreen(),
         'forgot': (BuildContext context) => const ForgotPassword(),
         'message': (_) => const MessageScreen(),
+        // 'edit': (_) => EditProfilePage1('sad', 'sad'),
       },
       theme: ThemeData(
         // primarySwatch: Colors.deepOrange,
-        
+
         // elevatedButtonTheme: ElevatedButtonThemeData(style: ),
         brightness: Brightness.light,
         // themeMode: ThemeMode.light,
