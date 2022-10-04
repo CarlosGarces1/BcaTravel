@@ -133,13 +133,13 @@ class AnimatedDetailHeader extends StatelessWidget {
             ),
           ),
         ),
-        Positioned.fill(
-          top: null,
-          bottom: -140 * (1 - topPercent),
-          child: TranslateAnimation(
-            child: _LikesAndSharesContainer(place: place),
-          ),
-        ),
+        // Positioned.fill(
+        //   top: null,
+        //   bottom: -140 * (1 - topPercent),
+        //   child: TranslateAnimation(
+        //     child: _LikesAndSharesContainer(place: place),
+        //   ),
+        // ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(color: Colors.white, height: 10),
@@ -222,61 +222,65 @@ class _LikesAndSharesContainer extends StatelessWidget {
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
+          // SizedBox(
+          //   width: 100,
+          //   height: 50,
+          //   child: LikeButton(
+          //     size: 40,
+          //     likeCount: place.likes,
+          //     likeCountPadding: const EdgeInsets.only(left: 0.0, right: 5),
+          //     circleColor: const CircleColor(
+          //       start: Colors.yellow,
+          //       end: Colors.yellowAccent,
+          //     ),
+          //     bubblesColor: const BubblesColor(
+          //       dotPrimaryColor: Colors.yellowAccent,
+          //       dotSecondaryColor: Colors.red,
+          //     ),
+          //     countBuilder: (count, isLiked, text) {
+          //       final color = isLiked ? Colors.yellowAccent : Colors.black;
+          //       return Text(
+          //         text,
+          //         style: TextStyle(
+          //           color: color,
+          //           fontSize: 17,
+          //           fontWeight: FontWeight.bold,
+          //         ),
+          //       );
+          //     },
+          //     likeBuilder: (bool isLiked) {
+          //       return Icon(
+          //         isLiked ? Icons.favorite : Icons.favorite_border,
+          //         color: isLiked ? Colors.yellowAccent : Colors.black,
+          //       );
+          //     },
+          //   ),
+          // ),
           SizedBox(
-            width: 100,
-            height: 50,
-            child: LikeButton(
-              size: 40,
-              likeCount: place.likes,
-              likeCountPadding: const EdgeInsets.only(left: 0.0, right: 5),
-              circleColor: const CircleColor(
-                start: Colors.yellow,
-                end: Colors.yellowAccent,
-              ),
-              bubblesColor: const BubblesColor(
-                dotPrimaryColor: Colors.yellowAccent,
-                dotSecondaryColor: Colors.red,
-              ),
-              countBuilder: (count, isLiked, text) {
-                final color = isLiked ? Colors.yellowAccent : Colors.black;
-                return Text(
-                  text,
-                  style: TextStyle(
-                    color: color,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              },
-              likeBuilder: (bool isLiked) {
-                return Icon(
-                  isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: isLiked ? Colors.yellowAccent : Colors.black,
-                );
-              },
-            ),
+            width: 120,
           ),
-          SizedBox(
-            width: 100,
-            height: 50,
-            child: TextButton.icon(
-              onPressed: () async {
-                // print('share');
-                Share.text(
-                    'Comparte con tus amigos ',
-                    'Te comparto el nombre de un sitio que me gustó mucho.'
-                        ' ${place.name}',
-                    'text/plain');
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.black,
-                shape: const StadiumBorder(),
-              ),
-              icon: const Icon(CupertinoIcons.reply),
-              label: const Text('share', style: TextStyle(fontSize: 17)),
-            ),
-          ),
+          Text('data')
+          // SizedBox(
+          //   width: 100,
+          //   height: 50,
+          //   child: TextButton.icon(
+          //     onPressed: () async {
+          //       // print('share');
+          //       Share.text(
+          //           'Comparte con tus amigos ',
+          //           'Te comparto el nombre de un sitio que me gustó mucho.'
+          //               ' ${place.name}',
+          //           'text/plain');
+          //     },
+          //     style: TextButton.styleFrom(
+          //       foregroundColor: Colors.black,
+          //       shape: const StadiumBorder(),
+          //     ),
+          //     icon: const Icon(CupertinoIcons.reply),
+          //     label: const Text('share', style: TextStyle(fontSize: 17)),
+          //   ),
+          // ),
 
           // const Spacer(),
         ],

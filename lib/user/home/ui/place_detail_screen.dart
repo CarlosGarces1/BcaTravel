@@ -182,17 +182,17 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
               ],
             ),
           ),
-          ValueListenableBuilder<double>(
-            valueListenable: bottomPercentNotifier,
-            builder: (context, value, child) {
-              return Positioned.fill(
-                top: null,
-                bottom: -130 * (1 - value),
-                child: child!,
-              );
-            },
-            child: const PlaceCommentsWidget(),
-          )
+          // ValueListenableBuilder<double>(
+          //   valueListenable: bottomPercentNotifier,
+          //   builder: (context, value, child) {
+          //     return Positioned.fill(
+          //       top: null,
+          //       bottom: -130 * (1 - value),
+          //       child: child!,
+          //     );
+          //   },
+          //   child: const PlaceCommentsWidget(),
+          // )
         ],
       ),
     );

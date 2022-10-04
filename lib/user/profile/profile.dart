@@ -212,7 +212,7 @@ class ProfileScreen extends StatelessWidget {
                   ListTile(
                     onTap: () {
                       launchURL(context,
-                          'https://m.facebook.com/carlosfelipegarcesyepe/');
+                          'https://www.facebook.com/profile.php?id=100086288089514');
                     },
                     title: const Text('Facebook',
                         style: TextStyle(fontSize: 18, color: Colors.black)),
@@ -246,7 +246,7 @@ class ProfileScreen extends StatelessWidget {
                   ListTile(
                     onTap: () {
                       launchURL(context,
-                          'https://twitter.com/carlosf86546392?s=11&t=3zaK0TQrZayHutGRfsh3mg');
+                          'https://twitter.com/BarrancaTravel?t=CB4797Am_kEMq01OpAgkeg&s=09');
                     },
                     title: const Text('Twitter',
                         style: TextStyle(fontSize: 18, color: Colors.black)),

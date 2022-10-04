@@ -43,8 +43,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     final _emailController = TextEditingController(text: widget.email);
-    final _firstNameController = TextEditingController(text: widget.nombre);
-    final _lastNameController = TextEditingController(text: widget.nombre2);
+    final _firstNameController = TextEditingController();
+    final _lastNameController = TextEditingController();
     // final _confettiController = ConfettiController();
 
     // Widget _buttonRegister() {}
@@ -72,10 +72,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: TextField(
           controller: _firstNameController,
-          decoration: const InputDecoration(
-              hintText: '',
+          decoration: InputDecoration(
+              hintText: widget.nombre,
               labelText: 'Nombre',
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.person_outline,
               )),
         ),
@@ -87,10 +87,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: TextField(
           controller: _lastNameController,
-          decoration: const InputDecoration(
-              hintText: '',
+          decoration: InputDecoration(
+              hintText: widget.nombre2,
               labelText: 'Apellido',
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.person_outline,
               )),
         ),
@@ -281,6 +281,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   backgroundColor: Colors.black,
                                   textColor: Colors.white,
                                   fontSize: 16.0));
+                                  Navigator.pop(context);
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(
