@@ -23,15 +23,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late XFile file;
   String sioadjas = '';
   final bool isEdit = false;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordConfirmedController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-    final _passwordConfirmedController = TextEditingController();
-    final _firstNameController = TextEditingController();
-    final _lastNameController = TextEditingController();
+
     // final _confettiController = ConfettiController();
 
     // Widget _buttonRegister() {}
@@ -176,8 +177,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     Widget buildImage() {
       return selectedFileName.isEmpty
           ? ClipOval(
-              child: Image.network(
-                'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+              child: Image.asset(
+                'assets/profilevacio.jpg',
                 width: 160,
                 height: 160,
                 fit: BoxFit.contain,
@@ -357,6 +358,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: media.height * 1,
             ),
           ),
+          Positioned(
+              child: Container(
+            color: Colors.red,
+            width: 1,
+            height: 1,
+          )),
           Scaffold(
             backgroundColor: Colors.transparent,
             body: SizedBox(

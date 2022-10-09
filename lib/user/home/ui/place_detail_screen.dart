@@ -1,6 +1,6 @@
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/animated_detail_header.dart';
-import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
+// import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/material.dart';
 
@@ -178,7 +178,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                 //     ),
                 //   ),
                 // ),
-                const SliverToBoxAdapter(child: SizedBox(height: 150))
+                // const SliverToBoxAdapter(child: SizedBox(height: 150))
               ],
             ),
           ),

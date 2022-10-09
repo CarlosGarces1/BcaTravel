@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
       );
 
   getuser(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final media = MediaQuery.of(context).size;
     final FirebaseAuth auth = FirebaseAuth.instance;
 
     final User? user = auth.currentUser;
@@ -49,8 +49,8 @@ class ProfileScreen extends StatelessWidget {
           return SafeArea(
             child: Center(
               child: SizedBox(
-                height: size.height * 0.2,
-                width: size.width,
+                height: media.height * 0.21,
+                width: media.width,
                 // color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -74,8 +74,8 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width: size.width * 0.56,
-                            height: size.height * 1,
+                            width: media.width * 0.56,
+                            height: media.height * 1,
                             // color: Colors.red,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -86,21 +86,21 @@ class ProfileScreen extends StatelessWidget {
                                     style: TextStyle(fontSize: 20),
                                   ),
                                   SizedBox(
-                                    height: size.height * 0.01,
+                                    height: media.height * 0.01,
                                   ),
                                   Text(
                                     "${data['firstName']} ${data['lastName']}",
                                     style: const TextStyle(fontSize: 15),
                                   ),
                                   SizedBox(
-                                    height: size.height * 0.01,
+                                    height: media.height * 0.01,
                                   ),
                                   const Text(
                                     'Correo:',
                                     style: TextStyle(fontSize: 20),
                                   ),
                                   SizedBox(
-                                    height: size.height * 0.01,
+                                    height: media.height * 0.01,
                                   ),
                                   Text(
                                     '${data['email']}',
@@ -160,9 +160,18 @@ class ProfileScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Stack(
-        alignment: Alignment.center,
+        // alignment: Alignment.center,
         children: [
+          Positioned(
+            child: Image.asset(
+              "assets/fondoPrincipal.png",
+              fit: BoxFit.cover,
+              width: size.width,
+              height: size.height,
+            ),
+          ),
           Scaffold(
+            backgroundColor: Colors.transparent,
             body: Column(
               children: [
                 SizedBox(
@@ -228,8 +237,8 @@ class ProfileScreen extends StatelessWidget {
 
                   ListTile(
                     onTap: () {
-                      launchURL(context,
-                          'https://instagram.com/cgarces16?igshid=YmMyMTA2M2Y=');
+                      launchURL(
+                          context, 'https://www.instagram.com/bcatravelapp/');
                     },
                     title: const Text('Instagram',
                         style: TextStyle(fontSize: 18, color: Colors.black)),

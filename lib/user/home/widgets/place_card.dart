@@ -1,13 +1,13 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/gradient_status_tag.dart';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-import 'package:vocsy_esys_flutter_share/vocsy_esys_flutter_share.dart';
+// import 'package:like_button/like_button.dart';
+// import 'package:vocsy_esys_flutter_share/vocsy_esys_flutter_share.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({
@@ -30,7 +30,7 @@ class PlaceCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           image: DecorationImage(
-            image: NetworkImage(place.imagesUrl.first),
+            image: AssetImage(place.imagesUrl.first),
             fit: BoxFit.cover,
             colorFilter: const ColorFilter.mode(
               Colors.black38,

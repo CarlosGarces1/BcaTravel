@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorkey,
       scaffoldMessengerKey: messengerkey,
       // color: Colors.red,
-      // theme: _buildShrineTheme(),
+      // theme: _buildShrineTheme(),  
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       title: 'BCA Travel',

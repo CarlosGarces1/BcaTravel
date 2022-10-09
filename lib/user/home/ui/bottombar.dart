@@ -27,6 +27,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -38,57 +39,79 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
             ),
             Scaffold(
               body: SingleChildScrollView(
-                child: Column(
+                child: Stack(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: Text(
-                        'Para ti',
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    Positioned(
+                      child: Image.asset(
+                        "assets/fondoPrincipal.png",
+                        fit: BoxFit.cover,
+                        width: media.width,
+                        height: media.height,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: TravelPlace.places.length,
-                        itemExtent: 350,
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.fromLTRB(
-                            20, 0, 10, kToolbarHeight + 20),
-                        itemBuilder: (context, index) {
-                          final place = TravelPlace.places[index];
-                          return Hero(
-                            tag: place.id,
-                            child: Material(
-                              child: PlaceCard(
-                                place: place,
-                                onPressed: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (_, animation, __) =>
-                                          FadeTransition(
-                                        opacity: animation,
-                                        child: PlaceDetailScreen(
-                                          place: place,
-                                          screenHeight: MediaQuery.of(context)
-                                              .size
-                                              .height,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                    Column(
+                      children: [
+                        Container(
+                          decoration:
+                              const BoxDecoration(shape: BoxShape.circle),
+                          width: 100,
+                          height: 100,
+                          child: Image.asset(
+                            'assets/logoCirculo.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20.0, bottom: 20),
+                          child: Text(
+                            'Recomendados',
+                            style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: TravelPlace.places.length,
+                            itemExtent: 350,
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                            itemBuilder: (context, index) {
+                              final place = TravelPlace.places[index];
+                              return Hero(
+                                tag: place.id,
+                                child: Material(
+                                  child: PlaceCard(
+                                    place: place,
+                                    onPressed: () async {
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(
+                                          pageBuilder: (_, animation, __) =>
+                                              FadeTransition(
+                                            opacity: animation,
+                                            child: PlaceDetailScreen(
+                                              place: place,
+                                              screenHeight:
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .height,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

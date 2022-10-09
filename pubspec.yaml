@@ -93,8 +93,11 @@ flutter_icons:
 flutter:
   assets:
     - assets/
-    - assets/images/
-    - assets/animated_markers_map/
+    - assets/icon/
+    - assets/fotos/
+    - assets/fotos/comida/
+    - assets/fotos/hoteles/
+    - assets/fotos/transporte/
 
 
   uses-material-design: true

@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/maps/constanst.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -50,7 +49,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     PolylinePoints polylinePoints = PolylinePoints();
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      googleapikey,
+      "AIzaSyDk1ls1xBdI5t8dAZ_MjaYFLaXRSuR4Lps",
       const PointLatLng(7.042000, -73.849833),
       const PointLatLng(7.058656, -73.854495),
     );
@@ -96,7 +95,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                     Polyline(
                       polylineId: const PolylineId("route"),
                       points: polylineCoordinates,
-                      color: primaryColor,
+                      color: const Color(0xFF7B61FF),
                       width: 6,
                     ),
                   },
@@ -212,7 +211,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
         markerId: const MarkerId('5'),
         position: const LatLng(7.059385174967228, -73.857516736196),
         infoWindow: InfoWindow(
-          title: TravelPlace.places[3].name,
+          title: TravelPlace.places[4].name,
           snippet: 'Restaurante',
         ),
         onTap: () {
@@ -230,7 +229,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
         markerId: const MarkerId('6'),
         position: const LatLng(7.077792700704442, -73.85829240220482),
         infoWindow: InfoWindow(
-          title: TravelPlace.places[4].name,
+          title: TravelPlace.places[5].name,
           snippet: 'Hotel',
         ),
         onTap: () {
@@ -248,7 +247,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
         markerId: const MarkerId('7'),
         position: const LatLng(7.050701731394901, -73.84793853832322),
         infoWindow: InfoWindow(
-          title: TravelPlace.places[3].name,
+          title: TravelPlace.places[6].name,
           snippet: 'Hotel',
         ),
         onTap: () {
@@ -257,6 +256,60 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
               TravelPlace.places[6].description,
               TravelPlace.places[6].locationDesc,
               TravelPlace.places[6].imagesUrl[0]);
+        },
+      ),
+    );
+    tmp.add(
+      Marker(
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+        markerId: const MarkerId('8'),
+        position: const LatLng(7.063385047461872, -73.85826574453401),
+        infoWindow: InfoWindow(
+          title: TravelPlace.places[8].name,
+          snippet: 'Hotel',
+        ),
+        onTap: () {
+          buildabouttext1(
+              TravelPlace.places[8].name,
+              TravelPlace.places[8].description,
+              TravelPlace.places[8].locationDesc,
+              TravelPlace.places[8].imagesUrl[0]);
+        },
+      ),
+    );
+    tmp.add(
+      Marker(
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+        markerId: const MarkerId('9'),
+        position: const LatLng(7.059705274855684, -73.85755601754668),
+        infoWindow: InfoWindow(
+          title: TravelPlace.places[7].name,
+          snippet: 'Restaurante',
+        ),
+        onTap: () {
+          buildabouttext1(
+              TravelPlace.places[7].name,
+              TravelPlace.places[7].description,
+              TravelPlace.places[7].locationDesc,
+              TravelPlace.places[7].imagesUrl[0]);
+        },
+      ),
+    );
+    tmp.add(
+      Marker(
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+        markerId: const MarkerId('10'),
+        position: const LatLng(7.060232504068919, -73.85871548511406),
+        infoWindow: InfoWindow(
+          title: TravelPlace.places[9].name,
+          snippet: 'Restaurante',
+        ),
+        onTap: () {
+          buildabouttext1(
+              TravelPlace.places[9].name,
+              TravelPlace.places[9].description,
+              TravelPlace.places[9].locationDesc,
+              TravelPlace.places[9].imagesUrl[0]);
         },
       ),
     );
@@ -309,7 +362,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 20),
-                    Image.network(url),
+                    Image.asset(url),
                     const SizedBox(height: 20),
                   ],
                 ),

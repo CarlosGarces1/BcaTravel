@@ -39,6 +39,38 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  Widget _textFieldEmail() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 30),
+      child: TextField(
+        controller: _emailController,
+        decoration: const InputDecoration(
+            focusColor: Colors.white,
+            hoverColor: Colors.white,
+            hintText: 'correo@gmail.com',
+            labelText: 'Correo electronico',
+            suffixIcon: Icon(
+              Icons.email_outlined,
+            )),
+      ),
+    );
+  }
+
+  Widget _textFieldPassword() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      child: TextField(
+        obscureText: true,
+        controller: _passwordController,
+        decoration: const InputDecoration(
+            labelText: 'Contraseña',
+            suffixIcon: Icon(
+              Icons.lock_open_outlined,
+            )),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -75,98 +107,51 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Column(
                         children: [
-                          SizedBox(
-                            width: media.width * 0.2,
-                            height: media.height * 0.2,
-                            child: Image.asset('assets/images/Logo.png'),
+                          Container(
+                            decoration:
+                                const BoxDecoration(shape: BoxShape.circle),
+                            width: 200,
+                            height: 200,
+                            child: Image.asset(
+                              'assets/logoCirculo.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          // const Text(
-                          //   'BCA Travel',
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(color: Colors.black),
-                          // ),
                         ],
                       ),
-                      SizedBox(
-                        height: media.height * 0.009,
-                      ),
+                      const SizedBox(height: 20),
                       Text('Bienvenido',
                           style: TextStyle(
                               fontSize: media.width * 0.05,
                               fontWeight: FontWeight.bold)),
-                      SizedBox(
-                        height: media.height * 0.09,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'Email',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: media.height * 0.03,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: TextField(
-                          // keyboardType: TextInputType.,
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            hintText: 'Password',
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                          ),
-                        ),
-                      ),
                       const SizedBox(
-                        height: 10,
+                        height: 50,
                       ),
+                      _textFieldEmail(),
+                      _textFieldPassword(),
                       Row(
                         children: [
-                          const SizedBox(
-                            width: 200,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, 'forgot');
-                            },
-                            child: const Text(
-                              'Forgot Password?',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.black87,
-                                fontFamily: 'BreeSerif',
-                                decoration: TextDecoration.underline,
+                          Padding(
+                            padding: EdgeInsets.only(left: media.width * 0.4),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, 'forgot');
+                              },
+                              child: const Text(
+                                '¿Olvidaste tu contraseña?',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.black87,
+                                  fontFamily: 'BreeSerif',
+                                  decoration: TextDecoration.underline,
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 70,
+                      SizedBox(
+                        height: media.height * 0.08,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -193,8 +178,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: media.height * 0.03,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -212,11 +197,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 left: 0,
                                 child: Container(
                                   decoration: const BoxDecoration(
+                                      shape: BoxShape.rectangle,
                                       border: Border(
-                                    right: BorderSide(color: Colors.white),
-                                  )),
+                                        right: BorderSide(color: Colors.black),
+                                      )),
                                   child: Image.asset(
-                                    'assets/images/Logo.png',
+                                    'assets/logoCirculo.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -225,9 +211,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 top: 10,
                                 right: 10,
                                 child: SizedBox(
-                                  width: 120,
+                                  width: 160,
                                   child: Text(
-                                    '¿Quieres registrarte en BCA Travel?',
+                                    '¿Quieres registrarte'
+                                    '           en BCA Travel?',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'BreeSerif',
@@ -236,16 +223,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               Positioned(
-                                bottom: 1,
-                                right: 1,
-                                child: Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, 'register');
-                                      },
-                                      child: const Text(
+                                bottom: 10,
+                                right: 10,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, 'register');
+                                  },
+                                  child: Row(
+                                    children: const [
+                                      Text(
                                         'Registrate',
                                         style: TextStyle(
                                           fontSize: 13,
@@ -254,12 +240,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                           decoration: TextDecoration.underline,
                                         ),
                                       ),
-                                    ),
-                                    const Icon(
-                                      Icons.keyboard_arrow_right_rounded,
-                                      color: Colors.black,
-                                    )
-                                  ],
+                                      Icon(
+                                        Icons.keyboard_arrow_right_rounded,
+                                        color: Colors.black,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

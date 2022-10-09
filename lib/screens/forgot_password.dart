@@ -87,9 +87,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       Column(
                         children: [
                           SizedBox(
-                            width: media.width * 0.2,
-                            height: media.height * 0.2,
-                            child: Image.asset('assets/images/Logo.png'),
+                            width: 200,
+                            height: 200,
+                            child: Image.asset('assets/logoCirculo.png'),
                           ),
                           // const Text(
                           //   'BCA Travel',

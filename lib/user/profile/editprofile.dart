@@ -37,14 +37,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   late final uid = user?.uid;
 
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     final _emailController = TextEditingController(text: widget.email);
-    final _firstNameController = TextEditingController();
-    final _lastNameController = TextEditingController();
+
     // final _confettiController = ConfettiController();
 
     // Widget _buttonRegister() {}
@@ -281,7 +283,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   backgroundColor: Colors.black,
                                   textColor: Colors.white,
                                   fontSize: 16.0));
-                                  Navigator.pop(context);
+                          Navigator.pop(context);
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(

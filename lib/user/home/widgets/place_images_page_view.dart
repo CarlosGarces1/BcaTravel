@@ -48,7 +48,7 @@ class _PlaceImagesPageViewState extends State<PlaceImagesPageView> {
                   ],
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: NetworkImage(imageUrl),
+                    image: AssetImage(imageUrl),
                     fit: BoxFit.cover,
                     colorFilter: const ColorFilter.mode(
                       Colors.black26,

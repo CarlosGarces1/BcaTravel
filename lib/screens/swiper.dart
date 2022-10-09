@@ -56,7 +56,8 @@ class _SwiperScreenState extends State<SwiperScreen> {
                     width: 60,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder()),
+                            shape: const CircleBorder(),
+                            backgroundColor: Colors.yellow.shade600),
                         onPressed: () => _pageController.jumpToPage(3),
                         child: const Icon(Icons.skip_next)),
                   ),
@@ -76,7 +77,8 @@ class _SwiperScreenState extends State<SwiperScreen> {
                     width: 60,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder()),
+                            shape: const CircleBorder(),
+                            backgroundColor: Colors.yellow.shade600),
                         onPressed: () {
                           if (_currentPage == 3) {
                             Navigator.pushReplacementNamed(context, 'login');

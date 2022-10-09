@@ -5,10 +5,12 @@ import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/gradient_status_tag.dart';
 import 'package:bcatravel/user/home/widgets/place_images_page_view.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-import 'package:vocsy_esys_flutter_share/vocsy_esys_flutter_share.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+// import 'package:like_button/like_button.dart';
+// import 'package:vocsy_esys_flutter_share/vocsy_esys_flutter_share.dart';
 
 class AnimatedDetailHeader extends StatelessWidget {
   const AnimatedDetailHeader({
@@ -47,7 +49,7 @@ class AnimatedDetailHeader extends StatelessWidget {
                   ),
                   Positioned(
                     top: topPadding,
-                    left: -60 * (1 - bottomPercent),
+                    left: -10 * (1 - bottomPercent),
                     child: const BackButton(
                       color: Colors.white,
                     ),
@@ -70,7 +72,7 @@ class AnimatedDetailHeader extends StatelessWidget {
                     right: 20,
                     child: AnimatedOpacity(
                       duration: kThemeAnimationDuration,
-                      opacity: bottomPercent < 1 ? 0 : 1,
+                      opacity: bottomPercent < 0.5 ? 0 : 1,
                       child: Text(
                         place.name,
                         style: TextStyle(
@@ -84,10 +86,10 @@ class AnimatedDetailHeader extends StatelessWidget {
                   ),
                   Positioned(
                     left: 20,
-                    top: 200,
+                    top: 240,
                     child: AnimatedOpacity(
                       duration: kThemeAnimationDuration,
-                      opacity: bottomPercent < 1 ? 0 : 1,
+                      opacity: bottomPercent < 0.5 ? 0 : 0.9,
                       child: Opacity(
                         opacity: topPercent,
                         child: GradientStatusTag(
@@ -133,13 +135,13 @@ class AnimatedDetailHeader extends StatelessWidget {
             ),
           ),
         ),
-        // Positioned.fill(
-        //   top: null,
-        //   bottom: -140 * (1 - topPercent),
-        //   child: TranslateAnimation(
-        //     child: _LikesAndSharesContainer(place: place),
-        //   ),
-        // ),
+        Positioned.fill(
+          top: null,
+          bottom: -140 * (1 - topPercent),
+          child: TranslateAnimation(
+            child: _LikesAndSharesContainer(place: place),
+          ),
+        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(color: Colors.white, height: 10),
@@ -208,6 +210,21 @@ class _LikesAndSharesContainer extends StatelessWidget {
   }) : super(key: key);
 
   final TravelPlace place;
+  Future launchURL(
+    BuildContext context,
+    String url,
+  ) async {
+    // final url ;
+
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(
+        url,
+        mode: LaunchMode.externalApplication,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,45 +239,97 @@ class _LikesAndSharesContainer extends StatelessWidget {
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          // SizedBox(
-          //   width: 100,
-          //   height: 50,
-          //   child: LikeButton(
-          //     size: 40,
-          //     likeCount: place.likes,
-          //     likeCountPadding: const EdgeInsets.only(left: 0.0, right: 5),
-          //     circleColor: const CircleColor(
-          //       start: Colors.yellow,
-          //       end: Colors.yellowAccent,
-          //     ),
-          //     bubblesColor: const BubblesColor(
-          //       dotPrimaryColor: Colors.yellowAccent,
-          //       dotSecondaryColor: Colors.red,
-          //     ),
-          //     countBuilder: (count, isLiked, text) {
-          //       final color = isLiked ? Colors.yellowAccent : Colors.black;
-          //       return Text(
-          //         text,
-          //         style: TextStyle(
-          //           color: color,
-          //           fontSize: 17,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       );
-          //     },
-          //     likeBuilder: (bool isLiked) {
-          //       return Icon(
-          //         isLiked ? Icons.favorite : Icons.favorite_border,
-          //         color: isLiked ? Colors.yellowAccent : Colors.black,
-          //       );
-          //     },
-          //   ),
-          // ),
-          SizedBox(
-            width: 120,
+        children: [
+          GestureDetector(
+            onTap: () {
+              launchURL(context, place.whasa);
+            },
+            child: SizedBox(
+              width: 70,
+              height: 50,
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Icon(Icons.whatsapp),
+                  Text('Whatsapp')
+                ],
+              ),
+            ),
           ),
-          Text('data')
+          GestureDetector(
+            onTap: () {
+              launchURL(context, 'tel:' + place.telefono);
+            },
+            child: SizedBox(
+              width: 70,
+              height: 50,
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Icon(Icons.phone),
+                  Text('Llamar')
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              launchURL(context, place.facebook);
+            },
+            child: SizedBox(
+              width: 70,
+              height: 50,
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Icon(Icons.facebook),
+                  Text('Facebook')
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              launchURL(context, place.instagram);
+            },
+            child: SizedBox(
+              width: 70,
+              height: 50,
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 4,
+                  ),
+                  FaIcon(FontAwesomeIcons.instagram),
+                  Text('instagram')
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              launchURL(context, place.web);
+            },
+            child: SizedBox(
+              width: 70,
+              height: 50,
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 4,
+                  ),
+                  FaIcon(FontAwesomeIcons.globe),
+                  Text('Website')
+                ],
+              ),
+            ),
+          ),
           // SizedBox(
           //   width: 100,
           //   height: 50,
@@ -281,7 +350,6 @@ class _LikesAndSharesContainer extends StatelessWidget {
           //     label: const Text('share', style: TextStyle(fontSize: 17)),
           //   ),
           // ),
-
           // const Spacer(),
         ],
       ),
