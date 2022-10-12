@@ -6,6 +6,8 @@ import 'package:bcatravel/user/maps/googlemap.dart';
 import 'package:bcatravel/user/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -163,6 +165,26 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+  Future launchURL(
+    BuildContext context,
+    String url,
+  ) async {
+    // final url ;
+
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(
+        url,
+        // Abrir sin navegador
+        // mode: LaunchMode.inAppWebView,
+
+        mode: LaunchMode.externalApplication,
+        // webOnlyWindowName: '_self',
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   showMenu() {
@@ -351,7 +373,10 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       FontAwesomeIcons.bug,
                                       color: Colors.black,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      launchURL(context,
+                                          'https://forms.gle/yQvqnE8poK6ENKcL6');
+                                    },
                                   ),
                                   ListTile(
                                     title: const Text(
@@ -362,7 +387,9 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       FontAwesomeIcons.code,
                                       color: Colors.black,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(context, 'developer');
+                                    },
                                   ),
                                 ],
                               ),

@@ -193,31 +193,25 @@ class ProfileScreen extends StatelessWidget {
                   height: size.height * 0.03,
                 ),
                 Column(children: [
-                  Container(
-                    color: Colors.grey.shade400,
-                    child: ListTile(
-                      onTap: () {},
-                      title: const Text('Acerca de:',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(50, 126, 126, 126))),
-                      leading: const CircleAvatar(
-                        backgroundColor: Color.fromARGB(50, 126, 126, 126),
-                        child: Icon(
-                          FontAwesomeIcons.info,
-                          color: Color.fromARGB(50, 126, 126, 126),
-                        ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'about');
+                    },
+                    title: const Text('Acerca de:',
+                        style: TextStyle(fontSize: 18, color: Colors.black)),
+                    leading: const CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      child: Icon(
+                        FontAwesomeIcons.info,
                       ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color.fromARGB(50, 126, 126, 126),
-                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -234,7 +228,6 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
                   ListTile(
                     onTap: () {
                       launchURL(
@@ -251,7 +244,6 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -268,7 +260,6 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
                   ListTile(
                     onTap: () {
                       FirebaseAuth.instance.signOut();
@@ -282,120 +273,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
-                  // Container(
-                  //   height: 100,
-                  //   width: 100,
-                  //   color: Colors.red,
-                  //   child: CupertinoButton(
-                  //     onPressed: () {
-                  //       FirebaseAuth.instance.signOut();
-                  //       Navigator.of(context).pushReplacementNamed('swiper');
-
-                  //       // showCupertinoDialog<void>(
-                  //       //   context: context,
-                  //       //   builder: (BuildContext context) => CupertinoAlertDialog(
-                  //       //     title: const Text('Cerrar Sesion'),
-                  //       //     content: const Text(
-                  //       //         '¿Estas seguro de que quieres cerrar sesion?'),
-                  //       //     actions: <CupertinoDialogAction>[
-                  //       //       CupertinoDialogAction(
-                  //       //         child: const Text('No'),
-                  //       //         isDestructiveAction: true,
-                  //       //         onPressed: () {
-                  //       //           Navigator.pop(context);
-                  //       //         },
-                  //       //       ),
-                  //       //       CupertinoDialogAction(
-                  //       //         child: const Text('Si'),
-                  //       //         onPressed: () {
-                  //       //           Navigator.pushReplacementNamed(context, 'login');
-                  //       //         },
-                  //       //       ),
-                  //       //     ],
-                  //       //   ),
-                  //       // );
-                  //     },
-                  //     child: const Text('Cerrar sesion'),
-                  //   ),
-                  // ),
-                  //Pruebas futuras cosas
-                  // CupertinoContextMenu(
-                  //     child: Image.network(
-                  //         'https://cdn.icon-icons.com/icons2/272/PNG/512/Youtube_30038.png'),
-                  //     actions: <Widget>[
-                  //       CupertinoContextMenuAction(
-                  //         child: const Text('Opcion 1'),
-                  //         onPressed: () {
-                  //           Navigator.pop(context);
-                  //         },
-                  //       ),
-                  //       CupertinoContextMenuAction(
-                  //         child: const Text('Opcion 1'),
-                  //         onPressed: () {
-                  //           Navigator.pop(context);
-                  //         },
-                  //       ),
-                  //       CupertinoContextMenuAction(
-                  //         child: const Text('Opcion 1'),
-                  //         onPressed: () {
-                  //           Navigator.pop(context);
-                  //         },
-                  //       ),
-                  //       CupertinoContextMenuAction(
-                  //         child: const Text('Opcion 1'),
-                  //         onPressed: () {
-                  //           Navigator.pop(context);
-                  //         },
-                  //       ),
-                  //       CupertinoContextMenuAction(
-                  //         child: const Text('Salir'),
-                  //         onPressed: () {
-                  //           Navigator.pop(context);
-                  //         },
-                  //       ),
-                  //     ])
-                  // CupertinoContextMenuAction
-                  // ListTile(
-                  //   onTap: () {
-                  //     CupertinoAlertDialog(
-                  //       title: const Text('Cerrar sesion'),
-                  //       content: const Text('Quieres cerrar Sesion?'),
-                  //       actions:[
-                  //         CupertinoDialogAction(
-                  //           child: const Text('No'),
-                  //           isDestructiveAction: true,
-                  //           onPressed: () {
-                  //             Navigator.pop(context);
-                  //           },
-                  //         ),
-                  //         CupertinoDialogAction(
-                  //           child: const Text('Yes'),
-                  //           onPressed: () {
-                  //             Navigator.pop(context);
-                  //           },
-                  //         ),
-                  //       ],
-                  //     );
-                  //     // Navigator.pushReplacementNamed(context, 'login');
-                  //     print('object');
-                  //   },
-                  //   title: const Text('Cerrar sesión',
-                  //       style: TextStyle(fontSize: 18, color: Colors.black)),
-                  //   leading: const CircleAvatar(
-                  //       backgroundColor: Colors.blue,
-                  //       child: Icon(Icons.logout_outlined)),
-                  //   trailing: const Icon(Icons.arrow_forward_ios),
-                  // ),
                 ]),
               ],
             ),
           ),
-          // ConfettiWidget(
-          //   confettiController: _confettiController,
-          //   blastDirection: 360,
-          //   colors: [Colors.yellow, Colors.black],
-          //   // emissionFrequency: 1,
-          // ),
         ],
       ),
     );

@@ -63,8 +63,9 @@ class TravelPlace {
         'assets/fotos/comida/C6.jpg',
       ],
       whasa: 'https://wa.link/a1tfee',
-      facebook: '',
-      web: '',
+      facebook: 'https://www.facebook.com/Primavereame',
+      instagram: 'https://www.instagram.com/cafepescador/',
+      web: 'https://linktr.ee/cafedelpescador?fbclid=IwAR1LSHzX1QIu6nu_vaQgpw1IABosO1oEjUgn85ObHc0Y1PrXUYpFNKgslWw',
     ),
     TravelPlace(
       id: '2',
@@ -80,7 +81,8 @@ class TravelPlace {
         'assets/fotos/hoteles/B3.jpg',
       ],
       whasa: 'https://wa.link/xc9i02',
-      facebook: '',
+      facebook: 'https://www.facebook.com/hotelrmbarrancabermeja/?_rdc=1&_rdr',
+      instagram: '',
       web: '',
     ),
     TravelPlace(
@@ -98,7 +100,8 @@ class TravelPlace {
         'assets/fotos/comida/J4.jpg',
       ],
       whasa: 'https://wa.link/psbm9s',
-      facebook: '',
+      facebook: 'https://www.facebook.com/Joelos.bca/?_rdc=1&_rdr',
+      instagram: 'https://www.instagram.com/joelos.bca/?hl=es',
       web: '',
     ),
     TravelPlace(
@@ -119,7 +122,8 @@ class TravelPlace {
         'assets/fotos/comida/p7.jpg',
       ],
       whasa: 'https://wa.link/g9rvw9',
-      facebook: '',
+      facebook: 'https://www.facebook.com/parmesanoristorante/?_rdc=1&_rdr',
+      instagram: 'https://www.instagram.com/parmesanoristorante/?hl=es',
       web: '',
     ),
     TravelPlace(
@@ -136,8 +140,9 @@ class TravelPlace {
         'assets/fotos/hoteles/M3.jpg',
       ],
       whasa: 'https://wa.link/zcpclj',
-      facebook: '',
-      web: '',
+      facebook: 'https://www.facebook.com/HotelMillenium/?_rdc=2&_rdr',
+      instagram: 'https://www.instagram.com/hotelmillenium/',
+      web: 'https://hotelmilleniumbarrancabermeja.negocio.site/?utm_source=gmb&utm_medium=referral',
     ),
     TravelPlace(
       id: '7',
@@ -155,7 +160,8 @@ class TravelPlace {
         'assets/fotos/hoteles/A5.jpg',
       ],
       whasa: 'https://wa.link/ns2dww',
-      facebook: '',
+      facebook: 'https://www.facebook.com/hotelrmbarrancabermeja/?_rdc=2&_rdr',
+      instagram: 'https://www.instagram.com/rmhotelbarrancabermeja/?hl=es-la',
       web: '',
     ),
     TravelPlace(
@@ -174,8 +180,9 @@ class TravelPlace {
         'assets/fotos/comida/f5.jpg',
       ],
       whasa: 'https://wa.link/clon0y',
-      facebook: '',
+      facebook: 'https://www.facebook.com/frapetto/',
       web: '',
+      instagram: 'https://www.instagram.com/frapetto.cafebar/?hl=es'
     ),
     TravelPlace(
       id: '8',
@@ -192,8 +199,9 @@ class TravelPlace {
         'assets/fotos/hoteles/C5.jpg',
       ],
       whasa: 'https://wa.link/ch79ci',
-      facebook: '',
-      web: '',
+      facebook: 'https://www.facebook.com/Hotelcolonial25/',
+      instagram: '',
+      web: 'https://www.hotelenbarrancabermeja.com.co/index.html',
     ),
     TravelPlace(
       id: '10',
@@ -211,7 +219,8 @@ class TravelPlace {
         'assets/fotos/comida/dp5.jpg',
       ],
       whasa: 'https://wa.link/zx0bm3',
-      facebook: '',
+      facebook: 'https://es-la.facebook.com/pizzaextrema2001/',
+      instagram: 'https://www.instagram.com/pizzaextrema/?hl=es',
       web: '',
     ),
   ];

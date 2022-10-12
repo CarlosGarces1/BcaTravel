@@ -1,5 +1,6 @@
 import 'package:bcatravel/providers/push_notifications_provider.dart';
 import 'package:bcatravel/screens/condiciones.dart';
+import 'package:bcatravel/screens/developers.dart';
 import 'package:bcatravel/screens/forgot_password.dart';
 import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
@@ -7,6 +8,7 @@ import 'package:bcatravel/screens/register.dart';
 import 'package:bcatravel/screens/splash.dart';
 import 'package:bcatravel/screens/swiper.dart';
 import 'package:bcatravel/user/home/ui/bottombar.dart';
+import 'package:bcatravel/user/profile/about.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,6 +47,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     PushNotificationServices.messagesStream.listen((message) {
       navigatorkey.currentState?.pushNamed('message', arguments: message);
       final snackBar = SnackBar(content: Text(message));
@@ -58,7 +63,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorkey,
       scaffoldMessengerKey: messengerkey,
       // color: Colors.red,
-      // theme: _buildShrineTheme(),  
+      // theme: _buildShrineTheme(),
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       title: 'BCA Travel',
@@ -73,6 +78,8 @@ class _MyAppState extends State<MyApp> {
         'bottom': (BuildContext context) => const BottomBar(),
         'forgot': (BuildContext context) => const ForgotPassword(),
         'message': (_) => const MessageScreen(),
+        'developer': (_) => const Developers(),
+        'about': (_) => const AboutPage(),
         // 'edit': (_) => EditProfilePage1('sad', 'sad'),
       },
       theme: ThemeData(
@@ -93,7 +100,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
 
 // ThemeData _buildShrineTheme() {
 //   final ThemeData base = ThemeData.dark();
