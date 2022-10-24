@@ -1,4 +1,3 @@
-import 'package:bcatravel/providers/push_notifications_provider.dart';
 import 'package:bcatravel/screens/condiciones.dart';
 import 'package:bcatravel/screens/developers.dart';
 import 'package:bcatravel/screens/forgot_password.dart';
@@ -9,6 +8,7 @@ import 'package:bcatravel/screens/splash.dart';
 import 'package:bcatravel/screens/swiper.dart';
 import 'package:bcatravel/user/home/ui/bottombar.dart';
 import 'package:bcatravel/user/profile/about.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +24,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // ignore: deprecated_member_use
   FlutterNativeSplash.removeAfter(initialization);
-  await PushNotificationServices.initializeApp();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyAnaXPgd_4FY2cwiVAOJ_Wji51gpL4ImU8",
+      appId: "1:469574159598:android:018a99905eb9c72cbaf7ff",
+      messagingSenderId: "469574159598",
+      projectId: "bcatravel-7cd19",
+    ),
+  );
+  // await PushNotificationServices.initializeApp();
   runApp(const MyApp());
 }
 
@@ -40,34 +49,34 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final GlobalKey<NavigatorState> navigatorkey = GlobalKey<NavigatorState>();
-  final GlobalKey<ScaffoldMessengerState> messengerkey =
-      GlobalKey<ScaffoldMessengerState>();
+  // final GlobalKey<NavigatorState> navigatorkey = GlobalKey<NavigatorState>();
+  // final GlobalKey<ScaffoldMessengerState> messengerkey =
+  //     GlobalKey<ScaffoldMessengerState>();
 
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    PushNotificationServices.messagesStream.listen((message) {
-      navigatorkey.currentState?.pushNamed('message', arguments: message);
-      final snackBar = SnackBar(content: Text(message));
-      messengerkey.currentState?.showSnackBar(snackBar);
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   SystemChrome.setPreferredOrientations([
+  //     DeviceOrientation.portraitUp,
+  //   ]);
+  //   PushNotificationServices.messagesStream.listen((message) {
+  //     navigatorkey.currentState?.pushNamed('message', arguments: message);
+  //     final snackBar = SnackBar(content: Text(message));
+  //     messengerkey.currentState?.showSnackBar(snackBar);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: navigatorkey,
-      scaffoldMessengerKey: messengerkey,
+      // navigatorKey: navigatorkey,
+      // scaffoldMessengerKey: messengerkey,
       // color: Colors.red,
       // theme: _buildShrineTheme(),
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       title: 'BCA Travel',
-      initialRoute: 'splash',
+      // initialRoute: 'splash',
       routes: {
         'splash': (BuildContext context) => const SplashScreen(),
         'swiper': (BuildContext context) => const SwiperScreen(),
