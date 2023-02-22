@@ -1,8 +1,6 @@
 import 'package:bcatravel/user/buscar/buscarScreen.dart';
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/home/ui/place_detail_screen.dart';
-import 'package:bcatravel/user/home/widgets/place_card.dart';
-import 'package:bcatravel/user/maps/googlemap.dart';
+import 'package:bcatravel/user/home/widgets/place_card_categoriesd.dart';
 import 'package:bcatravel/user/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,14 +29,15 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
     final media = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
             const Center(
-              child: GoogleMapsScreen(),
+              child: Text('Google Maps'),
             ),
             Scaffold(
+              backgroundColor: Colors.white,
               body: SingleChildScrollView(
                 child: Stack(
                   children: [
@@ -65,8 +64,9 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                         const Padding(
                           padding: EdgeInsets.only(top: 20.0, bottom: 20),
                           child: Text(
-                            'Recomendados',
+                            'Bienvenido',
                             style: TextStyle(
+                              color: Colors.black,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                             ),
@@ -77,34 +77,28 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
-                            itemCount: TravelPlace.places.length,
+                            itemCount: Categories1.places.length,
                             itemExtent: 350,
                             physics: const BouncingScrollPhysics(),
                             padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
                             itemBuilder: (context, index) {
-                              final place = TravelPlace.places[index];
+                              final place = Categories1.places[index];
                               return Hero(
                                 tag: place.id,
                                 child: Material(
-                                  child: PlaceCard(
+                                  child: PlaceCardCate(
                                     place: place,
                                     onPressed: () async {
-                                      Navigator.push(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (_, animation, __) =>
-                                              FadeTransition(
-                                            opacity: animation,
-                                            child: PlaceDetailScreen(
-                                              place: place,
-                                              screenHeight:
-                                                  MediaQuery.of(context)
-                                                      .size
-                                                      .height,
-                                            ),
-                                          ),
-                                        ),
-                                      );
+                                      if (index == 0) {
+                                        Navigator.pushNamed(
+                                            context, 'transporte');
+                                      }
+                                      if (index == 1) {
+                                        Navigator.pushNamed(context, 'hotel');
+                                      }
+                                      if (index == 2) {
+                                        Navigator.pushNamed(context, 'resta');
+                                      }
                                     },
                                   ),
                                 ),
@@ -117,7 +111,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              // extendBody: true,
             ),
             const Center(
               child: ProfileScreen(),
@@ -134,7 +127,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
           },
         ),
         bottomNavigationBar: BottomAppBar(
-          // elevation: 8,
           color: const Color(0xffF3E91E),
           child: Row(
             children: [
@@ -267,27 +259,6 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                                       });
                                     },
                                   ),
-                                  // ListTile(
-                                  //   title: const Text(
-                                  //     "Buscar",
-                                  //     style: TextStyle(color: Colors.black),
-                                  //   ),
-                                  //   leading: const Icon(
-                                  //     FontAwesomeIcons.magnifyingGlass,
-                                  //     color: Colors.black,
-                                  //   ),
-                                  //   onTap: () {
-                                  //     setState(() {
-                                  //       _selectedIndex = 2;
-                                  //       _pageController.animateToPage(
-                                  //         _selectedIndex,
-                                  //         duration:
-                                  //             const Duration(milliseconds: 200),
-                                  //         curve: Curves.linear,
-                                  //       );
-                                  //     });
-                                  //   },
-                                  // ),
                                   ListTile(
                                     title: const Text(
                                       "Perfil",

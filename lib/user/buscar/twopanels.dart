@@ -30,8 +30,6 @@ class _TwoPanelsState extends State<TwoPanels> {
   }
 
   Widget bothPanels(BuildContext context, BoxConstraints constraints) {
-    // final ThemeData theme = Theme.of(context);
-
     return Stack(
       children: <Widget>[
         Column(
@@ -104,7 +102,6 @@ class _TwoPanelsState extends State<TwoPanels> {
                       widget.controller.fling(velocity: -1.0);
                     },
                     child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
                           height: 8,

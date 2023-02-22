@@ -1,14 +1,12 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../widgets/button_app.dart';
 
 class EditProfilePage extends StatefulWidget {
+  //Manda a traer datos de la anterior pestaña
   final String email;
   final String nombre;
   final String nombre2;
@@ -31,25 +29,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   final bool isEdit = false;
 
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
-  late final User? user = auth.currentUser;
-
-  late final uid = user?.uid;
-
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
-
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     final _emailController = TextEditingController(text: widget.email);
-
-    // final _confettiController = ConfettiController();
-
-    // Widget _buttonRegister() {}
 
     Widget _textFieldEmail() {
       return Container(
@@ -60,7 +46,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           decoration: const InputDecoration(
               focusColor: Colors.white,
               hoverColor: Colors.white,
-              // hintText: ,
               labelText: 'Correo electronico',
               suffixIcon: Icon(
                 Icons.email_outlined,
@@ -105,9 +90,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ))!;
     }
 
+    //Widget de la foto de perfil con el icono cambiado(editar)
+
     _foto() {
       showModalBottomSheet(
-        //backgroundColor: Colors.transparent,
         context: context,
         builder: (BuildContext bc) {
           return Container(
@@ -155,6 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       );
     }
 
+    //Widget de la imagen
     Widget buildImage() {
       return selectedFileName.isEmpty
           ? ClipOval(
@@ -188,6 +175,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
         );
 
+    //Widget para construir el icono/cambiar icono
     Widget buildEditIcon() => buildCircle(
           color: Colors.white,
           all: 3,
@@ -218,7 +206,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
             body: SizedBox(
               width: media.width,
               height: media.height,
-              // color: Colors.blue,
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -251,6 +238,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                         ),
                       ),
+                      //Widget de la imagen
                       _textFieldUsername(),
                       _textFieldUsername2(),
                       _textFieldEmail(),
@@ -258,65 +246,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         height: 50,
                       ),
                       GestureDetector(
-                        onTap: () {
-                          users
-                              .doc(uid)
-                              .update({
-                                'firstName': _firstNameController.text.trim(),
-                                'lastName': _lastNameController.text.trim(),
-                              })
-                              .then(
-                                (value) => Fluttertoast.showToast(
-                                    msg: "Usuario actualizado ",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.black,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),
-                              )
-                              .catchError((error) => Fluttertoast.showToast(
-                                  msg: error,
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.black,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0));
-                          Navigator.pop(context);
-                        },
+                        onTap: () {},
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 0, vertical: 25),
                           child: ButtonApp(
                             color: Colors.black,
-                            onPressed: () {
-                              users
-                                  .doc(uid)
-                                  .update({
-                                    'firstName':
-                                        _firstNameController.text.trim(),
-                                    'lastName': _lastNameController.text.trim(),
-                                  })
-                                  .then(
-                                    (value) => Fluttertoast.showToast(
-                                        msg: "Usuario actualizado ",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0),
-                                  )
-                                  .catchError((error) => Fluttertoast.showToast(
-                                      msg: error,
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0));
-                            },
+                            onPressed: () {},
                             text: 'Guardar usuario',
                             textColor: Colors.white,
                           ),

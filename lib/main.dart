@@ -4,17 +4,17 @@ import 'package:bcatravel/screens/forgot_password.dart';
 import 'package:bcatravel/screens/login.dart';
 import 'package:bcatravel/screens/politicas.dart';
 import 'package:bcatravel/screens/register.dart';
-import 'package:bcatravel/screens/splash.dart';
 import 'package:bcatravel/screens/swiper.dart';
 import 'package:bcatravel/user/home/ui/bottombar.dart';
+import 'package:bcatravel/user/home/ui/feed_screen_hote.dart';
+import 'package:bcatravel/user/home/ui/feed_screen_resta.dart';
+import 'package:bcatravel/user/home/ui/feed_screen_trans.dart';
 import 'package:bcatravel/user/profile/about.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:bcatravel/user/profile/editprofile.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
-import 'message_screen.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -24,21 +24,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // ignore: deprecated_member_use
   FlutterNativeSplash.removeAfter(initialization);
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyAnaXPgd_4FY2cwiVAOJ_Wji51gpL4ImU8",
-      appId: "1:469574159598:android:018a99905eb9c72cbaf7ff",
-      messagingSenderId: "469574159598",
-      projectId: "bcatravel-7cd19",
-    ),
-  );
-  // await PushNotificationServices.initializeApp();
   runApp(const MyApp());
 }
 
 Future initialization(BuildContext? context) async {
-  await Future.delayed(const Duration(seconds: 1));
+  await Future.delayed(const Duration(microseconds: 1));
 }
 
 class MyApp extends StatefulWidget {
@@ -49,36 +39,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // final GlobalKey<NavigatorState> navigatorkey = GlobalKey<NavigatorState>();
-  // final GlobalKey<ScaffoldMessengerState> messengerkey =
-  //     GlobalKey<ScaffoldMessengerState>();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   SystemChrome.setPreferredOrientations([
-  //     DeviceOrientation.portraitUp,
-  //   ]);
-  //   PushNotificationServices.messagesStream.listen((message) {
-  //     navigatorkey.currentState?.pushNamed('message', arguments: message);
-  //     final snackBar = SnackBar(content: Text(message));
-  //     messengerkey.currentState?.showSnackBar(snackBar);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // navigatorKey: navigatorkey,
-      // scaffoldMessengerKey: messengerkey,
-      // color: Colors.red,
-      // theme: _buildShrineTheme(),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const SwiperScreen(),
       title: 'BCA Travel',
-      // initialRoute: 'splash',
       routes: {
-        'splash': (BuildContext context) => const SplashScreen(),
         'swiper': (BuildContext context) => const SwiperScreen(),
         'login': (BuildContext context) => const LoginScreen(),
         'register': (BuildContext context) => const RegisterScreen(),
@@ -86,20 +53,21 @@ class _MyAppState extends State<MyApp> {
         'politicas': (BuildContext context) => const PoliticasScreen(),
         'bottom': (BuildContext context) => const BottomBar(),
         'forgot': (BuildContext context) => const ForgotPassword(),
-        'message': (_) => const MessageScreen(),
         'developer': (_) => const Developers(),
         'about': (_) => const AboutPage(),
-        // 'edit': (_) => EditProfilePage1('sad', 'sad'),
+        'edit': (_) => const EditProfilePage(
+            'felipegarces1608@gmail.com',
+            'Carlos Felipe',
+            'Garcés Yepes',
+            'https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no'),
+        'transporte': (_) => const FeedScreentrans(),
+        'hotel': (_) => const FeedScreenHote(),
+        'resta': (_) => const FeedScreenResta(),
       },
       theme: ThemeData(
-        // primarySwatch: Colors.deepOrange,
-
-        // elevatedButtonTheme: ElevatedButtonThemeData(style: ),
         brightness: Brightness.light,
-        // themeMode: ThemeMode.light,
       ),
       darkTheme: ThemeData(
-        // primarySwatch: Colors.yellow,
         appBarTheme: const AppBarTheme(
           color: Colors.yellow,
         ),
@@ -109,61 +77,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// ThemeData _buildShrineTheme() {
-//   final ThemeData base = ThemeData.dark();
-//   return base.copyWith(
-//     colorScheme: _shrineColorScheme,
-//     textTheme: _buildShrineTextTheme(base.textTheme),
-//   );
-// }
-
-// TextTheme _buildShrineTextTheme(TextTheme base) {
-//   return base
-//       .copyWith(
-//         caption: base.caption?.copyWith(
-//           fontWeight: FontWeight.w400,
-//           fontSize: 14,
-//           letterSpacing: defaultLetterSpacing,
-//         ),
-//         button: base.button?.copyWith(
-//           fontWeight: FontWeight.w500,
-//           fontSize: 14,
-//           letterSpacing: defaultLetterSpacing,
-//         ),
-//       )
-//       .apply(
-//         fontFamily: 'Rubik',
-//         displayColor: shrineBrown900,
-//         bodyColor: shrineBrown900,
-//       );
-// }
-
-// const ColorScheme _shrineColorScheme = ColorScheme(
-//   primary: shrinePink100,
-//   secondary: shrinePink50,
-//   surface: shrineSurfaceWhite,
-//   background: shrineBackgroundWhite,
-//   error: shrineErrorRed,
-//   onPrimary: shrineBrown900,
-//   onSecondary: shrineBrown900,
-//   onSurface: shrineBrown900,
-//   onBackground: shrineBrown900,
-//   onError: shrineSurfaceWhite,
-//   brightness: Brightness.light,
-// );
-
-// const Color shrinePink50 = Color(0xFFFEEAE6);
-// const Color shrinePink100 = Color(0xFFFEDBD0);
-// const Color shrinePink300 = Color(0xFFFBB8AC);
-// const Color shrinePink400 = Color(0xFFEAA4A4);
-
-// const Color shrineBrown900 = Color(0xFF442B2D);
-// const Color shrineBrown600 = Color(0xFF7D4F52);
-
-// const Color shrineErrorRed = Color(0xFFC5032B);
-
-// const Color shrineSurfaceWhite = Color(0xFFFFFBFA);
-// const Color shrineBackgroundWhite = Colors.white;
-
-// const defaultLetterSpacing = 0.03;

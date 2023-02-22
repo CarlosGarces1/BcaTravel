@@ -9,8 +9,6 @@ import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-// import 'package:like_button/like_button.dart';
-// import 'package:vocsy_esys_flutter_share/vocsy_esys_flutter_share.dart';
 
 class AnimatedDetailHeader extends StatelessWidget {
   const AnimatedDetailHeader({
@@ -54,17 +52,6 @@ class AnimatedDetailHeader extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  // Positioned(
-                  //   top: topPadding,
-                  //   right: -60 * (1 - bottomPercent),
-                  //   child: IconButton(
-                  //     onPressed: () {},
-                  //     icon: const Icon(
-                  //       Icons.more_horiz,
-                  //       color: Colors.white,
-                  //     ),
-                  //   ),
-                  // ),
                   Positioned(
                     top: lerpDouble(-100, 140, topPercent)!
                         .clamp(topPadding + 10, 140),
@@ -98,38 +85,6 @@ class AnimatedDetailHeader extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //   left: 20,
-                  //   top: 250,
-                  //   child: Container(
-                  //     height: 40,
-                  //     width: 210,
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.grey.shade400,
-                  //       borderRadius: BorderRadius.circular(20),
-
-                  //     ),
-                  //     //
-                  //     // width: 300,
-                  //     child: Center(
-                  //       child: RatingBar.builder(
-                  //         initialRating: place.rating,
-                  //         minRating: 1,
-                  //         direction: Axis.horizontal,
-                  //         allowHalfRating: true,
-                  //         itemCount: 5,
-                  //         // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  //         itemBuilder: (context, _) => const Icon(
-                  //           Icons.star,
-                  //           color: Colors.amber,
-                  //         ),
-                  //         onRatingUpdate: (rating) {
-                  //           // print(rating);
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),

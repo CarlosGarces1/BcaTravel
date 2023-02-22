@@ -1,20 +1,18 @@
 import 'package:bcatravel/user/home/models/place.dart';
-import 'package:bcatravel/user/home/widgets/gradient_status_tag.dart';
 import 'package:flutter/material.dart';
 
-class PlaceCard extends StatelessWidget {
-  const PlaceCard({
+class PlaceCardCate extends StatelessWidget {
+  const PlaceCardCate({
     Key? key,
     required this.place,
     required this.onPressed,
   }) : super(key: key);
 
-  final TravelPlace place;
+  final Categories1 place;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    final statusTag = place.statusTag;
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -43,7 +41,6 @@ class PlaceCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            GradientStatusTag(statusTag: statusTag),
             const Spacer(),
           ],
         ),

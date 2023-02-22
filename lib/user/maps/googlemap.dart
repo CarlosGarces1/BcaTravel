@@ -1,5 +1,3 @@
-// ignore_for_file: unused_label
-
 import 'dart:async';
 
 import 'package:bcatravel/user/home/models/place.dart';
@@ -36,7 +34,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
       currentLocation = location;
     });
 
-    // GoogleMapController googlemapController = await _controller.future;
 
     location.onLocationChanged.listen((newloc) {
       currentLocation = newloc;
@@ -44,55 +41,19 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     });
   }
 
-  // void getPolyPoints() async {
-  //   PolylinePoints polylinePoints = PolylinePoints();
-
-  //   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-  //     googleapikey,
-  //     const PointLatLng(7.059968177641771, -73.87396936152784),
-  //     const PointLatLng(7.059747963196341, -73.87121470297843),
-  //   );
-
-  //   if (result.points.isNotEmpty) {
-  //     for (var point in result.points) {
-  //       setState(() {
-  //         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-  //       });
-  //     }
-  //     setState(() {});
-  //   }
-  // }
-
-  // List<LatLng> latLen = const [
-  //   LatLng(7.059968177641771, -73.87396936152784),
-  //   LatLng(7.0593719177950565, -73.87388084863525),
-  //   LatLng(7.058639901304981, -73.87388084863542),
-  //   LatLng(7.058605296861968, -73.87364481424672),
-  //   LatLng(7.059465083445697, -73.8736072633226),
-  //   LatLng(7.059606162831462, -73.87223933672894),
-  //   LatLng(7.059747963196341, -73.87121470297843),
-  //   // LatLng(7.0593719177950565, -73.87388084863525),
-  //   // LatLng(7.058639901304981, -73.87388084863542),
-  //   // LatLng(7.058605296861968, -73.87364481424672),
-  //   // LatLng(7.059465083445697, -73.8736072633226),
-  //   // LatLng(7.059606162831462, -73.87223933672894),
-  // ];
 
   @override
   void initState() {
     getCurrentLocation();
-    // getPolyPoints();
+
 
     super.initState();
   }
 
-  // BorderRadiusGeometry radius = const BorderRadius.only(
-  //   topLeft: Radius.circular(24.0),
-  //   topRight: Radius.circular(24.0),
-  // );
+
   @override
   Widget build(BuildContext context) {
-    // final media = MediaQuery.of(context).size;
+
     return Stack(
       children: [
         Scaffold(
@@ -106,43 +67,21 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                           currentLocation!.longitude!),
                       zoom: 13.5),
                   markers: _markers(),
-                  // polylines: {
-                  //   Polyline(
-                  //       polylineId: const PolylineId('1'),
-                  //       points: polylineCoordinates,
-                  //       color: Colors.green,
-                  //       width: 6)
-                  // },
+
                   onMapCreated: (mapController) {
                     _controller.complete(mapController);
                   },
                   compassEnabled: true,
                   myLocationEnabled: true,
                   myLocationButtonEnabled: true,
-                  // onTap: (LatLng latLng) {
-                  //   // print('You tapped at: $latLng');
-                  // },
-                  // ),
+
                 ),
         ),
-        // Positioned(
-        //   top: media.height * 0.8,
-        //   left: media.width * 0.1,
-        //   // right: media.width * 0.3,
-        //   child: SizedBox(
-        //       height: MediaQuery.of(context).size.height * 0.09,
-        //       child: FloatingActionButton(
-        //           onPressed: () {
-        //             variablexd = variablexd == true ? false : true;
-        //             setState(() {});
-        //           },
-        //           child: const Icon(Icons.my_location))),
-        // ),
+
       ],
     );
   }
 
-// widget.place.description
 
   Set<Marker> _markers() {
     var tmp = <Marker>{};

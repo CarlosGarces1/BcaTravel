@@ -1,1 +1,2 @@
-const String googleapikey="AIzaSyDk1ls1xBdI5t8dAZ_MjaYFLaXRSuR4Lps";
+//Clave de google maps para poder mostrar el mapa
+const String googleapikey="CLAVE DE GOOGLE MAPS";

@@ -98,7 +98,6 @@ class PlaceCommentsWidget extends StatelessWidget {
         return CupertinoPopupSurface(
           child: Container(
             color: CupertinoColors.white,
-            // alignment: Alignment.center,
             width: double.infinity,
             height: 500,
             child: SingleChildScrollView(
@@ -125,7 +124,6 @@ class PlaceCommentsWidget extends StatelessWidget {
                             children: [
                               const SizedBox(width: 20),
                               CircleAvatar(
-                                // backgroundColor: Colors.red,
                                 radius: media.height * 0.03,
                                 backgroundImage: const NetworkImage(
                                   "https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no",
@@ -173,7 +171,6 @@ class PlaceCommentsWidget extends StatelessWidget {
                             children: [
                               const SizedBox(width: 20),
                               CircleAvatar(
-                                // backgroundColor: Colors.red,
                                 radius: media.height * 0.03,
                                 backgroundImage: const NetworkImage(
                                   "https://lh3.googleusercontent.com/a-/AFdZucrUkWpDTDwl2lJVYaegGwPGRQwK1Sx53qTNUieQ=s48-p",

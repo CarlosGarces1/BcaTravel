@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -10,46 +9,6 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   final _emailController = TextEditingController();
-
-  Future passwordReset() async {
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController.text.trim());
-
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: const Text('Success'),
-                content: const Text('Password reset email sent'),
-                actions: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                    ),
-                    child: const Text('Ok'),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ],
-              ));
-    } on FirebaseAuthException catch (e) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: Text(e.message.toString()),
-          actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.black,
-              ),
-              child: const Text('Ok'),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
-        ),
-      );
-    }
-  }
 
   @override
   void dispose() {
@@ -153,7 +112,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           height: 45,
                           child: ElevatedButton(
                             onPressed: () {
-                              passwordReset();
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: const Text('Success'),
+                                        content: const Text(
+                                            'Password reset email sent'),
+                                        actions: [
+                                          TextButton(
+                                            style: TextButton.styleFrom(
+                                              foregroundColor: Colors.black,
+                                            ),
+                                            child: const Text('Ok'),
+                                            onPressed: () =>
+                                                Navigator.of(context).pop(),
+                                          ),
+                                        ],
+                                      ));
                             },
                             child: const Text('Enviar correo'),
                             style: ElevatedButton.styleFrom(

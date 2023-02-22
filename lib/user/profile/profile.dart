@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'editprofile.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  //Widget circular de foto
 
   Widget buildCircle({
     required Widget child,
@@ -22,136 +20,100 @@ class ProfileScreen extends StatelessWidget {
         ),
       );
 
+  // Obtener datos de los usuarios de la base de datos
+
   getuser(BuildContext context) {
     final media = MediaQuery.of(context).size;
-    final FirebaseAuth auth = FirebaseAuth.instance;
-
-    final User? user = auth.currentUser;
-    final uid = user?.uid;
-
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-    return FutureBuilder<DocumentSnapshot>(
-      future: users.doc(uid).get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return const Text("Something went wrong");
-        }
-
-        if (snapshot.hasData && !snapshot.data!.exists) {
-          return const Text("Document does not exist");
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data =
-              snapshot.data!.data() as Map<String, dynamic>;
-          return SafeArea(
-            child: Center(
-              child: SizedBox(
-                height: media.height * 0.21,
-                width: media.width,
-                // color: Colors.red,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10.0, left: 10.0, bottom: 10, right: 20),
-                  child: Stack(
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushReplacementNamed('edit');
-                            },
-                            child: ClipOval(
-                              child: Image.network(
-                                "${data['profileimage']}",
-                                width: 140,
-                                height: 140,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: media.width * 0.56,
-                            height: media.height * 1,
-                            // color: Colors.red,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    'Nombre:',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  SizedBox(
-                                    height: media.height * 0.01,
-                                  ),
-                                  Text(
-                                    "${data['firstName']} ${data['lastName']}",
-                                    style: const TextStyle(fontSize: 15),
-                                  ),
-                                  SizedBox(
-                                    height: media.height * 0.01,
-                                  ),
-                                  const Text(
-                                    'Correo:',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  SizedBox(
-                                    height: media.height * 0.01,
-                                  ),
-                                  Text(
-                                    '${data['email']}',
-                                    style: const TextStyle(fontSize: 15),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Positioned(
-                        top: 95,
-                        left: 100,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EditProfilePage(
-                                      '${data['email']}',
-                                      "${data['firstName']}",
-                                      " ${data['lastName']}",
-                                      "${data['profileimage']}")),
-                            );
-                          },
-                          child: buildCircle(
-                            color: Colors.white,
-                            all: 3,
-                            child: buildCircle(
-                              color: Colors.blue,
-                              all: 8,
-                              child: const Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ),
+    return SafeArea(
+      child: Center(
+        child: SizedBox(
+          height: media.height * 0.21,
+          width: media.width,
+          child: Padding(
+            padding: const EdgeInsets.only(
+                top: 10.0, left: 10.0, bottom: 10, right: 20),
+            child: Stack(
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'edit');
+                      },
+                      child: ClipOval(
+                        child: Image.network(
+                          "https://lh3.googleusercontent.com/a-/AFdZucpaioQw3FVX3MKuL26ARCnxTp1LNkbSRPmsNhKjDAo=s288-p-no",
+                          width: 140,
+                          height: 140,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ],
+                    ),
+                    SizedBox(
+                      width: media.width * 0.56,
+                      height: media.height * 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Nombre:',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(
+                              height: media.height * 0.01,
+                            ),
+                            const Text(
+                              "Carlos Felipe Garcés Yepes",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            SizedBox(
+                              height: media.height * 0.01,
+                            ),
+                            const Text(
+                              'Correo:',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(
+                              height: media.height * 0.01,
+                            ),
+                            const Text(
+                              'felipegarces1608@gmail.com',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Positioned(
+                  top: 95,
+                  left: 100,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'edit');
+                    },
+                    child: buildCircle(
+                      color: Colors.white,
+                      all: 3,
+                      child: buildCircle(
+                        color: Colors.blue,
+                        all: 8,
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        }
-
-        return const CircularProgressIndicator();
-      },
+          ),
+        ),
+      ),
     );
   }
 
@@ -160,8 +122,8 @@ class ProfileScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Stack(
-        // alignment: Alignment.center,
         children: [
+          //Imagen de fondo
           Positioned(
             child: Image.asset(
               "assets/fondoPrincipal.png",
@@ -188,12 +150,14 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                //informacion del usuario(nombre, correo)
                 getuser(context),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
                 Column(children: [
                   ListTile(
+                    //Ir al about page
                     onTap: () {
                       Navigator.pushNamed(context, 'about');
                     },
@@ -212,6 +176,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+                  //Ir a facebook
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -228,6 +193,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+                  //Ir a instagram
                   ListTile(
                     onTap: () {
                       launchURL(
@@ -244,6 +210,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+                  //Ir a twitter
                   ListTile(
                     onTap: () {
                       launchURL(context,
@@ -260,9 +227,9 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+                  //Cerrar sesion
                   ListTile(
                     onTap: () {
-                      FirebaseAuth.instance.signOut();
                       Navigator.of(context).pushReplacementNamed('swiper');
                     },
                     title: const Text('Cerrar sesión',
@@ -281,6 +248,8 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+  //Lanzar una url en internet
 
   Future launchURL(
     BuildContext context,

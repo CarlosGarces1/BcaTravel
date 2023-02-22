@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//Widget de boton negro de toda la aplicacion, se crea y se llama
+//Despues para ser usado sin reescribir el codigo.
+
 // ignore: must_be_immutable
 class ButtonApp extends StatelessWidget {
   Color color;

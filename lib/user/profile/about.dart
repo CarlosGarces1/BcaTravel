@@ -23,14 +23,27 @@ class AboutPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20),
-                child: Text(
-                  'Desarrolladores',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0, bottom: 20, left: 10),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(Icons.arrow_back_ios),
+                    ),
+                    SizedBox(
+                      width: media.width * 0.06,
+                    ),
+                    const Text(
+                      'Acerca de:',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               developer('BCA Travel', 'Aplicación de turismo',
@@ -65,7 +78,7 @@ class AboutPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Text(
-                  'Si notas algún error por favor notificar en el correo: barranca.travel@unipaz.edu.co. ',
+                  'Si notas algún error por favor notificar en el correo: barranca.travel@unipaz.edu.co.',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 20,
@@ -74,16 +87,6 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ),
-        Positioned(
-          left: 10,
-          top: 10,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: const Icon(Icons.arrow_back_ios),
           ),
         ),
       ],
@@ -151,8 +154,6 @@ class AboutPage extends StatelessWidget {
     BuildContext context,
     String url,
   ) async {
-    // final url ;
-
     if (await canLaunchUrlString(url)) {
       await launchUrlString(
         url,

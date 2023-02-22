@@ -65,24 +65,46 @@ class TravelPlace {
       whasa: 'https://wa.link/a1tfee',
       facebook: 'https://www.facebook.com/Primavereame',
       instagram: 'https://www.instagram.com/cafepescador/',
-      web: 'https://linktr.ee/cafedelpescador?fbclid=IwAR1LSHzX1QIu6nu_vaQgpw1IABosO1oEjUgn85ObHc0Y1PrXUYpFNKgslWw',
+      web:
+          'https://linktr.ee/cafedelpescador?fbclid=IwAR1LSHzX1QIu6nu_vaQgpw1IABosO1oEjUgn85ObHc0Y1PrXUYpFNKgslWw',
     ),
     TravelPlace(
-      id: '2',
-      name: 'Apartahotel Bonilla',
+        id: '9',
+        name: 'FRAPETTO',
+        description: 'PROXIMAMENTE.',
+        user: TravelUser.raul,
+        statusTag: StatusTag.restaurante,
+        locationDesc: 'Carrera 20 # 49-53',
+        telefono: "3053609909",
+        imagesUrl: [
+          'assets/fotos/comida/f1.jpg',
+          'assets/fotos/comida/f2.jpg',
+          'assets/fotos/comida/f3.jpg',
+          'assets/fotos/comida/f4.jpg',
+          'assets/fotos/comida/f5.jpg',
+        ],
+        whasa: 'https://wa.link/clon0y',
+        facebook: 'https://www.facebook.com/frapetto/',
+        web: '',
+        instagram: 'https://www.instagram.com/frapetto.cafebar/?hl=es'),
+    TravelPlace(
+      id: '10',
+      name: 'PIZZA EXTREMA',
       description: 'PROXIMAMENTE.',
       user: TravelUser.carlos,
-      statusTag: StatusTag.hotel,
-      locationDesc: 'Calle 49 # 13-30',
-      telefono: "3212004955",
+      statusTag: StatusTag.restaurante,
+      locationDesc: 'Calle 50 # 18 - 75',
+      telefono: "(607)6113941",
       imagesUrl: [
-        'assets/fotos/hoteles/B1.jpg',
-        'assets/fotos/hoteles/B2.jpg',
-        'assets/fotos/hoteles/B3.jpg',
+        'assets/fotos/comida/Dp 1.jpg',
+        'assets/fotos/comida/dp2.jpg',
+        'assets/fotos/comida/dp3.jpg',
+        'assets/fotos/comida/dp4.jpg',
+        'assets/fotos/comida/dp5.jpg',
       ],
-      whasa: 'https://wa.link/xc9i02',
-      facebook: 'https://www.facebook.com/hotelrmbarrancabermeja/?_rdc=1&_rdr',
-      instagram: '',
+      whasa: 'https://wa.link/zx0bm3',
+      facebook: 'https://es-la.facebook.com/pizzaextrema2001/',
+      instagram: 'https://www.instagram.com/pizzaextrema/?hl=es',
       web: '',
     ),
     TravelPlace(
@@ -127,6 +149,24 @@ class TravelPlace {
       web: '',
     ),
     TravelPlace(
+      id: '2',
+      name: 'Apartahotel Bonilla',
+      description: 'PROXIMAMENTE.',
+      user: TravelUser.carlos,
+      statusTag: StatusTag.hotel,
+      locationDesc: 'Calle 49 # 13-30',
+      telefono: "3212004955",
+      imagesUrl: [
+        'assets/fotos/hoteles/B1.jpg',
+        'assets/fotos/hoteles/B2.jpg',
+        'assets/fotos/hoteles/B3.jpg',
+      ],
+      whasa: 'https://wa.link/xc9i02',
+      facebook: 'https://www.facebook.com/hotelrmbarrancabermeja/?_rdc=1&_rdr',
+      instagram: '',
+      web: '',
+    ),
+    TravelPlace(
       id: '6',
       name: 'Hotel Milenium',
       description: 'PROXIMAMENTE.',
@@ -142,7 +182,8 @@ class TravelPlace {
       whasa: 'https://wa.link/zcpclj',
       facebook: 'https://www.facebook.com/HotelMillenium/?_rdc=2&_rdr',
       instagram: 'https://www.instagram.com/hotelmillenium/',
-      web: 'https://hotelmilleniumbarrancabermeja.negocio.site/?utm_source=gmb&utm_medium=referral',
+      web:
+          'https://hotelmilleniumbarrancabermeja.negocio.site/?utm_source=gmb&utm_medium=referral',
     ),
     TravelPlace(
       id: '7',
@@ -165,26 +206,6 @@ class TravelPlace {
       web: '',
     ),
     TravelPlace(
-      id: '9',
-      name: 'FRAPETTO',
-      description: 'PROXIMAMENTE.',
-      user: TravelUser.raul,
-      statusTag: StatusTag.restaurante,
-      locationDesc: 'Carrera 20 # 49-53',
-      telefono: "3053609909",
-      imagesUrl: [
-        'assets/fotos/comida/f1.jpg',
-        'assets/fotos/comida/f2.jpg',
-        'assets/fotos/comida/f3.jpg',
-        'assets/fotos/comida/f4.jpg',
-        'assets/fotos/comida/f5.jpg',
-      ],
-      whasa: 'https://wa.link/clon0y',
-      facebook: 'https://www.facebook.com/frapetto/',
-      web: '',
-      instagram: 'https://www.instagram.com/frapetto.cafebar/?hl=es'
-    ),
-    TravelPlace(
       id: '8',
       name: 'Hotel Colonial',
       description: 'PROXIMAMENTE.',
@@ -202,26 +223,6 @@ class TravelPlace {
       facebook: 'https://www.facebook.com/Hotelcolonial25/',
       instagram: '',
       web: 'https://www.hotelenbarrancabermeja.com.co/index.html',
-    ),
-    TravelPlace(
-      id: '10',
-      name: 'PIZZA EXTREMA',
-      description: 'PROXIMAMENTE.',
-      user: TravelUser.carlos,
-      statusTag: StatusTag.restaurante,
-      locationDesc: 'Calle 50 # 18 - 75',
-      telefono: "(607)6113941",
-      imagesUrl: [
-        'assets/fotos/comida/Dp 1.jpg',
-        'assets/fotos/comida/dp2.jpg',
-        'assets/fotos/comida/dp3.jpg',
-        'assets/fotos/comida/dp4.jpg',
-        'assets/fotos/comida/dp5.jpg',
-      ],
-      whasa: 'https://wa.link/zx0bm3',
-      facebook: 'https://es-la.facebook.com/pizzaextrema2001/',
-      instagram: 'https://www.instagram.com/pizzaextrema/?hl=es',
-      web: '',
     ),
   ];
 }
@@ -242,6 +243,42 @@ class TravelUser {
   );
 
   static List<TravelUser> users = [carlos, raul];
+}
+
+class Categories1 {
+  Categories1({
+    required this.name,
+    this.id = '',
+    required this.imagesUrl,
+  });
+
+  final String id;
+  final String name;
+  final List<String> imagesUrl;
+
+  static final places = [
+    Categories1(
+      id: '1',
+      name: 'Transporte',
+      imagesUrl: [
+        'assets/fotos/transporte/Coom1.jpg',
+      ],
+    ),
+    Categories1(
+      id: '2',
+      name: 'Hoteleria',
+      imagesUrl: [
+        'assets/fotos/hoteles/M1.jpg',
+      ],
+    ),
+    Categories1(
+      id: '3',
+      name: 'Gastronomia',
+      imagesUrl: [
+        'assets/fotos/comida/P2.jpg',
+      ],
+    ),
+  ];
 }
 
 enum StatusTag { hotel, restaurante, transporte }

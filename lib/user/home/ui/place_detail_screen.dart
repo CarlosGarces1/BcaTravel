@@ -1,6 +1,5 @@
 import 'package:bcatravel/user/home/models/place.dart';
 import 'package:bcatravel/user/home/widgets/animated_detail_header.dart';
-// import 'package:bcatravel/user/home/widgets/place_comments_widget.dart';
 import 'package:bcatravel/user/home/widgets/translate_animation.dart';
 import 'package:flutter/material.dart';
 
@@ -117,35 +116,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // const SizedBox(height: 10),
-                          // const Text("Estrellas del lugar",
-                          //     style: TextStyle(
-                          //         fontSize: 19, fontWeight: FontWeight.bold)),
-                          // const SizedBox(height: 10),
-                          // Row(
-                          //   children: [
-                          //     RatingBar.builder(
-                          //       initialRating: widget.place.rating,
-                          //       minRating: 1,
-                          //       direction: Axis.horizontal,
-                          //       allowHalfRating: true,
-                          //       itemCount: 5,
-                          //       // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                          //       itemBuilder: (context, _) => const Icon(
-                          //         Icons.star,
-                          //         color: Colors.amber,
-                          //       ),
-                          //       onRatingUpdate: (rating) {
-                          //         // print(rating);
-                          //       },
-                          //     ),
-                          //     const SizedBox(width: 20),
-                          //     Text(widget.place.rating.toString(),
-                          //         style: const TextStyle(
-                          //             fontSize: 19,
-                          //             fontWeight: FontWeight.bold)),
-                          //   ],
-                          // ),
                           const SizedBox(height: 20),
                           Text(widget.place.description),
                           const SizedBox(height: 30),
@@ -154,45 +124,9 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     ),
                   ),
                 ),
-                // SliverToBoxAdapter(
-                //   child: SizedBox(
-                //     height: 180,
-                //     child: ListView.builder(
-                //       scrollDirection: Axis.horizontal,
-                //       itemExtent: 150,
-                //       padding: const EdgeInsets.symmetric(horizontal: 20),
-                //       itemCount: widget.place.imagesUrl2.length,
-                //       itemBuilder: (context, index) {
-                //         // final collectionPlace = widget.place.imagesUrl2[index];
-                //         return Padding(
-                //           padding: const EdgeInsets.only(right: 10),
-                //           child: ClipRRect(
-                //             borderRadius: BorderRadius.circular(12),
-                //             child: Image.network(
-                //               widget.place.imagesUrl2.first,
-                //               fit: BoxFit.cover,
-                //             ),
-                //           ),
-                //         );
-                //       },
-                //     ),
-                //   ),
-                // ),
-                // const SliverToBoxAdapter(child: SizedBox(height: 150))
               ],
             ),
           ),
-          // ValueListenableBuilder<double>(
-          //   valueListenable: bottomPercentNotifier,
-          //   builder: (context, value, child) {
-          //     return Positioned.fill(
-          //       top: null,
-          //       bottom: -130 * (1 - value),
-          //       child: child!,
-          //     );
-          //   },
-          //   child: const PlaceCommentsWidget(),
-          // )
         ],
       ),
     );

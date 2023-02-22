@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,33 +10,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  Future signIn() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-      Navigator.of(context).pushReplacementNamed('bottom');
-    } on FirebaseAuthException catch (e) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: Text(e.message.toString()),
-          actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.black,
-              ),
-              child: const Text('Ok'),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
-        ),
-      );
-    }
-  }
 
   Widget _textFieldEmail() {
     return Container(
@@ -160,7 +132,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 45,
                           child: ElevatedButton(
                             onPressed: () {
-                              signIn();
+                              Navigator.of(context)
+                                  .pushReplacementNamed('bottom');
                             },
                             child: const Text('Iniciar sesion'),
                             style: ElevatedButton.styleFrom(

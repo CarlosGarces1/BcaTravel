@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>469574159598-vh5fu15g5bbk2jqe77sk92jcni7str3f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.469574159598-vh5fu15g5bbk2jqe77sk92jcni7str3f</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>469574159598-m65tmu8hag66f378vftpcl7e6gvois11.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3YdOiQ8QTbfq-eeHddW9dMg6IU3ycVbw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>469574159598</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.UNIPAZ.bcatravel</string>
+	<key>PROJECT_ID</key>
+	<string>bcatravel-7cd19</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bcatravel-7cd19.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:469574159598:ios:083f8781f4789478baf7ff</string>
+	<key>DATABASE_URL</key>
+	<string>https://bcatravel-7cd19-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
