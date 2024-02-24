@@ -23,6 +23,7 @@ Entre las funcionalidades que ofrece la aplicación, se encuentran:
 Este es un proyecto investigativo realizado en el materia Ingeniería del conocimiento. Si deseas conocer más acerca de la investigación que se llevó a cabo puedes consultar en estos links:
 - Ficha tecnica: Ver [Ficha tecnica]( https://docs.google.com/document/d/1qDZUNDWtizJ-KCHjcDqS1VQRR9YePZ5P/edit?usp=sharing&ouid=102490290992905696508&rtpof=true&sd=true )
 - Investigación: Ver [Investigación]( https://docs.google.com/document/d/1HwqkCI3pvslnaa7lfeO7kHCINZ5e0FWe/edit?usp=sharing&ouid=102490290992905696508&rtpof=true&sd=true )
+- Documento final: Ver (https://docs.google.com/document/d/17urdHcmwYPb2b5T8Dx2E17S_K71A_BML/edit?usp=drive_link)
 
 
 ## Instalación
