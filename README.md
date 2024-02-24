@@ -1,6 +1,6 @@
 # BCA Travel
 
-BCA Travel es una aplicación móvil de 
+BCA Travel es una aplicación móvil de hjgyug
 
 ## Descripción
 
